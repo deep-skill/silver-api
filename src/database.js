@@ -11,7 +11,7 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 // Imports models
 const EnterpriseModel = require('./models/Enterprise.js')
 const ReserveModel = require('./models/Reserve.js')
-const RolModel = require('./models/Rol.js')
+const RoleModel = require('./models/Role.js')
 const TripModel = require('./models/Trip.js')
 const TripAdditionalChargeModel = require('./models/TripAdditionalCharge.js')
 const UserModel = require('./models/User.js')
@@ -19,13 +19,13 @@ const UserModel = require('./models/User.js')
 // Create sequelize models
 EnterpriseModel(sequelize)
 ReserveModel(sequelize)
-RolModel(sequelize)
+RoleModel(sequelize)
 TripModel(sequelize)
 TripAdditionalChargeModel(sequelize)
 UserModel(sequelize)
 
 // Create database relations
-const { Enterprise, Reserve, Rol, Trip, TripAdditionalCharge, User } = sequelize.models
+const { Enterprise, Reserve, Role, Trip, TripAdditionalCharge, User } = sequelize.models
 
 // User &    relation
 // User.belongsToMany(Role, {through: 'user_roles', timestamps: false, as: 'roles'})
@@ -53,7 +53,7 @@ const { Enterprise, Reserve, Rol, Trip, TripAdditionalCharge, User } = sequelize
 module.exports = {
   Enterprise,
   Reserve,
-  Rol,
+  Role,
   Trip,
   TripAdditionalCharge,
   User,
