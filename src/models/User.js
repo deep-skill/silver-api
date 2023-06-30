@@ -30,6 +30,12 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.DECIMAL(2,1),
       allowNull: true
-    }
+    },
+    status: {
+      type: DataTypes.ENUM,
+      values: [0, 1, 2], // 0: Deleted | 1: Active | 2: Inactive
+      allowNull: false,
+      defaultValue: 1
+    },
   }, { timestamps: false })
 }

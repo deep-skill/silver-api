@@ -2,6 +2,7 @@ const { Router } = require('express')
 const postAuth = require('../controllers/Auth/postAuth')
 const getUserData = require('../controllers/User/getUserData')
 const putUserData = require('../controllers/User/putUserData')
+const statusUserData = require('../controllers/User/statusUserData')
 
 const postEnterprise = require('../controllers/Enterprise/postEnterprise')
 const getEnterprise = require('../controllers/Enterprise/getEnterprise')
@@ -23,6 +24,7 @@ router.get('/test', (_req, res) => {
 router.post('/auth', postAuth)
 router.put('/user/update', putUserData)
 router.get('/user/get', getUserData)
+router.put('/user/status', statusUserData)
 //Enterprise
 router.post('/enterprise/create', postEnterprise)
 router.get('/enterprise/get', getEnterprise)
