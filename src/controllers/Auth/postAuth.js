@@ -3,7 +3,7 @@ const { User } = require('../../database')
 const postAuth = async (req, res) => {
   // Auth0 values
   const { id, name, email } = req.body
-  if(!id, !name, !email) throw res.status(400).json({error: 'Missing data'})
+  if(!id || !name || !email) throw res.status(400).json({error: 'Missing data'})
 
   // Find or create user in database
   try{
