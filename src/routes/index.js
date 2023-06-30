@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const postAuth = require('../controllers/Auth/postAuth')
+const getUserData = require('../controllers/User/getUserData')
 const putUserData = require('../controllers/User/putUserData')
 const postEnterprise = require('../controllers/Enterprise/postEnterprise')
 const postTrip = require('../controllers/Trip/postTrip')
@@ -12,13 +13,13 @@ router.get('/test', (_req, res) => {
   res.send('connected')
 })
 
-//Auth new user
+//User
 router.post('/auth', postAuth)
-//Update user data
 router.put('/user/update', putUserData)
-//Create enterprise
+router.get('/user/get', getUserData)
+//Enterprise
 router.post('/enterprise/create', postEnterprise)
-// Create trip
+//Trip
 router.post('/trip/create', postTrip)
 
 // Exports router
