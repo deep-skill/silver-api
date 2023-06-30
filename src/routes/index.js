@@ -9,6 +9,7 @@ const putEnterprise = require('../controllers/Enterprise/putEnterprise')
 
 const postTrip = require('../controllers/Trip/postTrip')
 const getTrip = require('../controllers/Trip/getTrip')
+const putTrip = require('../controllers/Trip/putTrip')
 
 // Create router
 const router = Router()
@@ -29,6 +30,7 @@ router.put('/enterprise/update', putEnterprise)
 //Trip
 router.post('/trip/create', postTrip)
 router.get('/trip/get', getTrip)
+router.put('/trip/update', putTrip)
 
 // Exports router
 module.exports = router
