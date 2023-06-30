@@ -12,6 +12,7 @@ const statusEnterprise = require('../controllers/Enterprise/statusEnterprise')
 const postTrip = require('../controllers/Trip/postTrip')
 const getTrip = require('../controllers/Trip/getTrip')
 const putTrip = require('../controllers/Trip/putTrip')
+const statusTrip = require('../controllers/Trip/statusTrip')
 
 // Create router
 const router = Router()
@@ -35,6 +36,7 @@ router.put('/enterprise/status', statusEnterprise)
 router.post('/trip/create', postTrip)
 router.get('/trip/get', getTrip)
 router.put('/trip/update', putTrip)
+router.put('/trip/status', statusTrip)
 
 // Exports router
 module.exports = router

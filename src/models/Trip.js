@@ -38,6 +38,12 @@ module.exports = (sequelize) => {
     userRating: {
       type: DataTypes.DECIMAL(2,1),
       allowNull: true
-    }
+    },
+    status: {
+      type: DataTypes.ENUM,
+      values: [0, 1], // 0: Deleted | 1: Active
+      allowNull: false,
+      defaultValue: 1
+    },
   }, { timestamps: false })
 }
