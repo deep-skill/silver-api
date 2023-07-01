@@ -33,9 +33,9 @@ module.exports = (sequelize) => {
     },
     status: {
       type: DataTypes.ENUM,
-      values: [0, 1, 2], // 0: Deleted | 1: Active | 2: Inactive
+      values: ["0", "1", "2"], // 0: Deleted | 1: Active | 2: Inactive
       allowNull: false,
-      defaultValue: 1
+      defaultValue: "1"
     },
   }, { timestamps: false })
 }
