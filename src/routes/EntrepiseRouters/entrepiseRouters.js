@@ -1,15 +1,19 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
-const postEnterprise = require('../../controllers/Enterprise/postEnterprise.js')
-const getEnterprise = require('../../controllers/Enterprise/getEnterprise.js')
-const putEnterprise = require('../../controllers/Enterprise/putEnterprise.js')
-const statusEnterprise = require('../../controllers/Enterprise/statusEnterprise.js')
+const {
+    getEntrepisesHandler,
+    getEntrepiseHandler,
+    postEntrepiseHandler,
+    putEntrepiseHandler,
+    statusEntrepiseHandler
+} = require("../../handlers/Entrepise/entrepisesHandler");
 
-const etrepiseRouters = Router();
+const entrepiseRouters = Router();
 
-etrepiseRouters.post('/create', postEnterprise)
-etrepiseRouters.get('/get', getEnterprise)
-etrepiseRouters.put('/update', putEnterprise)
-etrepiseRouters.put('/status', statusEnterprise)
+entrepiseRouters.get("/get", getEntrepiseHandler);
+entrepiseRouters.get("/", getEntrepisesHandler)
+entrepiseRouters.post('/create', postEntrepiseHandler)
+entrepiseRouters.put('/update', putEntrepiseHandler)
+entrepiseRouters.put('/status', statusEntrepiseHandler)
 
-module.exports = etrepiseRouters;
+module.exports = entrepiseRouters;
