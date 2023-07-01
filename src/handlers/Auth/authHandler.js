@@ -1,6 +1,6 @@
-const postAuthController = require("../../controllers/Auth/postAuthController")
+const postAuthController = require("../../controllers/Auth/authController")
 
-const postAuthHandler = async (req, res) => {
+const authHandler = async (req, res) => {
     const { id, name, email } = req.body;
 
     console.log(name);
@@ -10,7 +10,7 @@ const postAuthHandler = async (req, res) => {
 
         const created = await postAuthController(id, name, email);
 
-        return res.status(200).json({
+        return res.status(201).json({
             created,
             name,
         });
@@ -19,4 +19,4 @@ const postAuthHandler = async (req, res) => {
     }
 };
 
-module.exports = postAuthHandler;
+module.exports = authHandler;

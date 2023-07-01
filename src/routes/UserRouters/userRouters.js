@@ -1,13 +1,17 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
-const putUserData = require('../../controllers/User/putUserData.js');
-const getUserData = require('../../controllers/User/getUserData.js');
-const statusUserData = require('../../controllers/User/statusUserData.js');
+const {
+    getUsersHandler,
+    getUserDataHandler,
+    putStatusUserHandler,
+    putUserDataHandler
+} = require("../../handlers/Users/usersHandler");
 
 const userRouters = Router();
 
-userRouters.put('/update', putUserData);
-userRouters.put('/status', statusUserData);
-userRouters.get('/get', getUserData);
+userRouters.put("/update", putUserDataHandler);
+userRouters.put("/status", putStatusUserHandler);
+userRouters.get("/", getUsersHandler);
+userRouters.get("/:id", getUserDataHandler);
 
 module.exports = userRouters;

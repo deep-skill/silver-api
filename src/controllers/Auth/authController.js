@@ -1,6 +1,6 @@
 const { User } = require('../../database')
 
-const postAuthController = async (id, name, email, ) => {
+const authController = async (id, name, email, ) => {
     const [_, created] = await User.findOrCreate({
       where: {
         id: id
@@ -16,4 +16,4 @@ const postAuthController = async (id, name, email, ) => {
   
 
 
-module.exports = postAuthController
+module.exports = authController

@@ -1,6 +1,6 @@
 const { Router } = require('express')
 
-const postAuthHandler = require('../handlers/Auth/postAuthHandler');
+const authHandler = require('../handlers/Auth/authHandler');
 
 const userRouters = require("./UserRouters/userRouters")
 const entrepiseRouters = require("./EntrepiseRouters/entrepiseRouters")
@@ -11,7 +11,7 @@ const tripRouters = require("./TripRouters/tripRouters")
 // Create router
 const router = Router()
 
-router.post('/auth', postAuthHandler)
+router.post('/auth', authHandler)
 
 router.use('/user', userRouters)
 
