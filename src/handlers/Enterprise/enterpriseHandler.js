@@ -1,65 +1,65 @@
 const getEnterpriseController = require("../../controllers/Enterprise/getEnterpriseController.js");
-const getEnterprisesController = require("../../controllers/Enterprise/getEntrepisesController.js");
+const getEnterprisesController = require("../../controllers/Enterprise/getEnterprisesController.js");
 const postEnterpriseController = require("../../controllers/Enterprise/postEnterpriseController.js");
 const putEnterpriseController = require("../../controllers/Enterprise/putEnterpriseController.js");
 const statusEnterpriseController = require("../../controllers/Enterprise/statusEnterpriseController.js");
 
-const getEntrepisesHandler = async (req, res) => {
+const getEnterprisesHandler = async (req, res) => {
     try {
-        const entrepises = await getEnterprisesController();
+        const enterprises = await getEnterprisesController();
 
-        res.status(200).json(entrepises);
+        res.status(200).json(enterprises);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 };
 
-const getEntrepiseHandler = async (req, res) => {
+const getEnterpriseHandler = async (req, res) => {
     const { ruc } = req.body;
 
     try {
         if (!ruc) throw new Error("Missing data");
 
-        const entrepise = await getEnterpriseController(ruc);
+        const enterprise = await getEnterpriseController(ruc);
 
-        return res.status(200).json(entrepise);
+        return res.status(200).json(enterprise);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 };
 
-const postEntrepiseHandler = async (req, res) => {
+const postEnterpriseHandler = async (req, res) => {
     const { ruc, name, address } = req.body;
 
     try {
         if (!ruc || !name || !address) throw new Error("Missing data");
 
-        const entrepise = await postEnterpriseController(ruc, name, address);
+        const enterprise = await postEnterpriseController(ruc, name, address);
 
-        return res.status(201).json(entrepise);
+        return res.status(201).json(enterprise);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 };
 
-const putEntrepiseHandler = async (req, res) => {
+const putEnterpriseHandler = async (req, res) => {
     const { ruc, newRuc, name, address } = req.body;
 
     try {
-        const entrepiseUpdate = await putEnterpriseController(
+        const enterpriseUpdate = await putEnterpriseController(
             ruc,
             newRuc,
             name,
             address
         );
 
-        return res.status(200).json(entrepiseUpdate);
+        return res.status(200).json(enterpriseUpdate);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 };
 
-const statusEntrepiseHandler = async (req, res) => {
+const statusEnterpriseHandler = async (req, res) => {
     const { ruc, status } = req.body;
 
     try {
@@ -74,9 +74,9 @@ const statusEntrepiseHandler = async (req, res) => {
 };
 
 module.exports = {
-    getEntrepisesHandler,
-    getEntrepiseHandler,
-    postEntrepiseHandler,
-    putEntrepiseHandler,
-    statusEntrepiseHandler,
+    getEnterprisesHandler,
+    getEnterpriseHandler,
+    postEnterpriseHandler,
+    putEnterpriseHandler,
+    statusEnterpriseHandler,
 };

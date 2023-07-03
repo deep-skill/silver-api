@@ -3,7 +3,7 @@ const { Router } = require('express')
 const authHandler = require('../handlers/Auth/authHandler');
 
 const userRouters = require("./UserRouters/userRouters")
-const entrepiseRouters = require("./EntrepiseRouters/entrepiseRouters")
+const enterpriseRouters = require("./EnterpriseRouters/enterpriseRouters")
 const tripRouters = require("./TripRouters/tripRouters")
 
 
@@ -15,7 +15,7 @@ router.post('/auth', authHandler)
 
 router.use('/user', userRouters)
 
-router.use("/entrepise", entrepiseRouters)
+router.use("/enterprise", enterpriseRouters)
 
 router.use("/trip", tripRouters)
 
