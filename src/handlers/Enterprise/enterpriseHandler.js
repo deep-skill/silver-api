@@ -77,6 +77,7 @@ module.exports = {
     getEnterprisesHandler,
     getEnterpriseHandler,
     postEnterpriseHandler,
+    postEnterpriseHandler,
     putEnterpriseHandler,
     statusEnterpriseHandler,
 };

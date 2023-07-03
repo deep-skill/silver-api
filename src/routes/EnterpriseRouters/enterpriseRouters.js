@@ -1,16 +1,16 @@
 const { Router } = require("express");
 
 const {
-    getEnterpriceHandler,
+    getEnterprisesHandler,
     getEnterpriseHandler,
     postEnterpriseHandler,
     putEnterpriseHandler,
     statusEnterpriseHandler
-} = require("../../handlers/Enterprise/enterprisesHandler");
+} = require("../../handlers/Enterprise/enterpriseHandler.js");
 
 const enterpriseRouters = Router();
 
-enterpriseRouters.get("/", getEnterpriceHandler)
+enterpriseRouters.get("/", getEnterprisesHandler)
 enterpriseRouters.get("/get", getEnterpriseHandler);
 enterpriseRouters.post('/create', postEnterpriseHandler)
 enterpriseRouters.put('/update', putEnterpriseHandler)
