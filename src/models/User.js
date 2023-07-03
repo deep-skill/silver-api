@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
     address: {
@@ -28,14 +28,14 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     rating: {
-      type: DataTypes.DECIMAL(2,1),
+      type: DataTypes.DOUBLE,
       allowNull: true
     },
     status: {
       type: DataTypes.ENUM,
-      values: [0, 1, 2], // 0: Deleted | 1: Active | 2: Inactive
+      values: ["0", "1", "2"], // 0: Deleted | 1: Active | 2: Inactive
       allowNull: false,
-      defaultValue: 1
+      defaultValue: "1"
     },
   }, { timestamps: false })
 }
