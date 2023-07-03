@@ -32,11 +32,11 @@ module.exports = (sequelize) => {
       defaultValue: 'pending'
     },
     driverRating: {
-      type: DataTypes.DECIMAL(2,1),
+      type: DataTypes.DOUBLE,
       allowNull: true
     },
     userRating: {
-      type: DataTypes.DECIMAL(2,1),
+      type: DataTypes.DOUBLE,
       allowNull: true
     },
     status: {

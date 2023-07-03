@@ -22,7 +22,10 @@ const putTripController = async (
 
   await trip.save();
 
-  return trip;
+  return {
+    update: true,
+    id
+  };
 };
 
 module.exports = putTripController;

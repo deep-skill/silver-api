@@ -3,8 +3,6 @@ const postAuthController = require("../../controllers/Auth/authController")
 const authHandler = async (req, res) => {
     const { id, name, email } = req.body;
 
-    console.log(name);
-
     try {
         if (!id || !name || !email) throw new Error("Missing data");
 

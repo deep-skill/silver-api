@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     rating: {
-      type: DataTypes.DECIMAL(2,1),
+      type: DataTypes.DOUBLE,
       allowNull: true
     },
     status: {
