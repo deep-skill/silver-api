@@ -1,9 +1,9 @@
 const { User } = require("../../database");
 
-const getUserDataController = async (id) => {
+const getUserByIdController = async (id) => {
     const user = User.findOne({ where: { id } });
 
     return user;
 };
 
-module.exports = getUserDataController;
+module.exports = getUserByIdController;

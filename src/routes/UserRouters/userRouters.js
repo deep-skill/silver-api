@@ -2,16 +2,26 @@ const { Router } = require("express");
 
 const {
     getUsersHandler,
-    getUserDataHandler,
+    postUserHandler,
+    getUserByIdHandler,
     putStatusUserHandler,
     putUserDataHandler
 } = require("../../handlers/Users/usersHandler");
 
+const { auth } = require('express-oauth2-jwt-bearer');
+const jwtCheck = auth({
+    audience: 'http://localhost:5000',
+    issuerBaseURL: 'https://dev-4aecm50nap6pl2q5.us.auth0.com/',
+    tokenSigningAlg: 'RS256'
+  });
+
 const userRouters = Router();
 
-userRouters.put("/update", putUserDataHandler);
+userRouters.get("/",  getUsersHandler);
+/* userRouters.get("/", jwtCheck, getUsersHandler); */
+userRouters.post("/", postUserHandler);
+userRouters.get("/:id", getUserByIdHandler);
 userRouters.put("/status", putStatusUserHandler);
-userRouters.get("/", getUsersHandler);
-userRouters.get("/:id", getUserDataHandler);
+userRouters.put("/update", putUserDataHandler);
 
 module.exports = userRouters;
