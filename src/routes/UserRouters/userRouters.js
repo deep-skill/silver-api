@@ -17,7 +17,8 @@ const jwtCheck = auth({
 
 const userRouters = Router();
 
-userRouters.get("/", jwtCheck, getUsersHandler);
+userRouters.get("/",  getUsersHandler);
+/* userRouters.get("/", jwtCheck, getUsersHandler); */
 userRouters.post("/", postUserHandler);
 userRouters.get("/:id", getUserByIdHandler);
 userRouters.put("/status", putStatusUserHandler);

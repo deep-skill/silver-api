@@ -14,7 +14,14 @@ npm start
 ## Completed Tasks
 
 ### Installed dependencies
-- auth0_flutter: ^1.2.1
-- flutter_dotenv: ^5.1.0
-- flutter_riverpod: ^2.3.6
-- go_router: ^10.0.0
+- axios
+- body-parser
+- cookie-parser
+- dotenv
+- express
+- express-oauth2-jwt-bearer
+- morgan
+- pg
+- pg-hstore
+- sequelize
+- nodemon (dev dependencie)

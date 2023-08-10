@@ -1,11 +1,11 @@
 require('dotenv').config();
 const server = require('./src/index.js');
 const { database } = require('./src/database.js');
-const { DB_PORT } = process.env;
+const { PORT } = process.env;
 
 // Syncs sequelize models & starts server
 database.sync({ force: true }).then(() => {
-  server.listen(DB_PORT, () => {
-    console.log('Silver Express listening at port', DB_PORT)
+  server.listen(PORT, () => {
+    console.log('Silver Express listening at port', PORT)
   });
 });

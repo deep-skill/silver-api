@@ -18,9 +18,12 @@ const jwtCheck = auth({
 // Create router
 const router = Router()
 
-router.get("/", jwtCheck, (req, res) => {
+router.get('/', (req, res) => {
   res.status(200).send('Hi! Home');
 });
+/* router.get('/', jwtCheck, (req, res) => {
+  res.status(200).send('Hi! Home');
+}); */
 
 router.use('/user', userRouters);
 
