@@ -6,56 +6,57 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
   logging: false,
   native: false
-})
+});
 
 // Imports models
-const EnterpriseModel = require('./models/Enterprise.js')
-const ReserveModel = require('./models/Reserve.js')
-const RoleModel = require('./models/Role.js')
-const TripModel = require('./models/Trip.js')
-const TripAdditionalChargeModel = require('./models/TripAdditionalCharge.js')
-const UserModel = require('./models/User.js')
+const EnterpriseModel = require('./models/Enterprise.js');
+const ReserveModel = require('./models/Reserve.js');
+const DriverModel = require('./models/Driver.js');
+const TripModel = require('./models/Trip.js');
+const StopModel = require('./models/Stop.js');
+const UserModel = require('./models/User.js');
+const FinanceDriverModel = require('./models/FinanceDriver.js');
+const FinanceEnterpriceModel = require('./models/FinanceEnterprice.js');
+const TollMapModel = require('./models/TollMap.js');
+const TollModel = require('./models/Toll.js');
+const ParkingModel = require('./models/Parking.js');
+const DetourModel = require('./models/Detour.js');
 
 // Create sequelize models
-EnterpriseModel(sequelize)
-ReserveModel(sequelize)
-RoleModel(sequelize)
-TripModel(sequelize)
-TripAdditionalChargeModel(sequelize)
-UserModel(sequelize)
+EnterpriseModel(sequelize);
+ReserveModel(sequelize);
+DriverModel(sequelize);
+TripModel(sequelize);
+StopModel(sequelize);
+UserModel(sequelize);
+FinanceDriverModel(sequelize);
+FinanceEnterpriceModel(sequelize);
+TollMapModel(sequelize);
+TollModel(sequelize);
+ParkingModel(sequelize);
+DetourModel(sequelize);
 
 // Create database relations
-const { Enterprise, Reserve, Role, Trip, TripAdditionalCharge, User } = sequelize.models
+const { Enterprise, Reserve, Driver, Trip, Stop, User, FinanceDriver, FinanceEnterprice, TollMap, Toll, Parking, Detour } = sequelize.models
 
-// User &    relation
-// User.belongsToMany(Role, {through: 'user_roles', timestamps: false, as: 'roles'})
-// Role.belongsToMany(User, {through: 'user_roles', timestamps: false, as: 'roles'})
-// // User & Enterprise relation
-// User.belongsTo(Enterprise, {through: 'enterprise_users', timestamps: false, as: 'employees'})
-// Enterprise.belongsToMany(User, {through: 'enterprise_users', timestamps: false, as: 'employees'})
-// // User & Reserve relation
-// User.belongsToMany(Reserve, {through: 'user_reservations', timestamps: false, as: 'reservations'})
-// Reserve.belongsTo(User, {through: 'user_reservations', timestamps: false, as: 'reservations'})
-// // User & Trip relation
-// User.belongsToMany(Trip, {through: 'user_trips', timestamps: false, as: 'trips'})
-// Trip.belongsTo(User, {through: 'user_trips', timestamps: false, as: 'trips'})
-// // Reserve & Enterprise relation
-// Reserve.hasOne(Enterprise, {foreignKey: 'enterpriseId', timestamps: false, as: 'reserve_enterprise'})
-// Enterprise.belongsTo(Reserve, {foreignKey: 'enterpriseId', timestamps: false, as: 'enterprise_reserve'})
-// // Trip & Reserve relation
-// Trip.hasOne(Reserve, {foreignKey: 'reserveId', timestamps: false, as: 'trip_reserve'})
-// Reserve.belongsTo(Trip, {foreignKey: 'reserveId', timestamps: false, as: 'reserve_trip'})
-// // Extra & Trip relation
-// Extra.hasOne(Trip, {foreignKey: 'tripId', timestamps: false, as: 'extra_trip'})
-// Trip.belongsTo(Extra, {foreignKey: 'tripId', timestamps: false, as: 'trip_extra'})
+//Relations
+Enterprise.hasMany(User, {foreignKey: 'enterprise_ruc', sourceKey: 'ruc', timestamps: false});
+User.belongsTo(Enterprise, {foreignKey: 'enterprise_ruc', targetId: 'ruc', timestamps: false});
+
 
 // Exports sequelize models & sequelize database connection
 module.exports = {
   Enterprise,
   Reserve,
-  Role,
+  Driver,
   Trip,
-  TripAdditionalCharge,
+  Stop,
   User,
+  FinanceDriver,
+  FinanceEnterprice,
+  TollMap,
+  Toll,
+  Parking,
+  Detour,
   database: sequelize
 }

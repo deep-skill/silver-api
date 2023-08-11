@@ -13,6 +13,32 @@ npm start
 
 ## Completed Tasks
 
+### Models: 
+- Detour
+- Driver
+- Enterprise
+- FinanceDriver
+- FinanceEnterprice
+- Parking
+- Reserve
+- Stop
+- Toll
+- TollMap
+- Trip
+- User
+
+### Relations:
+- Enterprise.hasMany(User)
+- User.belongsTo(Enterprise)
+
+### Handlers & Controllers:
+- Enterprise
+- User
+
+### Routes:
+- Enterprise
+- User
+
 ### Installed dependencies
 - axios
 - body-parser

@@ -11,7 +11,7 @@ const putEnterpriseController = async (ruc, newRuc, name, address) => {
 
     return {
         updated: true,
-        ruc,
+        enterprise,
     };
 };
 

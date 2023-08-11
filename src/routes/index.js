@@ -1,12 +1,12 @@
-const { Router } = require('express')
+const { Router } = require('express');
 
 const authHandler = require('../handlers/Auth/authHandler');
 
 const { auth } = require('express-oauth2-jwt-bearer');
 
-const userRouters = require("./UserRouters/userRouters")
-const enterpriseRouters = require("./EnterpriseRouters/enterpriseRouters")
-const tripRouters = require("./TripRouters/tripRouters")
+const userRouters = require('./UserRouters/userRouters');
+const enterpriseRouter = require('./EnterpriseRouter/enterpriseRouter');
+const tripRouters = require('./TripRouters/tripRouters');
 
 const jwtCheck = auth({
   audience: 'http://localhost:5000',
@@ -14,9 +14,8 @@ const jwtCheck = auth({
   tokenSigningAlg: 'RS256'
 });
 
-
 // Create router
-const router = Router()
+const router = Router();
 
 router.get('/', (req, res) => {
   res.status(200).send('Hi! Home');
@@ -25,14 +24,9 @@ router.get('/', (req, res) => {
   res.status(200).send('Hi! Home');
 }); */
 
+router.use('/enterprise', enterpriseRouter);
 router.use('/user', userRouters);
+router.use('/trip', tripRouters);
+router.post('/auth', authHandler);
 
-router.post('/auth', authHandler)
-
-
-router.use("/enterprise", enterpriseRouters)
-
-router.use("/trip", tripRouters)
-
-
-module.exports = router
+module.exports = router;
