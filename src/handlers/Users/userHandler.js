@@ -1,8 +1,7 @@
 const getUsersController = require("../../controllers/User/getUsersController.js");
 const postUserController = require("../../controllers/User/postUserController.js");
 const getUserByIdController = require("../../controllers/User/getUserByIdController.js");
-const statusUserDataController = require("../../controllers/User/statusUserDataController.js");
-const putUserDataController = require("../../controllers/User/putUserDataController.js");
+const putUserController = require("../../controllers/User/putUserController.js");
 
 const getUsersHandler = async (req, res) => {
     try {
@@ -15,9 +14,33 @@ const getUsersHandler = async (req, res) => {
 };
 
 const postUserHandler = async (req, res) => {
-    const {name, email, phone, address, license} = req.body;
+    const {
+        role,
+        name,
+        last_name,
+        dni,
+        ruc,
+        phone_number,
+        email,
+        address,
+        license,
+        rating,
+        enterprise_ruc
+    } = req.body;
     try {
-        const newUser = await postUserController(name, email, phone, address, license);
+        const newUser = await postUserController(
+            role,
+            name,
+            last_name,
+            dni,
+            ruc,
+            phone_number,
+            email,
+            address,
+            license,
+            rating,
+            enterprise_ruc
+            );
         return res.status(200).json(newUser);
     } catch (error) {
         return res.status(400).json({ error: error.message });
@@ -35,18 +58,39 @@ const getUserByIdHandler = async (req, res) => {
     }
 };
 
-const putUserDataHandler = async (req, res) => {
-    const { id, phone, address, license } = req.body;
+const putUserHandler = async (req, res) => {
+    const {
+        id,
+        role,
+        name,
+        last_name,
+        dni,
+        ruc,
+        phone_number,
+        email,
+        address,
+        license,
+        rating,
+        enterprise_ruc
+    } = req.body;
 
     try {
         if (!id)
         throw new Error("Missing data");
         
-        const userUpdate = await putUserDataController(
+        const userUpdate = await putUserController(
             id,
-            phone,
+            role,
+            name,
+            last_name,
+            dni,
+            ruc,
+            phone_number,
+            email,
             address,
             license,
+            rating,
+            enterprise_ruc
             );
         return res.status(200).json(userUpdate);
 
@@ -55,24 +99,9 @@ const putUserDataHandler = async (req, res) => {
     }
 };
     
-    const putStatusUserHandler = async (req, res) => {
-        const { email, status } = req.body;
-    
-        try {
-            if (!status || !email) throw new Error("Missing data");
-    
-            const userStatus = await statusUserDataController(email, status);
-    
-            return res.status(200).json(userStatus);
-        } catch (error) {
-            return res.status(400).json({ error: error.message });
-        }
-    };
-
 module.exports = {
     getUsersHandler,
     postUserHandler,
     getUserByIdHandler,
-    putStatusUserHandler,
-    putUserDataHandler,
+    putUserHandler,
 };

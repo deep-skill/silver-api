@@ -1,23 +1,22 @@
 const { DataTypes, UUIDV4 } = require('sequelize')
 
-// Create & export Enterprise model
+// Create & export Role model
 module.exports = (sequelize) => {
-  sequelize.define('Enterprise', {
+  sequelize.define('TollMap', {
     id: {
       type: DataTypes.UUID,
       defaultValue: UUIDV4,
       primaryKey: true
     },
-    ruc: {
-      type: DataTypes.STRING(11),
-      allowNull: false,
-      unique: true
+    amount: {
+      type: DataTypes.DOUBLE,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    address: {
+    location: {
       type: DataTypes.STRING,
       allowNull: false
     },

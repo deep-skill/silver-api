@@ -1,23 +1,18 @@
 const { DataTypes, UUIDV4 } = require('sequelize')
 
-// Create & export Enterprise model
+// Create & export Role model
 module.exports = (sequelize) => {
-  sequelize.define('Enterprise', {
+  sequelize.define('Detour', {
     id: {
       type: DataTypes.UUID,
       defaultValue: UUIDV4,
       primaryKey: true
     },
-    ruc: {
-      type: DataTypes.STRING(11),
-      allowNull: false,
-      unique: true
-    },
-    name: {
-      type: DataTypes.STRING,
+    amount: {
+      type: DataTypes.DOUBLE,
       allowNull: false
     },
-    address: {
+    OBSERVATION: {
       type: DataTypes.STRING,
       allowNull: false
     },

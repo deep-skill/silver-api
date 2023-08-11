@@ -8,42 +8,39 @@ module.exports = (sequelize) => {
       defaultValue: UUIDV4,
       primaryKey: true
     },
-    type: {
-      type: DataTypes.ENUM,
-      values: ['hour', 'point', 'courier', 'pointtopoint'],
-      allowNull: false
-    },
-    total: {
+    total_price: {
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    start: {
+    on_way_driver: {
       type: DataTypes.DATE,
       allowNull: false  
     },
-    end: {
+    arrived_driver: {
       type: DataTypes.DATE,
       allowNull: true,
     },
-    state: {
-      type: DataTypes.ENUM,
-      values: ['pending', 'complete', 'cancel', 'inprogress'],
-      allowNull: false,
-      defaultValue: 'pending'
+    start_time: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
-    driverRating: {
-      type: DataTypes.DOUBLE,
-      allowNull: true
-    },
-    userRating: {
-      type: DataTypes.DOUBLE,
-      allowNull: true
+    end_time: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
     status: {
       type: DataTypes.ENUM,
-      values: ["0", "1"], // 0: Deleted | 1: Active
+      values: ['completed', 'canceled', 'inProgress'],
       allowNull: false,
-      defaultValue: "1"
+      defaultValue: 'inProgress'
+    },
+    driver_rating: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    passenger_rating: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
   }, { timestamps: false })
 }

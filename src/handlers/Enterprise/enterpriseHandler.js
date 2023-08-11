@@ -1,26 +1,25 @@
-const getEnterpriseController = require("../../controllers/Enterprise/getEnterpriseController.js");
+const getEnterpriseByRucController = require("../../controllers/Enterprise/getEnterpriseByRucController.js");
 const getEnterprisesController = require("../../controllers/Enterprise/getEnterprisesController.js");
 const postEnterpriseController = require("../../controllers/Enterprise/postEnterpriseController.js");
 const putEnterpriseController = require("../../controllers/Enterprise/putEnterpriseController.js");
-const statusEnterpriseController = require("../../controllers/Enterprise/statusEnterpriseController.js");
+const deleteEnterpriseController = require("../../controllers/Enterprise/deleteEnterpriseController.js");
 
 const getEnterprisesHandler = async (req, res) => {
     try {
         const enterprises = await getEnterprisesController();
-
         res.status(200).json(enterprises);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 };
 
-const getEnterpriseHandler = async (req, res) => {
-    const { ruc } = req.body;
+const getEnterpriseByRucHandler = async (req, res) => {
+    const { ruc } = req.params;
 
     try {
         if (!ruc) throw new Error("Missing data");
 
-        const enterprise = await getEnterpriseController(ruc);
+        const enterprise = await getEnterpriseByRucController(ruc);
 
         return res.status(200).json(enterprise);
     } catch (error) {
@@ -30,7 +29,6 @@ const getEnterpriseHandler = async (req, res) => {
 
 const postEnterpriseHandler = async (req, res) => {
     const { ruc, name, address } = req.body;
-
     try {
         if (!ruc || !name || !address) throw new Error("Missing data");
 
@@ -44,7 +42,6 @@ const postEnterpriseHandler = async (req, res) => {
 
 const putEnterpriseHandler = async (req, res) => {
     const { ruc, newRuc, name, address } = req.body;
-
     try {
         const enterpriseUpdate = await putEnterpriseController(
             ruc,
@@ -52,22 +49,21 @@ const putEnterpriseHandler = async (req, res) => {
             name,
             address
         );
-
         return res.status(200).json(enterpriseUpdate);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 };
 
-const statusEnterpriseHandler = async (req, res) => {
-    const { ruc, status } = req.body;
+const deleteEnterpriseHandler = async (req, res) => {
+    const { ruc } = req.body;
 
     try {
-        if (!status) throw new Error("Missing data");
+        if (!ruc) throw new Error("Missing data");
 
-        const newStatus = await statusEnterpriseController(ruc, status)
+        const deletedEnterprise = await deleteEnterpriseController(ruc);
 
-        return res.status(200).json(newStatus)
+        return res.status(200).json(deletedEnterprise);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
@@ -75,9 +71,8 @@ const statusEnterpriseHandler = async (req, res) => {
 
 module.exports = {
     getEnterprisesHandler,
-    getEnterpriseHandler,
-    postEnterpriseHandler,
+    getEnterpriseByRucHandler,
     postEnterpriseHandler,
     putEnterpriseHandler,
-    statusEnterpriseHandler,
+    deleteEnterpriseHandler,
 };
