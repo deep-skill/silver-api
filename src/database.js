@@ -43,6 +43,13 @@ const { Enterprise, Reserve, Driver, Trip, Stop, User, FinanceDriver, FinanceEnt
 Enterprise.hasMany(User, {foreignKey: 'enterprise_ruc', sourceKey: 'ruc', timestamps: false});
 User.belongsTo(Enterprise, {foreignKey: 'enterprise_ruc', targetId: 'ruc', timestamps: false});
 
+User.hasMany(Reserve, {foreignKey: 'user_id', sourceKey: 'id', timestamps: false});
+Reserve.belongsTo(User, {foreignKey: 'user_id', targetId: 'id', timestamps: false});
+Driver.hasMany(Reserve, {foreignKey: 'driver_id', sourceKey: 'id', timestamps: false});
+Reserve.belongsTo(Driver, {foreignKey: 'driver_id', targetId: 'id', timestamps: false});
+Enterprise.hasMany(Reserve, {foreignKey: 'enterprise_ruc', sourceKey: 'ruc', timestamps: false});
+Reserve.belongsTo(Enterprise, {foreignKey: 'enterprise_ruc', targetId: 'ruc', timestamps: false});
+
 
 // Exports sequelize models & sequelize database connection
 module.exports = {

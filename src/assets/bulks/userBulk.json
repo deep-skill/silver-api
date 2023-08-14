@@ -1,0 +1,168 @@
+[
+  {
+    "role": "admin",
+    "name": "Name User A",
+    "last_name": "Last N User A",
+    "dni": "76382941",
+    "ruc": "47362843951",
+    "phone_number": "+51-84-574-861",
+    "email": "email1@email.com",
+    "address": "Jr. Andahuaylas 1, Lima, Peru",
+    "enterprise_ruc": "20523621211"
+  },
+  {
+    "role": "manager",
+    "name": "Name User B",
+    "last_name": "Last N User B",
+    "dni": "76382942",
+    "ruc": "47362843952",
+    "phone_number": "+51-84-574-862",
+    "email": "email2@email.com",
+    "address": "Jr. Andahuaylas 2, Lima, Peru",
+    "enterprise_ruc": "20523621212"
+  },
+  {
+    "role": "manager",
+    "name": "Name User C",
+    "last_name": "Last N User C",
+    "dni": "76382943",
+    "ruc": "47362843953",
+    "phone_number": "+51-84-574-863",
+    "email": "email3@email.com",
+    "address": "Jr. Andahuaylas 3, Lima, Peru",
+    "enterprise_ruc": "20523621212"
+  },
+  {
+    "role": "manager",
+    "name": "Name User D",
+    "last_name": "Last N User D",
+    "dni": "76382944",
+    "ruc": "47362843954",
+    "phone_number": "+51-84-574-864",
+    "email": "email4@email.com",
+    "address": "Jr. Andahuaylas 4, Lima, Peru",
+    "enterprise_ruc": "20523621213"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User E",
+    "last_name": "Last N User E",
+    "dni": "76382945",
+    "ruc": "47362843955",
+    "phone_number": "+51-84-574-865",
+    "email": "email5@email.com",
+    "address": "Jr. Andahuaylas 5, Lima, Peru",
+    "enterprise_ruc": "20523621213"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User F",
+    "last_name": "Last N User F",
+    "dni": "76382946",
+    "ruc": "47362843956",
+    "phone_number": "+51-84-574-866",
+    "email": "email6@email.com",
+    "address": "Jr. Andahuaylas 6, Lima, Peru",
+    "enterprise_ruc": "20523621214"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User G",
+    "last_name": "Last N User G",
+    "dni": "76382947",
+    "ruc": "47362843957",
+    "phone_number": "+51-84-574-867",
+    "email": "email7@email.com",
+    "address": "Jr. Andahuaylas 7, Lima, Peru",
+    "enterprise_ruc": "20523621215"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User H",
+    "last_name": "Last N User H",
+    "dni": "76382948",
+    "ruc": "47362843958",
+    "phone_number": "+51-84-574-868",
+    "email": "email8@email.com",
+    "address": "Jr. Andahuaylas 8, Lima, Peru",
+    "enterprise_ruc": "20523621214"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User I",
+    "last_name": "Last N User I",
+    "dni": "76382949",
+    "ruc": "47362843959",
+    "phone_number": "+51-84-574-869",
+    "email": "email9@email.com",
+    "address": "Jr. Andahuaylas 9, Lima, Peru",
+    "enterprise_ruc": "20523621216"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User J",
+    "last_name": "Last N User J",
+    "dni": "76382950",
+    "ruc": "47362843960",
+    "phone_number": "+51-84-574-870",
+    "email": "email10@email.com",
+    "address": "Jr. Andahuaylas 10, Lima, Peru",
+    "enterprise_ruc": "20523621211"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User K",
+    "last_name": "Last N User K",
+    "dni": "76382951",
+    "ruc": "47362843961",
+    "phone_number": "+51-84-574-871",
+    "email": "email11@email.com",
+    "address": "Jr. Andahuaylas 11, Lima, Peru",
+    "enterprise_ruc": "20523621212"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User L",
+    "last_name": "Last N User L",
+    "dni": "76382952",
+    "ruc": "47362843962",
+    "phone_number": "+51-84-574-872",
+    "email": "email12@email.com",
+    "address": "Jr. Andahuaylas 12, Lima, Peru",
+    "enterprise_ruc": "20523621213"
+  },
+ 
+  {
+    "role": "passenger",
+    "name": "Name User M",
+    "last_name": "Last N User M",
+    "dni": "76382953",
+    "ruc": "47362843963",
+    "phone_number": "+51-84-574-873",
+    "email": "email13@email.com",
+    "address": "Jr. Andahuaylas 13, Lima, Peru",
+    "enterprise_ruc": "20523621211"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User N",
+    "last_name": "Last N User N",
+    "dni": "76382954",
+    "ruc": "47362843964",
+    "phone_number": "+51-84-574-874",
+    "email": "email14@email.com",
+    "address": "Jr. Andahuaylas 14, Lima, Peru",
+    "enterprise_ruc": "20523621213"
+  },
+  {
+    "role": "passenger",
+    "name": "Name User O",
+    "last_name": "Last N User O",
+    "dni": "76382955",
+    "ruc": "47362843965",
+    "phone_number": "+51-84-574-875",
+    "email": "email15@email.com",
+    "address": "Jr. Andahuaylas 15, Lima, Peru",
+    "enterprise_ruc": "20523621215"
+  }
+]

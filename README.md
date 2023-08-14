@@ -28,8 +28,8 @@ npm start
 - User
 
 ### Relations:
-- Enterprise.hasMany(User)
-- User.belongsTo(Enterprise)
+- Enterprise - User
+- Reserve - User - Driver - Enterprise
 
 ### Handlers & Controllers:
 - Enterprise
@@ -38,6 +38,13 @@ npm start
 ### Routes:
 - Enterprise
 - User
+- Driver
+- Reserve
+
+### Bulks:
+- Enterprise
+- User
+- Driver
 
 ### Installed dependencies
 - axios
