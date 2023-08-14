@@ -8,5 +8,6 @@ module.exports = (sequelize) => {
       defaultValue: UUIDV4,
       primaryKey: true
     },
-  }, { timestamps: false })
-}
+  },
+  { timestamps: false });
+};

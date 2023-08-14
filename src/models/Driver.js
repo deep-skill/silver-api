@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    license_number: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     phone_number: {
       type: DataTypes.STRING,
       allowNull: false
@@ -48,5 +52,22 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-  }, { timestamps: false })
-}
+    car_brand: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    car_model: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    car_year: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    rating: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      defaultValue:[]
+    },
+  },
+  { timestamps: false });
+};

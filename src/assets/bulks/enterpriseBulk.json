@@ -1,0 +1,32 @@
+[
+  {
+    "ruc": "20523621211",
+    "name": "Enterprise A",
+    "address": "Av. Address 1, lIMA, Peru"
+  },
+  {
+    "ruc": "20523621212",
+    "name": "Enterprise B",
+    "address": "Av. Address 2, lIMA, Peru"
+  },
+  {
+    "ruc": "20523621213",
+    "name": "Enterprise C",
+    "address": "Av. Address C, lIMA, Peru"
+  },
+  {
+    "ruc": "20523621214",
+    "name": "Enterprise D",
+    "address": "Av. Address 4, lIMA, Peru"
+  },
+  {
+    "ruc": "20523621215",
+    "name": "Enterprise E",
+    "address": "Av. Address 5, Lima, Peru"
+  },
+  {
+    "ruc": "20523621216",
+    "name": "Enterprise F",
+    "address": "Av. Address 6, Lima, Peru"
+  }
+]

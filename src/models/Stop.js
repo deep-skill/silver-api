@@ -15,5 +15,6 @@ module.exports = (sequelize) => {
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
-  }, { timestamps: false })
-}
+  },
+  { timestamps: false });
+};

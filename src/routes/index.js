@@ -4,9 +4,11 @@ const authHandler = require('../handlers/Auth/authHandler');
 
 const { auth } = require('express-oauth2-jwt-bearer');
 
-const userRouters = require('./UserRouters/userRouters');
+const userRouter = require('./UserRouter/userRouter');
 const enterpriseRouter = require('./EnterpriseRouter/enterpriseRouter');
-const tripRouters = require('./TripRouters/tripRouters');
+const driverRouter = require('./DriverRouter/driverRouter');
+const reserveRouter = require('./ReserveRouter/reserveRouter');
+const tripRouter = require('./TripRouter/tripRouter');
 
 const jwtCheck = auth({
   audience: 'http://localhost:5000',
@@ -25,8 +27,10 @@ router.get('/', (req, res) => {
 }); */
 
 router.use('/enterprise', enterpriseRouter);
-router.use('/user', userRouters);
-router.use('/trip', tripRouters);
+router.use('/user', userRouter);
+router.use('/driver', driverRouter);
+router.use('/reserve', reserveRouter);
+router.use('/trip', tripRouter);
 router.post('/auth', authHandler);
 
 module.exports = router;
