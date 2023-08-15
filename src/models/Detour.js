@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    OBSERVATION: {
+    observation: {
       type: DataTypes.STRING,
       allowNull: false
     },

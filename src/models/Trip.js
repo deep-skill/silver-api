@@ -10,11 +10,11 @@ module.exports = (sequelize) => {
     },
     total_price: {
       type: DataTypes.DOUBLE,
-      allowNull: false
+      allowNull: true
     },
     on_way_driver: {
       type: DataTypes.DATE,
-      allowNull: false  
+      allowNull: false
     },
     arrived_driver: {
       type: DataTypes.DATE,
@@ -31,7 +31,6 @@ module.exports = (sequelize) => {
     status: {
       type: DataTypes.ENUM,
       values: ['completed', 'canceled', 'inProgress'],
-      allowNull: false,
       defaultValue: 'inProgress'
     },
     driver_rating: {

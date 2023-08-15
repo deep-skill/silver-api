@@ -1,19 +1,19 @@
 const { Router } = require("express");
 
 const {
-    getTripsHandler,
-    getTripHandler,
-    postTripHandler,
-    putTripHandler,
-    statusTripHandler
+  getTripsHandler,
+  getTripByIdHandler,
+  postTripHandler,
+  putTripHandler,
+  deleteTripHandler
 } = require("../../handlers/Trip/tripHandler.js");
 
 const tripRouter = Router();
 
-tripRouter.get('/:id', getTripHandler)
-tripRouter.get("/", getTripsHandler);
-tripRouter.post('/create', postTripHandler)
-tripRouter.put('/update', putTripHandler)
-tripRouter.put('/status', statusTripHandler)
+tripRouter.get('/', getTripsHandler);
+tripRouter.post('/', postTripHandler)
+tripRouter.get('/:id', getTripByIdHandler)
+tripRouter.put('/', putTripHandler)
+tripRouter.delete('/', deleteTripHandler)
 
 module.exports = tripRouter;
