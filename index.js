@@ -66,6 +66,6 @@ database.sync({ force: true }).then(() => {
       console.log('Driver bulk created');
     };
 
-    console.log('Silver Express listening at port', PORT);
+    console.log('Silver Express listening on port', PORT);
   });
 });

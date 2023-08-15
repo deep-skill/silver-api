@@ -1,22 +1,31 @@
 const { Trip } = require("../../database");
 
 const postTripController = async (
-    type,
-    total,
-    start,
-    state,
-) => {
+  reserve_id,
+  total_price,
+  on_way_driver,
+  arrived_driver,
+  start_time,
+  end_time,
+  status,
+  driver_rating,
+  passenger_rating
+  ) => {
     const trip = await Trip.create({
-        type,
-        total,
-        start,
-        state,
+      reserve_id,
+      total_price,
+      on_way_driver,
+      arrived_driver,
+      start_time,
+      end_time,
+      status,
+      driver_rating,
+      passenger_rating
     });
-
     return {
-        created: true,
-        tripId: trip.id,
-    };
+      created: true,
+      trip,
+  };
 };
 
 module.exports = postTripController;

@@ -49,6 +49,8 @@ Driver.hasMany(Reserve, {foreignKey: 'driver_id', sourceKey: 'id', timestamps: f
 Reserve.belongsTo(Driver, {foreignKey: 'driver_id', targetId: 'id', timestamps: false});
 Enterprise.hasMany(Reserve, {foreignKey: 'enterprise_ruc', sourceKey: 'ruc', timestamps: false});
 Reserve.belongsTo(Enterprise, {foreignKey: 'enterprise_ruc', targetId: 'ruc', timestamps: false});
+Reserve.hasOne(Trip, {foreignKey: 'reserve_id', sourceKey: 'id', timestamps: false});
+Trip.belongsTo(Reserve, {foreignKey: 'reserve_id', sourceKey: 'id', timestamps: false});
 
 
 // Exports sequelize models & sequelize database connection
