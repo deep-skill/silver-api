@@ -1,11 +1,10 @@
 const { DataTypes, UUIDV4 } = require('sequelize')
 
-// Create & export Enterprise model
 module.exports = (sequelize) => {
   sequelize.define('Enterprise', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true
     },
     ruc: {

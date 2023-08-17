@@ -1,6 +1,5 @@
 const { DataTypes, UUIDV4 } = require('sequelize')
 
-// Create & export Role model
 module.exports = (sequelize) => {
   sequelize.define('TollMap', {
     id: {

@@ -1,6 +1,5 @@
 const { DataTypes, UUIDV4 } = require('sequelize')
 
-// Create & export Trip model
 module.exports = (sequelize) => {
   sequelize.define('Trip', {
     id: {

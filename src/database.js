@@ -21,6 +21,8 @@ const TollMapModel = require('./models/TollMap.js');
 const TollModel = require('./models/Toll.js');
 const ParkingModel = require('./models/Parking.js');
 const DetourModel = require('./models/Detour.js');
+const SilverCarModel = require('./models/SilverCar.js');
+const CarModel = require('./models/Car.js');
 
 // Create sequelize models
 EnterpriseModel(sequelize);
@@ -35,11 +37,13 @@ TollMapModel(sequelize);
 TollModel(sequelize);
 ParkingModel(sequelize);
 DetourModel(sequelize);
-
-// Create database relations
-const { Enterprise, Reserve, Driver, Trip, Stop, User, FinanceDriver, FinanceEnterprice, TollMap, Toll, Parking, Detour } = sequelize.models
+SilverCarModel(sequelize);
+CarModel(sequelize);
 
 //Relations
+
+const { Enterprise, Reserve, Driver, Trip, Stop, User, FinanceDriver, FinanceEnterprice, TollMap, Toll, Parking, Detour, SilverCar, Car } = sequelize.models
+
 Enterprise.hasMany(User, {foreignKey: 'enterprise_ruc', sourceKey: 'ruc', timestamps: false});
 User.belongsTo(Enterprise, {foreignKey: 'enterprise_ruc', targetId: 'ruc', timestamps: false});
 
@@ -49,11 +53,15 @@ Driver.hasMany(Reserve, {foreignKey: 'driver_id', sourceKey: 'id', timestamps: f
 Reserve.belongsTo(Driver, {foreignKey: 'driver_id', targetId: 'id', timestamps: false});
 Enterprise.hasMany(Reserve, {foreignKey: 'enterprise_ruc', sourceKey: 'ruc', timestamps: false});
 Reserve.belongsTo(Enterprise, {foreignKey: 'enterprise_ruc', targetId: 'ruc', timestamps: false});
+SilverCar.hasMany(Reserve, {foreignKey: 'silver_car_id', sourceKey: 'id', timestamps: false});
+Reserve.belongsTo(SilverCar, {foreignKey: 'silver_car_id', targetId: 'id', timestamps: false});
+
 Reserve.hasOne(Trip, {foreignKey: 'reserve_id', sourceKey: 'id', timestamps: false});
 Trip.belongsTo(Reserve, {foreignKey: 'reserve_id', sourceKey: 'id', timestamps: false});
 
+Car.hasOne(Driver, {foreignKey: 'car_id', sourceKey: 'id', timestamps: false});
+Driver.belongsTo(Car, {foreignKey: 'car_id', targetId: 'id', timestamps: false});
 
-// Exports sequelize models & sequelize database connection
 module.exports = {
   Enterprise,
   Reserve,
@@ -67,5 +75,7 @@ module.exports = {
   Toll,
   Parking,
   Detour,
+  SilverCar,
+  Car,
   database: sequelize
 }

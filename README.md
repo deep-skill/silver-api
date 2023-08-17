@@ -13,7 +13,8 @@ npm start
 
 ## Completed Tasks
 
-### Models: 
+### Models:
+- Car
 - Detour
 - Driver
 - Enterprise
@@ -21,6 +22,7 @@ npm start
 - FinanceEnterprice
 - Parking
 - Reserve
+- SilverCar
 - Stop
 - Toll
 - TollMap
@@ -30,21 +32,25 @@ npm start
 ### Relations:
 - Enterprise - User
 - Reserve - User - Driver - Enterprise
+- Reserve - Trip
+- Car - Driver
 
-### Handlers & Controllers:
-- Enterprise
-- User
-
-### Routes:
-- Enterprise
-- User
+### routers & services:
+- Car
 - Driver
+- Enterprise
 - Reserve
+- SilverCar
+- Trip
+- User
 
 ### Bulks:
-- Enterprise
-- User
+- Car
 - Driver
+- Enterprise
+- Reserve
+- SilverCar
+- User
 
 ### Installed dependencies
 - axios

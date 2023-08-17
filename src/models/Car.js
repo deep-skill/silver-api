@@ -1,30 +1,34 @@
 const { DataTypes, UUIDV4 } = require('sequelize')
 
 module.exports = (sequelize) => {
-  sequelize.define('Parking', {
+  sequelize.define('Car', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true
     },
-    amount: {
-      type: DataTypes.DOUBLE,
-      allowNull: false
+    license_plate: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    duration: {
-      type: DataTypes.DOUBLE,
-      allowNull: false
-    },
-    name: {
+    brand: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    location: {
+    model: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    observation: {
+    type: {
       type: DataTypes.STRING,
+      allowNull: false
+    },
+    color: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    year: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
   },

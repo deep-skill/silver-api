@@ -1,0 +1,66 @@
+[
+  {
+    "license_plate": "ABC-123",
+    "brand": "Ford",
+    "model": "Focus",
+    "type": "Sedan",
+    "color": "Blanco",
+    "year": 2021
+  },
+  {
+    "license_plate": "ABC-124",
+    "brand": "Volkswagen",
+    "model": "Up",
+    "type": "3 Puertas",
+    "color": "Rojo",
+    "year": 2021
+  },
+  {
+    "license_plate": "ABC-125",
+    "brand": "Toyota",
+    "model": "Etios",
+    "type": "Sedan",
+    "color": "Gris",
+    "year": 2022
+  },
+  {
+    "license_plate": "ABC-126",
+    "brand": "Nissan",
+    "model": "Frontier",
+    "type": "Camioneta",
+    "color": "Azul",
+    "year": 2016
+  },
+  {
+    "license_plate": "ABC-127",
+    "brand": "Nissan",
+    "model": "March",
+    "type": "3 Puertas",
+    "color": "Verde",
+    "year": 2016
+  },
+  {
+    "license_plate": "ABC-128",
+    "brand": "Renault",
+    "model": "Clio",
+    "type": "Sedan",
+    "color": "Gris",
+    "year": 2012
+  },
+  {
+    "license_plate": "ABC-129",
+    "brand": "Chevrolet",
+    "model": "Onix",
+    "type": "Sedan",
+    "color": "Blanco",
+    "year": 2012
+  },
+  {
+    "license_plate": "ABC-130",
+    "brand": "Citroen",
+    "model": "C33",
+    "type": "Sedan",
+    "color": "Gris",
+    "year": 2009
+  }
+]
