@@ -1,6 +1,5 @@
 const { DataTypes, UUIDV4 } = require('sequelize')
 
-// Create & export TripAdditionalCharge model
 module.exports = (sequelize) => {
   sequelize.define('Stop', {
     id: {
@@ -11,8 +10,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    duration: {
-      type: DataTypes.DOUBLE,
+    hours: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    minutes: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },

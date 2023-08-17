@@ -1,0 +1,96 @@
+[
+  {
+    "user_id": 1,
+    "driver_id": 2,
+    "enterprise_ruc": 20523621211,
+    "silver_car_id": 1,
+    "trip_type": "personal",
+    "start_time": "2023-08-21T15:30:00",
+    "start_address": "Jr. Andahuaylas 4, Lima, Peru",
+    "end_address": "Jr. Andahuaylas 400, Lima, Peru",
+    "price": 25.50,
+    "driver_percent": 10
+  },
+  {
+    "user_id": 2,
+    "driver_id": 3,
+    "enterprise_ruc": 20523621211,
+    "silver_car_id": 2,
+    "trip_type": "enterprise",
+    "start_time": "2023-08-21T15:30:00",
+    "start_address": "Jr. Andahuaylas 4, Lima, Peru",
+    "end_address": "Jr. Andahuaylas 400, Lima, Peru",
+    "price": 25.50,
+    "driver_percent": 10
+  },
+  {
+    "user_id": 3,
+    "driver_id": 4,
+    "enterprise_ruc": 20523621211,
+    "silver_car_id": 3,
+    "trip_type": "personal",
+    "start_time": "2023-08-21T15:30:00",
+    "start_address": "Jr. Andahuaylas 4, Lima, Peru",
+    "end_address": "Jr. Andahuaylas 400, Lima, Peru",
+    "price": 25.50,
+    "driver_percent": 10
+  },
+  {
+    "user_id": 4,
+    "driver_id": 5,
+    "enterprise_ruc": 20523621211,
+    "trip_type": "personal",
+    "start_time": "2023-08-21T15:30:00",
+    "start_address": "Jr. Andahuaylas 4, Lima, Peru",
+    "end_address": "Jr. Andahuaylas 400, Lima, Peru",
+    "price": 25.50,
+    "driver_percent": 10
+  },
+  {
+    "user_id": 5,
+    "driver_id": 6,
+    "enterprise_ruc": 20523621211,
+    "trip_type": "enterprise",
+    "start_time": "2023-08-21T15:30:00",
+    "start_address": "Jr. Andahuaylas 4, Lima, Peru",
+    "end_address": "Jr. Andahuaylas 400, Lima, Peru",
+    "price": 25.50,
+    "driver_percent": 10
+  },
+  {
+    "user_id": 6,
+    "driver_id": 7,
+    "enterprise_ruc": 20523621211,
+    "trip_type": "personal",
+    "start_time": "2023-08-21T15:30:00",
+    "start_address": "Jr. Andahuaylas 4, Lima, Peru",
+    "end_address": "Jr. Andahuaylas 400, Lima, Peru",
+    "price": 25.50,
+    "driver_percent": 10
+  },
+  {
+    "user_id": 7,
+    "driver_id": 8,
+    "enterprise_ruc": 20523621211,
+    "silver_car_id": 4,
+    "trip_type": "personal",
+    "start_time": "2023-08-21T15:30:00",
+    "start_address": "Jr. Andahuaylas 4, Lima, Peru",
+    "end_address": "Jr. Andahuaylas 400, Lima, Peru",
+    "price": 25.50,
+    "driver_percent": 10
+  },
+  {
+    "user_id": 7,
+    "driver_id": 8,
+    "enterprise_ruc": 20523621211,
+    "silver_car_id": 5,
+    "trip_type": "personal",
+    "start_time": "2023-08-21T15:30:00",
+    "start_address": "Jr. Andahuaylas 4, Lima, Peru",
+    "end_address": "Jr. Andahuaylas 400, Lima, Peru",
+    "price": 25.50,
+    "driver_percent": 10
+  }
+
+]

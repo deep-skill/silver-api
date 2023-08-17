@@ -1,11 +1,10 @@
 const { DataTypes, UUIDV4 } = require('sequelize')
 
-// Create & export Role model
 module.exports = (sequelize) => {
   sequelize.define('Driver', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true
     },
     name: {
@@ -50,18 +49,6 @@ module.exports = (sequelize) => {
     },
     bank_account: {
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    car_brand: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    car_model: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    car_year: {
-      type: DataTypes.INTEGER,
       allowNull: false
     },
     rating: {

@@ -1,5 +1,6 @@
 [
   {
+    "car_id": 1,
     "name": "Driver Name 1",
     "last_name": "Dri Last Name 1",
     "dni": "76382941",
@@ -11,9 +12,6 @@
     "bank_name": "Itau",
     "bank_account_type": "C. C.",
     "bank_account": "94378291834759392321",
-    "car_brand": "Ford",
-    "car_model": "Focus",
-    "car_year": 2021,
     "rating": []
   },
   {
@@ -28,12 +26,10 @@
     "bank_name": "Itau",
     "bank_account_type": "C. A.",
     "bank_account": "94378291834759392322",
-    "car_brand": "Fiat",
-    "car_model": "Siena",
-    "car_year": 2023,
     "rating": []
   },
   {
+    "car_id": 2,
     "name": "Driver Name 3",
     "last_name": "Dri Last Name 3",
     "dni": "76382943",
@@ -45,9 +41,6 @@
     "bank_name": "Scotiabank",
     "bank_account_type": "C. A.",
     "bank_account": "94378291834759392323",
-    "car_brand": "Volkswagen",
-    "car_model": "Up",
-    "car_year": 2017,
     "rating": []
   },
   {
@@ -62,12 +55,10 @@
     "bank_name": "Banco Pichincha",
     "bank_account_type": "C. A.",
     "bank_account": "94378291834759392324",
-    "car_brand": "Toyota",
-    "car_model": "Etios",
-    "car_year": 2022,
     "rating": []
   },
   {
+    "car_id": 3,
     "name": "Driver Name 5",
     "last_name": "Dri Last Name 5",
     "dni": "76382945",
@@ -79,9 +70,6 @@
     "bank_name": "Citibank",
     "bank_account_type": "C. C.",
     "bank_account": "94378291834759392325",
-    "car_brand": "Nissan",
-    "car_model": "Frontier",
-    "car_year": 2016,
     "rating": []
   },
   {
@@ -96,12 +84,10 @@
     "bank_name": "BBVA",
     "bank_account_type": "C. C.",
     "bank_account": "94378291834759392326",
-    "car_brand": "Nissan",
-    "car_model": "March",
-    "car_year": 2016,
     "rating": []
   },
   {
+    "car_id": 4,
     "name": "Driver Name 7",
     "last_name": "Dri Last Name 7",
     "dni": "76382947",
@@ -113,12 +99,10 @@
     "bank_name": "Interbank",
     "bank_account_type": "C. C.",
     "bank_account": "94378291834759392327",
-    "car_brand": "Renault",
-    "car_model": "Clio",
-    "car_year": 2012,
     "rating": []
   },
   {
+    "car_id": 5,
     "name": "Driver Name 8",
     "last_name": "Dri Last Name 8",
     "dni": "76382948",
@@ -130,9 +114,6 @@
     "bank_name": "Scotiabank",
     "bank_account_type": "C. A.",
     "bank_account": "94378291834759392328",
-    "car_brand": "Chevrolet",
-    "car_model": "Onix",
-    "car_year": 2020,
     "rating": []
   }
 ]
