@@ -1,10 +1,10 @@
 const { Router } = require("express");
 
-const getReservesController = require("../../../services/Reserve/getReservesController.js");
-const postReserveController = require("../../../services/Reserve/postReserveController.js");
-const getReserveByIdController = require("../../../services/Reserve/getReserveByIdController.js");
-const putReserveController = require("../../../services/Reserve/putReserveController.js");
-const deleteReserveController = require("../../../services/Reserve/deleteReserveController.js");
+const getReservesController = require("../../services/Reserve/getReservesController.js");
+const postReserveController = require("../../services/Reserve/postReserveController.js");
+const getReserveByIdController = require("../../services/Reserve/getReserveByIdController.js");
+const putReserveController = require("../../services/Reserve/putReserveController.js");
+const deleteReserveController = require("../../services/Reserve/deleteReserveController.js");
 
 const getReservesHandler = async (req, res) => {
   try {

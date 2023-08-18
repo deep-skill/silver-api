@@ -1,10 +1,10 @@
 const { Router } = require("express");
 
-const getCarsController = require("../../../services/Car/getCarsController.js");
-const postCarController = require("../../../services/Car/postCarController.js");
-const getCarByIdController = require("../../../services/Car/getCarByIdController.js");
-const putCarController = require("../../../services/Car/putCarController.js");
-const deleteCarController = require("../../../services/Car/deleteCarController.js");
+const getCarsController = require("../../services/Car/getCarsController.js");
+const postCarController = require("../../services/Car/postCarController.js");
+const getCarByIdController = require("../../services/Car/getCarByIdController.js");
+const putCarController = require("../../services/Car/putCarController.js");
+const deleteCarController = require("../../services/Car/deleteCarController.js");
 
 const getCarsHandler = async (req, res) => {
   try {

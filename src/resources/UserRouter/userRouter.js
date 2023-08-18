@@ -1,10 +1,10 @@
 const { Router } = require("express");
 
-const getUsersController = require("../../../services/User/getUsersController");
-const postUserController = require("../../../services/User/postUserController.js");
-const getUserByIdController = require("../../../services/User/getUserByIdController.js");
-const putUserController = require("../../../services/User/putUserController.js");
-const deleteUserController = require("../../../services/User/deleteUserController.js");
+const getUsersController = require("../../services/User/getUsersController");
+const postUserController = require("../../services/User/postUserController.js");
+const getUserByIdController = require("../../services/User/getUserByIdController.js");
+const putUserController = require("../../services/User/putUserController.js");
+const deleteUserController = require("../../services/User/deleteUserController.js");
 
 const getUsersHandler = async (req, res) => {
   try {

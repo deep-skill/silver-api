@@ -1,65 +1,73 @@
 [
   {
     "license_plate": "ABC-151",
+    "owner": "SELF",
     "brand": "Ford",
     "model": "Focus",
-    "type": "Sedan",
+    "type": "SEDAN",
     "color": "Blanco",
     "year": 2021
   },
   {
     "license_plate": "ABC-152",
+    "owner": "SELF",
     "brand": "Volkswagen",
     "model": "Up",
-    "type": "3 Puertas",
+    "type": "MICRO",
     "color": "Rojo",
     "year": 2021
   },
   {
     "license_plate": "ABC-153",
+    "owner": "SELF",
     "brand": "Toyota",
     "model": "Etios",
-    "type": "Sedan",
+    "type": "SEDAN",
     "color": "Gris",
     "year": 2022
   },
   {
     "license_plate": "ABC-154",
+    "owner": "OTHER",
     "brand": "Nissan",
     "model": "Frontier",
-    "type": "Camioneta",
+    "type": "PICKUP",
     "color": "Azul",
     "year": 2016
   },
   {
     "license_plate": "ABC-155",
+    "owner": "SELF",
     "brand": "Nissan",
     "model": "March",
-    "type": "3 Puertas",
+    "type": "MICRO",
     "color": "Verde",
     "year": 2016
   },
   {
     "license_plate": "ABC-156",
+    "owner": "SELF",
     "brand": "Renault",
     "model": "Clio",
-    "type": "Sedan",
+    "type": "SEDAN",
     "color": "Gris",
     "year": 2012
   },
   {
     "license_plate": "ABC-157",
+    "owner": "SELF",
     "brand": "Chevrolet",
     "model": "Onix",
-    "type": "Sedan",
+    "type": "SEDAN",
     "color": "Blanco",
     "year": 2012
   },
   {
     "license_plate": "ABC-158",
+    "owner": "SELF",
     "brand": "Citroen",
     "model": "C33",
-    "type": "Sedan",
+    "type": "SEDAN",
     "color": "Gris",
     "year": 2009
   }

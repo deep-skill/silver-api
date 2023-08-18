@@ -7,7 +7,6 @@ const { PORT } = process.env;
 const enterpriseBulk = require('./src/assets/bulks/enterpriseBulk.json');
 const userBulk = require('./src/assets/bulks/userBulk.json');
 const driverBulk = require('./src/assets/bulks/driverBulk.json');
-const silverCarBulk = require('./src/assets/bulks/silverCarBulk.json');
 const carBulk = require('./src/assets/bulks/carBulk.json');
 const reserveBulk = require('./src/assets/bulks/reserveBulk.json');
 
@@ -15,8 +14,8 @@ const reserveBulk = require('./src/assets/bulks/reserveBulk.json');
 database.sync({ force: true }).then(() => {
   server.listen(PORT, async () => {
 
-    const enterprises = Enterprise.findAll();
-    if(!enterprises.length){
+    const enterprises = await Enterprise.findAll();
+    if (!enterprises.length) {
       let bulk = enterpriseBulk.map((e) => {
         return {
           ruc: e.ruc,
@@ -26,9 +25,9 @@ database.sync({ force: true }).then(() => {
       });
       await Enterprise.bulkCreate(bulk);
       console.log('Enterprise bulk created');
-    };
+    }
 
-    const users = User.findAll();
+    const users = await User.findAll();
     if(!users.length){
       let bulk = userBulk.map((e) => {
         return {
@@ -45,13 +44,14 @@ database.sync({ force: true }).then(() => {
       });
       await User.bulkCreate(bulk);
       console.log('User bulk created');
-    };
+    }
 
-    const cars = Car.findAll();
+    const cars = await Car.findAll();
     if(!cars.length){
       let bulk = carBulk.map((e) => {
         return {
-          license_plate: e.license_plate,
+          licensePlate: e.license_plate,
+          owner: e.owner,
           brand: e.brand,
           model: e.model,
           type: e.type,
@@ -61,9 +61,9 @@ database.sync({ force: true }).then(() => {
       });
       await Car.bulkCreate(bulk);
       console.log('Car bulk created');
-    };
+    }
 
-    const drivers = Driver.findAll();
+    const drivers = await Driver.findAll();
     if(!drivers.length){
       let bulk = driverBulk.map((e) => {
         return {
@@ -84,27 +84,9 @@ database.sync({ force: true }).then(() => {
       });
       await Driver.bulkCreate(bulk);
       console.log('Driver bulk created');
-    };
+    }
 
-    const silverCars = SilverCar.findAll();
-    if(!silverCars.length){
-      let bulk = silverCarBulk.map((e) => {
-        return {
-          license_plate: e.license_plate,
-          brand: e.brand,
-          model: e.model,
-          type: e.type,
-          color: e.color,
-          year: e.year
-        }
-      });
-      await SilverCar.bulkCreate(bulk);
-      console.log('Silver Car bulk created');
-    };
-
-
-    
-    const reserves = Reserve.findAll();
+    const reserves = await Reserve.findAll();
     if(!reserves.length){
       let bulk = reserveBulk.map((e) => {
         return {
@@ -122,7 +104,7 @@ database.sync({ force: true }).then(() => {
       });
       await Reserve.bulkCreate(bulk);
       console.log('Reserve bulk created');
-    };
+    }
 
     console.log('Silver Express listening on port', PORT);
   });
