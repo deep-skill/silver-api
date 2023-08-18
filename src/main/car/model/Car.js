@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize')
+const {DataTypes} = require('sequelize')
 
 module.exports = (sequelize) => {
   sequelize.define('Car', {
@@ -7,9 +7,16 @@ module.exports = (sequelize) => {
       autoIncrement: true,
       primaryKey: true
     },
-    license_plate: {
+    licensePlate: {
       type: DataTypes.STRING,
       allowNull: false,
+      field: 'license_plate',
+      unique: true
+    },
+    owner: {
+      type: DataTypes.ENUM,
+      values: ['SELF', 'OTHER'],
+      allowNull: false
     },
     brand: {
       type: DataTypes.STRING,
@@ -20,7 +27,8 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     type: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM,
+      values: ['SUV', 'CUV', 'MINIVAN', 'VAN', 'SEDAN', 'PICKUP', 'COUPE', 'HATCHBACK', 'MICRO'],
       allowNull: false
     },
     color: {
@@ -30,7 +38,6 @@ module.exports = (sequelize) => {
     year: {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
-  },
-  { timestamps: false });
+    }
+  });
 };

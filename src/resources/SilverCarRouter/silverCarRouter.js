@@ -1,10 +1,10 @@
 const { Router } = require("express");
 
-const getSilverCarsController = require("../../../services/SilverCar/getSilverCarsController.js");
-const postSilverCarController = require("../../../services/SilverCar/postSilverCarController.js");
-const getSilverCarByIdController = require("../../../services/SilverCar/getSilverCarByIdController.js");
-const putSilverCarController = require("../../../services/SilverCar/putSilverCarController.js");
-const deleteSilverCarController = require("../../../services/SilverCar/deleteSilverCarController.js");
+const getSilverCarsController = require("../../services/SilverCar/getSilverCarsController.js");
+const postSilverCarController = require("../../services/SilverCar/postSilverCarController.js");
+const getSilverCarByIdController = require("../../services/SilverCar/getSilverCarByIdController.js");
+const putSilverCarController = require("../../services/SilverCar/putSilverCarController.js");
+const deleteSilverCarController = require("../../services/SilverCar/deleteSilverCarController.js");
 
 const getSilverCarsHandler = async (req, res) => {
   try {

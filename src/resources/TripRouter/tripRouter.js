@@ -1,10 +1,10 @@
 const { Router } = require("express");
 
-const getTripsController = require("../../../services/Trip/getTripsController.js");
-const getTripByIdController = require("../../../services/Trip/getTripByIdController.js");
-const postTripController = require("../../../services/Trip/postTripController.js");
-const putTripController = require("../../../services/Trip/putTripController.js");
-const deleteTripController = require("../../../services/Trip/deleteTripController.js");
+const getTripsController = require("../../services/Trip/getTripsController.js");
+const getTripByIdController = require("../../services/Trip/getTripByIdController.js");
+const postTripController = require("../../services/Trip/postTripController.js");
+const putTripController = require("../../services/Trip/putTripController.js");
+const deleteTripController = require("../../services/Trip/deleteTripController.js");
 
 const getTripsHandler = async (req, res) => {
   try {

@@ -4,7 +4,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env
 
 // Database sequelize connection
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
-  logging: false,
+  logging: (...msg) => console.log(msg),
   native: false
 });
 
@@ -21,8 +21,9 @@ const TollMapModel = require('./models/TollMap.js');
 const TollModel = require('./models/Toll.js');
 const ParkingModel = require('./models/Parking.js');
 const DetourModel = require('./models/Detour.js');
-const SilverCarModel = require('./models/SilverCar.js');
-const CarModel = require('./models/Car.js');
+const DriverModel = require('./main/driver/model/Driver.js');
+const DriverAccountModel = require('./main/driver/model/DriverAccount.js');
+const CarModel = require('./main/car/model/Car.js');
 
 // Create sequelize models
 EnterpriseModel(sequelize);
@@ -37,24 +38,28 @@ TollMapModel(sequelize);
 TollModel(sequelize);
 ParkingModel(sequelize);
 DetourModel(sequelize);
-SilverCarModel(sequelize);
 CarModel(sequelize);
 
 //Relations
 
-const { Enterprise, Reserve, Driver, Trip, Stop, User, FinanceDriver, FinanceEnterprice, TollMap, Toll, Parking, Detour, SilverCar, Car } = sequelize.models
+const { Enterprise, Reserve, Driver, Trip,
+  Stop, User, FinanceDriver, FinanceEnterprice,
+  TollMap, Toll, Parking, Detour, Car, DriverAccount } = sequelize.models
 
 Enterprise.hasMany(User, {foreignKey: 'enterprise_ruc', sourceKey: 'ruc', timestamps: false});
 User.belongsTo(Enterprise, {foreignKey: 'enterprise_ruc', targetId: 'ruc', timestamps: false});
 
-User.hasMany(Reserve, {foreignKey: 'user_id', sourceKey: 'id', timestamps: false});
-Reserve.belongsTo(User, {foreignKey: 'user_id', targetId: 'id', timestamps: false});
-Driver.hasMany(Reserve, {foreignKey: 'driver_id', sourceKey: 'id', timestamps: false});
-Reserve.belongsTo(Driver, {foreignKey: 'driver_id', targetId: 'id', timestamps: false});
-Enterprise.hasMany(Reserve, {foreignKey: 'enterprise_ruc', sourceKey: 'ruc', timestamps: false});
-Reserve.belongsTo(Enterprise, {foreignKey: 'enterprise_ruc', targetId: 'ruc', timestamps: false});
-SilverCar.hasMany(Reserve, {foreignKey: 'silver_car_id', sourceKey: 'id', timestamps: false});
-Reserve.belongsTo(SilverCar, {foreignKey: 'silver_car_id', targetId: 'id', timestamps: false});
+User.hasMany(Reserve, {foreignKey: {name: 'userId', field:'user_id'}, sourceKey: 'id', timestamps: false});
+Reserve.belongsTo(User, {foreignKey: {name: 'userId', field:'user_id'}, targetId: 'id', timestamps: false});
+
+Driver.hasMany(Reserve, {foreignKey: {name: 'driverId', field:'driver_id'}, sourceKey: 'id', timestamps: false});
+Reserve.belongsTo(Driver, {foreignKey: {name: 'driverId', field:'driver_id'}, targetId: 'id', timestamps: false});
+
+Enterprise.hasMany(Reserve, {foreignKey: {name: 'enterpriseId', field:'enterprise_id'}, sourceKey: 'id', timestamps: false});
+Reserve.belongsTo(Enterprise, {foreignKey: {name: 'enterpriseId', field:'enterprise_id'}, targetId: 'id', timestamps: false});
+
+Car.hasMany(Reserve, {foreignKey: {name: 'carId', field:'car_id'}, sourceKey: 'id', timestamps: false});
+Reserve.belongsTo(Car, {foreignKey: {name: 'carId', field:'car_id'}, targetId: 'id', timestamps: false});
 
 Reserve.hasOne(Trip, {foreignKey: 'reserve_id', sourceKey: 'id', timestamps: false});
 Trip.belongsTo(Reserve, {foreignKey: 'reserve_id', sourceKey: 'id', timestamps: false});
@@ -75,7 +80,6 @@ module.exports = {
   Toll,
   Parking,
   Detour,
-  SilverCar,
   Car,
   database: sequelize
 }

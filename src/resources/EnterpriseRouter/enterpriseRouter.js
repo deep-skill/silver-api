@@ -1,10 +1,10 @@
 const { Router } = require("express");
 
-const getEnterpriseByRucController = require("../../../services/Enterprise/getEnterpriseByRucController.js");
-const getEnterprisesController = require("../../../services/Enterprise/getEnterprisesController.js");
-const postEnterpriseController = require("../../../services/Enterprise/postEnterpriseController.js");
-const putEnterpriseController = require("../../../services/Enterprise/putEnterpriseController.js");
-const deleteEnterpriseController = require("../../../services/Enterprise/deleteEnterpriseController.js");
+const getEnterpriseByRucController = require("../../services/Enterprise/getEnterpriseByRucController.js");
+const getEnterprisesController = require("../../services/Enterprise/getEnterprisesController.js");
+const postEnterpriseController = require("../../services/Enterprise/postEnterpriseController.js");
+const putEnterpriseController = require("../../services/Enterprise/putEnterpriseController.js");
+const deleteEnterpriseController = require("../../services/Enterprise/deleteEnterpriseController.js");
 
 const getEnterprisesHandler = async (req, res) => {
   try {

@@ -1,8 +1,9 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const camelcaseKeys = require('camelcase-keys');
 const morgan = require('morgan');
-const routes = require('./resources/routes/router.js');
+const routes = require('./resources/router.js');
 require('./database.js');
 
 // Create server & server name
@@ -11,8 +12,18 @@ server.name = 'Silver Express API';
 
 //Middlewares
 
-server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-server.use(bodyParser.json({ limit: '50mb' }));
+const camelcase = () => {
+  return function (req, res, next) {
+    req.body = camelcaseKeys(req.body, {deep: true});
+    req.params = camelcaseKeys(req.params);
+    req.query = camelcaseKeys(req.query);
+    next();
+  }
+}
+
+server.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
+server.use(bodyParser.json({ limit: '1mb' }));
+server.use(camelcase());
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {

@@ -1,10 +1,10 @@
 const { Router } = require("express");
 
-const getDriversController = require("../../../services/Driver/getDriversController.js");
-const postDriverController = require("../../../services/Driver/postDriverController.js");
-const getDriverByIdController = require("../../../services/Driver/getDriverByIdController.js");
-const putDriverController = require("../../../services/Driver/putDriverController.js");
-const deleteDriverController = require("../../../services/Driver/deleteDriverController.js");
+const getDriversController = require("../../services/Driver/getDriversController.js");
+const postDriverController = require("../../services/Driver/postDriverController.js");
+const getDriverByIdController = require("../../services/Driver/getDriverByIdController.js");
+const putDriverController = require("../../services/Driver/putDriverController.js");
+const deleteDriverController = require("../../services/Driver/deleteDriverController.js");
 
 const getDriversHandler = async (req, res) => {
     try {
