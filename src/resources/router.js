@@ -7,7 +7,6 @@ const enterpriseRouter = require('../main/enterprise/controller/EnterpriseContro
 const driverController = require('../main/driver/controller/DriverController');
 const reserveController = require('../main/reserve/controller/ReserveController');
 const tripController = require('../main/trip/controller/TripController');
-const carRouter = require('./CarRouter/carRouter');
 const carController = require('../main/car/controller/CarController');
 
 const jwtCheck = auth({

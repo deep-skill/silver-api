@@ -11,7 +11,6 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 // Imports models
 const EnterpriseModel = require('./models/Enterprise.js');
 const ReserveModel = require('./models/Reserve.js');
-const DriverModel = require('./models/Driver.js');
 const TripModel = require('./models/Trip.js');
 const StopModel = require('./models/Stop.js');
 const UserModel = require('./models/User.js');
@@ -25,10 +24,12 @@ const DriverModel = require('./main/driver/model/Driver.js');
 const DriverAccountModel = require('./main/driver/model/DriverAccount.js');
 const CarModel = require('./main/car/model/Car.js');
 
+
 // Create sequelize models
 EnterpriseModel(sequelize);
 ReserveModel(sequelize);
 DriverModel(sequelize);
+DriverAccountModel(sequelize);
 TripModel(sequelize);
 StopModel(sequelize);
 UserModel(sequelize);
@@ -64,8 +65,11 @@ Reserve.belongsTo(Car, {foreignKey: {name: 'carId', field:'car_id'}, targetId: '
 Reserve.hasOne(Trip, {foreignKey: 'reserve_id', sourceKey: 'id', timestamps: false});
 Trip.belongsTo(Reserve, {foreignKey: 'reserve_id', sourceKey: 'id', timestamps: false});
 
-Car.hasOne(Driver, {foreignKey: 'car_id', sourceKey: 'id', timestamps: false});
-Driver.belongsTo(Car, {foreignKey: 'car_id', targetId: 'id', timestamps: false});
+Car.hasOne(Driver, {foreignKey: { name: 'carId', field: 'car_id'}, sourceKey: 'id', timestamps: false});
+Driver.belongsTo(Car, {foreignKey: { name: 'carId', field: 'car_id'}, targetId: 'id', timestamps: false});
+
+DriverAccount.hasOne(Driver, {foreignKey: { name: 'driverAccountId', field: 'driver_account_id'}, sourceKey: 'id', timestamps: false});
+Driver.belongsTo(DriverAccount, {foreignKey: { name: 'driverAccountId', field: 'driver_account_id'}, targetId: 'id', timestamps: false});
 
 module.exports = {
   Enterprise,
@@ -81,5 +85,6 @@ module.exports = {
   Parking,
   Detour,
   Car,
+  DriverAccount,
   database: sequelize
 }
