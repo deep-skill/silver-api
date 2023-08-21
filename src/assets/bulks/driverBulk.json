@@ -1,6 +1,7 @@
 [
   {
     "car_id": 1,
+    "driver_account_id": 1,
     "name": "Driver Name 1",
     "last_name": "Dri Last Name 1",
     "dni": "76382941",
@@ -8,28 +9,22 @@
     "license_number": "Q8473621",
     "phone_number": "+51-84-574-861",
     "email": "email1@email.com",
-    "address": "Jr. Andahuaylas 1, Lima, Peru",
-    "bank_name": "Itau",
-    "bank_account_type": "C. C.",
-    "bank_account": "94378291834759392321",
-    "rating": []
+    "address": "Jr. Andahuaylas 1, Lima, Peru"
   },
   {
     "name": "Driver Name 2",
+    "driver_account_id": 2,
     "last_name": "Dri Last Name 2",
     "dni": "76382942",
     "ruc": "47362843952",
     "license_number": "Q8473622",
     "phone_number": "+51-84-574-862",
     "email": "email2@email.com",
-    "address": "Jr. Andahuaylas 2, Lima, Peru",
-    "bank_name": "Itau",
-    "bank_account_type": "C. A.",
-    "bank_account": "94378291834759392322",
-    "rating": []
+    "address": "Jr. Andahuaylas 2, Lima, Peru"
   },
   {
     "car_id": 2,
+    "driver_account_id": 3,
     "name": "Driver Name 3",
     "last_name": "Dri Last Name 3",
     "dni": "76382943",
@@ -37,28 +32,22 @@
     "license_number": "Q8473623",
     "phone_number": "+51-84-574-863",
     "email": "email3@email.com",
-    "address": "Jr. Andahuaylas 3, Lima, Peru",
-    "bank_name": "Scotiabank",
-    "bank_account_type": "C. A.",
-    "bank_account": "94378291834759392323",
-    "rating": []
+    "address": "Jr. Andahuaylas 3, Lima, Peru"
   },
   {
     "name": "Driver Name 4",
+    "driver_account_id": 4,
     "last_name": "Dri Last Name 4",
     "dni": "76382944",
     "ruc": "47362843954",
     "license_number": "Q8473624",
     "phone_number": "+51-84-574-864",
     "email": "email4@email.com",
-    "address": "Jr. Andahuaylas 4, Lima, Peru",
-    "bank_name": "Banco Pichincha",
-    "bank_account_type": "C. A.",
-    "bank_account": "94378291834759392324",
-    "rating": []
+    "address": "Jr. Andahuaylas 4, Lima, Peru"
   },
   {
     "car_id": 3,
+    "driver_account_id": 5,
     "name": "Driver Name 5",
     "last_name": "Dri Last Name 5",
     "dni": "76382945",
@@ -66,28 +55,22 @@
     "license_number": "Q8473625",
     "phone_number": "+51-84-574-865",
     "email": "email5@email.com",
-    "address": "Jr. Andahuaylas 5, Lima, Peru",
-    "bank_name": "Citibank",
-    "bank_account_type": "C. C.",
-    "bank_account": "94378291834759392325",
-    "rating": []
+    "address": "Jr. Andahuaylas 5, Lima, Peru"
   },
   {
     "name": "Driver Name 6",
+    "driver_account_id": 6,
     "last_name": "Dri Last Name 6",
     "dni": "76382946",
     "ruc": "47362843956",
     "license_number": "Q8473626",
     "phone_number": "+51-84-574-866",
     "email": "email6@email.com",
-    "address": "Jr. Andahuaylas 6, Lima, Peru",
-    "bank_name": "BBVA",
-    "bank_account_type": "C. C.",
-    "bank_account": "94378291834759392326",
-    "rating": []
+    "address": "Jr. Andahuaylas 6, Lima, Peru"
   },
   {
     "car_id": 4,
+    "driver_account_id": 7,
     "name": "Driver Name 7",
     "last_name": "Dri Last Name 7",
     "dni": "76382947",
@@ -95,14 +78,11 @@
     "license_number": "Q8473627",
     "phone_number": "+51-84-574-867",
     "email": "email7@email.com",
-    "address": "Jr. Andahuaylas 7, Lima, Peru",
-    "bank_name": "Interbank",
-    "bank_account_type": "C. C.",
-    "bank_account": "94378291834759392327",
-    "rating": []
+    "address": "Jr. Andahuaylas 7, Lima, Peru"
   },
   {
     "car_id": 5,
+    "driver_account_id": 8,
     "name": "Driver Name 8",
     "last_name": "Dri Last Name 8",
     "dni": "76382948",
@@ -110,10 +90,6 @@
     "license_number": "Q8473628",
     "phone_number": "+51-84-574-868",
     "email": "email8@email.com",
-    "address": "Jr. Andahuaylas 8, Lima, Peru",
-    "bank_name": "Scotiabank",
-    "bank_account_type": "C. A.",
-    "bank_account": "94378291834759392328",
-    "rating": []
+    "address": "Jr. Andahuaylas 8, Lima, Peru"
   }
 ]

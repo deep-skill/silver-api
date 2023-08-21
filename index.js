@@ -1,6 +1,6 @@
 require('dotenv').config();
 const server = require('./src/app.js');
-const { database, Enterprise, User, Driver, SilverCar, Car, Reserve } = require('./src/database.js');
+const { database, Enterprise, User, Driver, SilverCar, Car, Reserve, DriverAccount } = require('./src/database.js');
 const { PORT } = process.env;
 
 // Bulk
@@ -9,6 +9,7 @@ const userBulk = require('./src/assets/bulks/userBulk.json');
 const driverBulk = require('./src/assets/bulks/driverBulk.json');
 const carBulk = require('./src/assets/bulks/carBulk.json');
 const reserveBulk = require('./src/assets/bulks/reserveBulk.json');
+const driverAccountBulk = require('./src/assets/bulks/driverAccountBulk.json');
 
 // Syncs sequelize models & starts server
 database.sync({ force: true }).then(() => {
@@ -61,25 +62,39 @@ database.sync({ force: true }).then(() => {
       });
       await Car.bulkCreate(bulk);
       console.log('Car bulk created');
-    }
+    };
+    
+    const driverAccounts = await DriverAccount.findAll();
+    if(!driverAccounts.length){
+      let bulk = driverAccountBulk.map((e) => {
+        return {
+          bankName: e.bank_name,
+          bankAccountType: e.bank_account_type,
+          bankAccount: e.bank_account,
+          cci: e.cci
+        }
+      });
+      await DriverAccount.bulkCreate(bulk);
+      console.log('Driver Account bulk created');
+    };
 
     const drivers = await Driver.findAll();
     if(!drivers.length){
       let bulk = driverBulk.map((e) => {
         return {
-          car_id: e.car_id ? (e.car_id) : null,
+          carId: e.car_id ? (e.car_id) : null,
+          driverAccountId: e.driver_account_id ? (e.driver_account_id) : null,
           name: e.name,
-          last_name: e.last_name,
+          lastName: e.last_name,
           dni: e.dni,
           ruc: e.ruc,
-          license_number: e.license_number,
-          phone_number: e.phone_number,
+          licenseNumber: e.license_number,
+          phoneNumber: e.phone_number,
           email: e.email,
           address: e.address,
-          bank_name: e.bank_name,
-          bank_account_type: e.bank_account_type,
-          bank_account: e.bank_account,
-          rating: [] 
+          bankName: e.bank_name,
+          bankAccountType: e.bank_account_type,
+          bankAccount: e.bank_account,
         }
       });
       await Driver.bulkCreate(bulk);

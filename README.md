@@ -7,6 +7,20 @@ Silver Express is a taxicab company.
 
 To run the project:
 
+First open the terminal and start the project in docker with the following command line.
+
+```sh
+docker run --rm --name silver-postgres -e POSTGRES_PASSWORD=123456 -d -p 5431:5432 postgres
+```
+
+Then create the "silver" database in SQL.
+
+```sh
+create database silver;
+```
+
+Finally run the following command
+
 ```sh
 npm start
 ```

@@ -1,0 +1,50 @@
+[
+  {
+    "bank_name": "Itau",
+    "bank_account_type": "C. C.",
+    "bank_account": "94378291834759392321",
+    "cci": "0000001308372256273629"
+  },
+  {
+    "bank_name": "Itau",
+    "bank_account_type": "C. A.",
+    "bank_account": "94378291834759392322",
+    "cci": "0000001308372256273620"
+  },
+  {
+    "bank_name": "Scotiabank",
+    "bank_account_type": "C. A.",
+    "bank_account": "94378291834759392323",
+    "cci": "0000001308372256273621"
+  },
+  {
+    "bank_name": "Banco Pichincha",
+    "bank_account_type": "C. A.",
+    "bank_account": "94378291834759392324",
+    "cci": "0000001308372256273623"
+  },
+  {
+    "bank_name": "Citibank",
+    "bank_account_type": "C. C.",
+    "bank_account": "94378291834759392325",
+    "cci": "0000001308372256273329"
+  },
+  {
+    "bank_name": "BBVA",
+    "bank_account_type": "C. C.",
+    "bank_account": "94378291834759392326",
+    "cci": "0000001308372256273948"
+  },
+  {
+    "bank_name": "Interbank",
+    "bank_account_type": "C. C.",
+    "bank_account": "94378291834759392327",
+    "cci": "0000001308372256273555"
+  },
+  {
+    "bank_name": "Scotiabank",
+    "bank_account_type": "C. A.",
+    "bank_account": "94378291834759392328",
+    "cci": "0000001308372256273430"
+  }
+]

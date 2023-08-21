@@ -1,4 +1,4 @@
-const { DataTypes, UUIDV4 } = require('sequelize')
+const { DataTypes} = require('sequelize')
 
 module.exports = (sequelize) => {
   sequelize.define('Driver', {
@@ -11,8 +11,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    last_name: {
+    lastName: {
       type: DataTypes.STRING,
+      field: 'last_name',
       allowNull: false
     },
     dni: {
@@ -23,12 +24,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    license_number: {
+    licenseNumber: {
       type: DataTypes.STRING,
+      field: 'license_number',
       allowNull: false
     },
-    phone_number: {
+    phoneNumber: {
       type: DataTypes.STRING,
+      field: 'phone_number',
       allowNull: false
     },
     email: {
@@ -39,21 +42,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    bank_name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    bank_account_type: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    bank_account: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     rating: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue:[]
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    doneTrips: {
+      type: DataTypes.INTEGER,
+      field: 'done_trips',
+      defaultValue: 0
     },
   },
   { timestamps: false });
