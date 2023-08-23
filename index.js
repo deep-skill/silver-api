@@ -34,13 +34,13 @@ database.sync({ force: true }).then(() => {
         return {
           role: e.role,
           name: e.name,
-          last_name: e.last_name,
+          lastName: e.last_name,
           dni: e.dni,
           ruc: e.ruc,
-          phone_number: e.phone_number,
+          phoneNumber: e.phone_number,
           email: e.email,
           address: e.address,
-          enterprise_ruc: e.enterprise_ruc
+          enterpriseId: e.enterprise_id
         }
       });
       await User.bulkCreate(bulk);
@@ -105,16 +105,18 @@ database.sync({ force: true }).then(() => {
     if(!reserves.length){
       let bulk = reserveBulk.map((e) => {
         return {
-          user_id: e.user_id,
-          driver_id: e.driver_id,
-          enterprise_ruc: e.enterprise_ruc,
-          silver_car_id: e.silver_car_id ? (e.silver_car_id) : null,
-          trip_type: e.trip_type,
-          start_time: e.start_time,
-          start_address: e.start_address,
-          end_address: e.end_address,
+          userId: e.user_id,
+          driverId: e.driver_id,
+          enterpriseId: e.enterprise_id,
+          carId: e.car_id ? (e.car_id) : null,
+          tripType: e.trip_type,
+          serviceType: e.service_type,
+          startTime: e.start_time,
+          startAddress: e.start_address,
+          endAddress: e.end_address,
           price: e.price,
-          driver_percent: e.driver_percent
+          driverPercent: e.driver_percent,
+          silverPercent: e.silver_percent,
         }
       });
       await Reserve.bulkCreate(bulk);
