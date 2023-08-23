@@ -1,4 +1,4 @@
-const { Trip } = require("../../../database");
+const { Trip } = require("../../database");
 
 const getAll = async () => {
   return Trip.findAll();
@@ -15,16 +15,13 @@ const create = async (
   arrivedDriver,
   startTime,
 ) => {
-  await Trip.create({
+  return await Trip.create({
     reserveId,
     totalPrice,
     onWayDriver,
     arrivedDriver,
     startTime,
   });
-  return {
-    created: true,
-  };
 };
 
 const update = async (
@@ -39,7 +36,7 @@ const update = async (
   passengerRating,
 ) => {
   const trip = await Trip.findOne({ where: { id } });
-  if(!trip) throw new Error("Driver not exist");
+  if(!trip) throw new Error("Trip not exist");
 
   totalPrice ? (trip.totalPrice = totalPrice) : null;
   onWayDriver ? (trip.onWayDriver = onWayDriver) : null;
@@ -76,9 +73,7 @@ const update = async (
   } 
   await trip.save();
 
-  return {
-    trip,
-  };
+  return trip;
 };
 
 const erase = async (id) => {

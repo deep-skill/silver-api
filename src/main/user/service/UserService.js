@@ -1,4 +1,4 @@
-const { User } = require("../../../database");
+const { User } = require("../../database");
 
 const getAll = async () => {
   return User.findAll();
@@ -19,7 +19,7 @@ const create = async (
   email,
   address,
 ) => {
-  await User.create({
+  return await User.create({
     enterpriseId,
     role,
     name,
@@ -30,9 +30,6 @@ const create = async (
     email,
     address,
   });
-  return {
-    created: true,
-  };
 };
 
 const update = async (
@@ -62,9 +59,7 @@ const update = async (
 
   await user.save();
 
-  return {
-    user,
-  };
+  return user;
 };
 
 const erase = async (id) => {

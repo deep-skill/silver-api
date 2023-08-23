@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const camelcaseKeys = require('camelcase-keys');
 const morgan = require('morgan');
-const routes = require('./resources/router.js');
+const routes = require('./router.js');
 require('./database.js');
 
 // Create server & server name

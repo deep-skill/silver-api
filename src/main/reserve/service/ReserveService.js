@@ -1,4 +1,4 @@
-const { Reserve } = require("../../../database");
+const { Reserve } = require("../../database");
 
 const getAll = async () => {
   return Reserve.findAll();
@@ -22,7 +22,7 @@ const create = async (
   driverPercent,
   silverPercent,
 ) => {
-  await Reserve.create({
+  return await Reserve.create({
     userId,
     driverId,
     enterpriseId,
@@ -36,9 +36,6 @@ const create = async (
     driverPercent,
     silverPercent,
   });
-  return {
-    created: true,
-  };
 };
 
 const update = async (
@@ -74,9 +71,7 @@ const update = async (
 
   await reserve.save();
 
-  return {
-    reserve,
-  };
+  return reserve;
 };
 
 const erase = async (id) => {

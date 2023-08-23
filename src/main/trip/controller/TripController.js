@@ -32,7 +32,7 @@ const create = async (req, res) => {
     status,
   } = req.body;
   try {
-    await TripService.create(
+    const trip = await TripService.create(
       reserveId,
       totalPrice,
       onWayDriver,
@@ -41,7 +41,7 @@ const create = async (req, res) => {
       endTime,
       status,
       );
-      return res.status(201).json();
+      return res.status(201).json(trip);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -72,7 +72,7 @@ const update = async (req, res) => {
       driverRating,
       passengerRating
     );
-    return res.status(201).json(updatedTrip);
+    return res.status(200).json(updatedTrip);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }

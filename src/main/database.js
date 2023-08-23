@@ -9,20 +9,20 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 });
 
 // Imports models
-const EnterpriseModel = require('./main/enterprise/model/Enterprise.js');
-const ReserveModel = require('./main/reserve/model/Reserve.js');
-const TripModel = require('./main/trip/model/Trip.js');
-const StopModel = require('./models/Stop.js');
-const UserModel = require('./main/user/model/User.js');
-const FinanceDriverModel = require('./models/FinanceDriver.js');
-const FinanceEnterpriceModel = require('./models/FinanceEnterprice.js');
-const TollMapModel = require('./models/TollMap.js');
-const TollModel = require('./models/Toll.js');
-const ParkingModel = require('./models/Parking.js');
-const DetourModel = require('./models/Detour.js');
-const DriverModel = require('./main/driver/model/Driver.js');
-const DriverAccountModel = require('./main/driver/model/DriverAccount.js');
-const CarModel = require('./main/car/model/Car.js');
+const EnterpriseModel = require('./enterprise/model/Enterprise.js');
+const ReserveModel = require('./reserve/model/Reserve.js');
+const TripModel = require('./trip/model/Trip.js');
+const StopModel = require('../models/Stop.js');
+const UserModel = require('./user/model/User.js');
+const FinanceDriverModel = require('../models/FinanceDriver.js');
+const FinanceEnterpriceModel = require('../models/FinanceEnterprice.js');
+const TollMapModel = require('../models/TollMap.js');
+const TollModel = require('../models/Toll.js');
+const ParkingModel = require('../models/Parking.js');
+const DetourModel = require('../models/Detour.js');
+const DriverModel = require('./driver/model/Driver.js');
+const DriverAccountModel = require('./driver/model/DriverAccount.js');
+const CarModel = require('./car/model/Car.js');
 
 
 // Create sequelize models

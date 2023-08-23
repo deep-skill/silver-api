@@ -1,4 +1,4 @@
-const {DriverAccount} = require("../../../database");
+const {DriverAccount} = require("../../database");
 
 const getAll = async () => {
   return DriverAccount.findAll();
@@ -14,15 +14,12 @@ const create = async (
   bankAccount,
   cci,
 ) => {
-  const driverAccount = await DriverAccount.create({
+  return await DriverAccount.create({
     bankName,
     bankAccountType,
     bankAccount,
     cci,
   });
-  return {
-    driverAccount
-  };
 };
 
 const update = async (
@@ -42,9 +39,7 @@ const update = async (
   
   await driverAccount.save();
 
-  return {
-    driverAccount,
-  };
+  return driverAccount;
 };
 
 const erase = async (id) => {

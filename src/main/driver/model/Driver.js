@@ -51,6 +51,6 @@ module.exports = (sequelize) => {
       field: 'done_trips',
       defaultValue: 0
     },
-  },
-  { timestamps: false });
+  }
+  );
 };

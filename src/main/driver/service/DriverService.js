@@ -1,4 +1,4 @@
-const { Driver, DriverAccount, Car } = require("../../../database");
+const { Driver, DriverAccount, Car } = require("../../database");
 
 const getAll = async () => {
   return Driver.findAll({ include: [DriverAccount, Car] });
@@ -20,7 +20,7 @@ const create = async (
   email,
   address,
 ) => {
-  const driver = await Driver.create({
+  return await Driver.create({
     carId,
     driverAccountId,
     name,
@@ -32,9 +32,6 @@ const create = async (
     email,
     address,
   });
-  return {
-    driver
-  };
 };
 
 const update = async (
@@ -66,9 +63,7 @@ const update = async (
 
   await driver.save();
 
-  return {
-    driver,
-  };
+  return driver
 };
 
 const erase = async (id) => {

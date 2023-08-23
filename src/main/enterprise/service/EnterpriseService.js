@@ -1,4 +1,4 @@
-const { Enterprise } = require("../../../database");
+const { Enterprise } = require("../../database");
 
 const getAll = async () => {
   return Enterprise.findAll();

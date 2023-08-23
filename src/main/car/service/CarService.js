@@ -1,4 +1,4 @@
-const {Car} = require("../../../database");
+const {Car} = require("../../database");
 
 const getAll = async () => {
   return Car.findAll();
