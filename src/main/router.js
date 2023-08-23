@@ -3,7 +3,7 @@ const {Router} = require('express');
 const {auth} = require('express-oauth2-jwt-bearer');
 
 const userController = require('../main/user/controller/UserController');
-const enterpriseRouter = require('../main/enterprise/controller/EnterpriseController');
+const enterpriseController = require('../main/enterprise/controller/EnterpriseController');
 const driverController = require('../main/driver/controller/DriverController');
 const reserveController = require('../main/reserve/controller/ReserveController');
 const tripController = require('../main/trip/controller/TripController');
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
   res.status(200).send('Hi! Home');
 }); */
 
-router.use('/silver-api/enterprises', enterpriseRouter);
+router.use('/silver-api/enterprises', enterpriseController);
 router.use('/silver-api/users', userController);
 router.use('/silver-api/drivers', driverController);
 router.use('/silver-api/reserves', reserveController);

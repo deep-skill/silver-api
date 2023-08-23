@@ -34,7 +34,7 @@ const create = async (req, res) => {
     address,
   } = req.body;
   try {
-    await UserService.create(
+    const user = await UserService.create(
       enterpriseId,
       role,
       name,
@@ -45,7 +45,7 @@ const create = async (req, res) => {
       email,
       address,
       );
-      return res.status(201).json();
+      return res.status(201).json(user);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -78,7 +78,7 @@ const update = async (req, res) => {
       email,
       address,
     );
-    return res.status(201).json(updatedUser);
+    return res.status(200).json(updatedUser);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }

@@ -37,7 +37,7 @@ const create = async (req, res) => {
     silverPercent
   } = req.body;
   try {
-    await ReserveService.create(
+    const reserve = await ReserveService.create(
       userId,
       driverId,
       enterpriseId,
@@ -51,7 +51,7 @@ const create = async (req, res) => {
       driverPercent,
       silverPercent
       );
-      return res.status(201).json();
+      return res.status(201).json(reserve);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -90,7 +90,7 @@ const update = async (req, res) => {
       driverPercent,
       silverPercent
     );
-    return res.status(201).json(updatedReserve);
+    return res.status(200).json(updatedReserve);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }

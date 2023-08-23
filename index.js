@@ -1,6 +1,6 @@
 require('dotenv').config();
-const server = require('./src/app.js');
-const { database, Enterprise, User, Driver, SilverCar, Car, Reserve, DriverAccount } = require('./src/database.js');
+const server = require('./src/main/app.js');
+const { database, Enterprise, User, Driver, SilverCar, Car, Reserve, DriverAccount } = require('./src/main/database.js');
 const { PORT } = process.env;
 
 // Bulk
