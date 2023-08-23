@@ -8,7 +8,7 @@
     "phone_number": "+51-84-574-861",
     "email": "email1@email.com",
     "address": "Jr. Andahuaylas 1, Lima, Peru",
-    "enterprise_ruc": "20523621211"
+    "enterprise_id": "1"
   },
   {
     "role": "manager",
@@ -19,7 +19,7 @@
     "phone_number": "+51-84-574-862",
     "email": "email2@email.com",
     "address": "Jr. Andahuaylas 2, Lima, Peru",
-    "enterprise_ruc": "20523621212"
+    "enterprise_id": "2"
   },
   {
     "role": "manager",
@@ -30,7 +30,7 @@
     "phone_number": "+51-84-574-863",
     "email": "email3@email.com",
     "address": "Jr. Andahuaylas 3, Lima, Peru",
-    "enterprise_ruc": "20523621212"
+    "enterprise_id": "2"
   },
   {
     "role": "manager",
@@ -41,7 +41,7 @@
     "phone_number": "+51-84-574-864",
     "email": "email4@email.com",
     "address": "Jr. Andahuaylas 4, Lima, Peru",
-    "enterprise_ruc": "20523621213"
+    "enterprise_id": "3"
   },
   {
     "role": "passenger",
@@ -52,7 +52,7 @@
     "phone_number": "+51-84-574-865",
     "email": "email5@email.com",
     "address": "Jr. Andahuaylas 5, Lima, Peru",
-    "enterprise_ruc": "20523621213"
+    "enterprise_id": "3"
   },
   {
     "role": "passenger",
@@ -63,7 +63,7 @@
     "phone_number": "+51-84-574-866",
     "email": "email6@email.com",
     "address": "Jr. Andahuaylas 6, Lima, Peru",
-    "enterprise_ruc": "20523621214"
+    "enterprise_id": "4"
   },
   {
     "role": "passenger",
@@ -74,7 +74,7 @@
     "phone_number": "+51-84-574-867",
     "email": "email7@email.com",
     "address": "Jr. Andahuaylas 7, Lima, Peru",
-    "enterprise_ruc": "20523621215"
+    "enterprise_id": "5"
   },
   {
     "role": "passenger",
@@ -85,7 +85,7 @@
     "phone_number": "+51-84-574-868",
     "email": "email8@email.com",
     "address": "Jr. Andahuaylas 8, Lima, Peru",
-    "enterprise_ruc": "20523621214"
+    "enterprise_id": "4"
   },
   {
     "role": "passenger",
@@ -96,7 +96,7 @@
     "phone_number": "+51-84-574-869",
     "email": "email9@email.com",
     "address": "Jr. Andahuaylas 9, Lima, Peru",
-    "enterprise_ruc": "20523621216"
+    "enterprise_id": "6"
   },
   {
     "role": "passenger",
@@ -107,7 +107,7 @@
     "phone_number": "+51-84-574-870",
     "email": "email10@email.com",
     "address": "Jr. Andahuaylas 10, Lima, Peru",
-    "enterprise_ruc": "20523621211"
+    "enterprise_id": "1"
   },
   {
     "role": "passenger",
@@ -118,7 +118,7 @@
     "phone_number": "+51-84-574-871",
     "email": "email11@email.com",
     "address": "Jr. Andahuaylas 11, Lima, Peru",
-    "enterprise_ruc": "20523621212"
+    "enterprise_id": "2"
   },
   {
     "role": "passenger",
@@ -129,7 +129,7 @@
     "phone_number": "+51-84-574-872",
     "email": "email12@email.com",
     "address": "Jr. Andahuaylas 12, Lima, Peru",
-    "enterprise_ruc": "20523621213"
+    "enterprise_id": "3"
   },
  
   {
@@ -141,7 +141,7 @@
     "phone_number": "+51-84-574-873",
     "email": "email13@email.com",
     "address": "Jr. Andahuaylas 13, Lima, Peru",
-    "enterprise_ruc": "20523621211"
+    "enterprise_id": "1"
   },
   {
     "role": "passenger",
@@ -152,7 +152,7 @@
     "phone_number": "+51-84-574-874",
     "email": "email14@email.com",
     "address": "Jr. Andahuaylas 14, Lima, Peru",
-    "enterprise_ruc": "20523621213"
+    "enterprise_id": "3"
   },
   {
     "role": "passenger",
@@ -163,6 +163,6 @@
     "phone_number": "+51-84-574-875",
     "email": "email15@email.com",
     "address": "Jr. Andahuaylas 15, Lima, Peru",
-    "enterprise_ruc": "20523621215"
+    "enterprise_id": "5"
   }
 ]

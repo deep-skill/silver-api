@@ -1,11 +1,10 @@
 const { Router } = require("express");
-const DriverService = require('../service/DriverService');
-const DriverAccountController = require('./DriverAccountController');
+const UserService = require('../service/UserService');
 
 const getAll = async (req, res) => {
   try {
-    const drivers = await DriverService.getAll();
-    return res.status(200).json(drivers);
+    const users = await UserService.getAll();
+    return res.status(200).json(users);
     } catch (error) {
       return res.status(400).json({ error: error.message });
   }
@@ -15,8 +14,8 @@ const get = async (req, res) => {
   const { id } = req.params;
   try {
     if (!id) throw new Error("Missing data");
-    const driver = await DriverService.get(id);
-    return res.status(200).json(driver);
+    const user = await UserService.get(id);
+    return res.status(200).json(user);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -24,31 +23,29 @@ const get = async (req, res) => {
 
 const create = async (req, res) => {
   const {
-    carId,
-    driverAccountId,
+    enterpriseId,
+    role,
     name,
     lastName,
     dni,
     ruc,
-    licenseNumber,
     phoneNumber,
     email,
     address,
   } = req.body;
   try {
-    const driver = await DriverService.create(
-      carId,
-      driverAccountId,
+    await UserService.create(
+      enterpriseId,
+      role,
       name,
       lastName,
       dni,
       ruc,
-      licenseNumber,
       phoneNumber,
       email,
       address,
       );
-      return res.status(201).json(driver);
+      return res.status(201).json();
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -57,33 +54,31 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   const {id} = req.params;
   const {
-    carId,
-    driverAccountId,
+    enterpriseId,
+    role,
     name,
     lastName,
     dni,
     ruc,
-    licenseNumber,
     phoneNumber,
     email,
     address,
   } = req.body;
   try {
     if (!id) throw new Error("Missing data");
-    const updatedDriver = await DriverService.update(
+    const updatedUser = await UserService.update(
       id,
-      carId,
-      driverAccountId,
+      enterpriseId,
+      role,
       name,
       lastName,
       dni,
       ruc,
-      licenseNumber,
       phoneNumber,
       email,
       address,
     );
-    return res.status(200).json(updatedDriver);
+    return res.status(201).json(updatedUser);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -93,7 +88,7 @@ const erase = async (req, res) => {
   const { id } = req.params;
   try {
     if (!id) throw new Error("Missing data");
-    await DriverService.erase(id);
+    await UserService.erase(id);
     return res.status(204).json();
     } catch (error) {
       return res.status(400).json({ error: error.message });
@@ -107,14 +102,13 @@ const jwtCheck = auth({
   tokenSigningAlg: 'RS256'
 });
 
-const DriverRouter = Router();
+const UserRouter = Router();
 
 /* driverRouter.get("/", jwtCheck, getDriversHandler); */
-DriverRouter.use('/bank-accounts', DriverAccountController);
-DriverRouter.get('/', getAll);
-DriverRouter.post('/', create);
-DriverRouter.get('/:id', get);
-DriverRouter.patch('/:id', update);
-DriverRouter.delete('/:id', erase);
+UserRouter.get('/', getAll);
+UserRouter.post('/', create);
+UserRouter.get('/:id', get);
+UserRouter.patch('/:id', update);
+UserRouter.delete('/:id', erase);
 
-module.exports = DriverRouter;
+module.exports = UserRouter;
