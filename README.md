@@ -18,7 +18,12 @@ Then create the "silver" database in SQL.
 ```sh
 create database silver;
 ```
+Then, rename `.env.example` to `.env` and provide the appropriate **DB_USER**, **DB_PASSWORD**, **DB_HOST**, **DB_PORT**, **DB_NAME** and **PORT**.
 
+If it is necessary to download the dependencies, run the command
+```sh
+npm install
+```
 Finally run the following command
 
 ```sh

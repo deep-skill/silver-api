@@ -2,12 +2,22 @@ const { Router } = require("express");
 const ReserveService = require('../service/ReserveService');
 
 const getAll = async (req, res) => {
-  try {
-    const reserves = await ReserveService.getAll();
-    return res.status(200).json(reserves);
-    } catch (error) {
-      return res.status(400).json({ error: error.message });
-  }
+  const { page, size } = req.query;
+  if(page) {
+    try {
+      const reserves = await ReserveService.getPaginated(page, size);
+      return res.status(200).json(reserves);
+      } catch (error) {
+        return res.status(400).json({ error: error.message });
+      }
+      } else {
+        try {
+          const reserves = await ReserveService.getAll();
+          return res.status(200).json(reserves);
+        } catch (error) {
+          return res.status(400).json({ error: error.message });
+          }
+      }
 };
 
 const get = async (req, res) => {

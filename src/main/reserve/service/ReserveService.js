@@ -75,11 +75,15 @@ const update = async (
 };
 
 const erase = async (id) => {
-  const silverCar = await Reserve.findOne({ where: { id } });
-  await silverCar.destroy();
-  return {
-    deleted: true,
-  };
+  const reserve = await Reserve.findOne({ where: { id } });
+  await reserve.destroy();
 };
 
-module.exports = {getAll, get, create, erase, update};
+const getPaginated = async (page, size = 10) => {
+  return await Reserve.findAndCountAll({
+    limit: size,
+    offset: page * size,
+  });
+};
+
+module.exports = {getAll, get, create, erase, update, getPaginated};
