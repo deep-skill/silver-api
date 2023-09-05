@@ -1,4 +1,4 @@
-const { Reserve } = require("../../database");
+const { Reserve, User, Enterprise } = require("../../database");
 
 const getAll = async () => {
   return Reserve.findAll();
@@ -86,4 +86,25 @@ const getPaginated = async (page, size = 10) => {
   });
 };
 
-module.exports = {getAll, get, create, erase, update, getPaginated};
+const getReservesHome = async (page) => {
+  return await Reserve.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ['id', 'tripType', 'startTime'],
+    include: [
+      {
+        model: User,
+        attributes: ['name', 'lastName', ],
+      },
+      {
+        model: Enterprise,
+        attributes: ['name'],
+      },
+    ],
+    where: {
+      driverId: null
+    },
+  });
+};
+
+module.exports = {getAll, get, create, erase, update, getPaginated, getReservesHome};

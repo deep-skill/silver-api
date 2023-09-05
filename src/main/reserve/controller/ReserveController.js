@@ -117,6 +117,16 @@ const erase = async (req, res) => {
   }
 };
 
+const getReservesHome = async (req, res) => {
+  const { page } = req.query;
+  try {
+    const reserves = await ReserveService.getReservesHome(page);
+    return res.status(200).json(reserves);
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+};
+
 const { auth } = require('express-oauth2-jwt-bearer');
 const jwtCheck = auth({
   audience: 'http://localhost:5000',
@@ -129,6 +139,7 @@ const ReserveRouter = Router();
 /* driverRouter.get("/", jwtCheck, getDriversHandler); */
 ReserveRouter.get('/', getAll);
 ReserveRouter.post('/', create);
+ReserveRouter.get('/admin-home', getReservesHome);
 ReserveRouter.get('/:id', get);
 ReserveRouter.patch('/:id', update);
 ReserveRouter.delete('/:id', erase);
