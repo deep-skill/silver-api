@@ -1,6 +1,6 @@
 require('dotenv').config();
 const server = require('./src/main/app.js');
-const { database, Enterprise, User, Driver, SilverCar, Car, Reserve, DriverAccount } = require('./src/main/database.js');
+const { database, Enterprise, User, Driver, SilverCar, Car, Reserve, DriverAccount, Trip } = require('./src/main/database.js');
 const { PORT } = process.env;
 
 // Bulk
@@ -10,6 +10,7 @@ const driverBulk = require('./src/assets/bulks/driverBulk.json');
 const carBulk = require('./src/assets/bulks/carBulk.json');
 const reserveBulk = require('./src/assets/bulks/reserveBulk.json');
 const driverAccountBulk = require('./src/assets/bulks/driverAccountBulk.json');
+const tripBulk = require('./src/assets/bulks/tripBulk.json');
 
 // Syncs sequelize models & starts server
 database.sync({ force: true }).then(() => {
@@ -121,6 +122,18 @@ database.sync({ force: true }).then(() => {
       });
       await Reserve.bulkCreate(bulk);
       console.log('Reserve bulk created');
+    }
+    const trips = await Trip.findAll();
+    if(!trips.length){
+      let bulk = tripBulk.map((e) => {
+        return {
+          reserveId: e.reserve_id,
+          totalPrice: e.total_price,
+          onWayDriver: e.on_way_driver,
+        }
+      });
+      await Trip.bulkCreate(bulk);
+      console.log('Trip bulk created');
     }
 
     console.log('Silver Express listening on port', PORT);
