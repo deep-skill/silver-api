@@ -1,4 +1,4 @@
-const { Reserve, User, Enterprise } = require("../../database");
+const { Reserve, User, Enterprise, Driver, Car } = require("../../database");
 
 const getAll = async () => {
   return Reserve.findAll();
@@ -20,7 +20,7 @@ const create = async (
   endAddress,
   price,
   driverPercent,
-  silverPercent,
+  silverPercent
 ) => {
   return await Reserve.create({
     userId,
@@ -51,10 +51,10 @@ const update = async (
   endAddress,
   price,
   driverPercent,
-  silverPercent,
+  silverPercent
 ) => {
   const reserve = await Reserve.findOne({ where: { id } });
-  if(!reserve) throw new Error("Driver not exist");
+  if (!reserve) throw new Error("Driver not exist");
 
   userId ? (reserve.userId = userId) : null;
   driverId ? (reserve.driverId = driverId) : null;
@@ -90,21 +90,56 @@ const getReservesHome = async (page) => {
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
-    attributes: ['id', 'tripType', 'startTime'],
+    attributes: ["id", "tripType", "startTime"],
     include: [
       {
         model: User,
-        attributes: ['name', 'lastName', ],
+        attributes: ["name", "lastName"],
       },
       {
         model: Enterprise,
-        attributes: ['name'],
+        attributes: ["name"],
       },
     ],
     where: {
-      driverId: null
+      driverId: null,
     },
   });
 };
 
-module.exports = {getAll, get, create, erase, update, getPaginated, getReservesHome};
+const getReservesList = async (page) => {
+  return await Reserve.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ["id", "tripType", "startTime"],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Driver,
+        attributes: ["name", "lastName", "carId"],
+      },
+      {
+        model: Car,
+        attributes: ["type"],
+      },
+    ],
+  });
+};
+
+module.exports = {
+  getAll,
+  get,
+  create,
+  erase,
+  update,
+  getPaginated,
+  getReservesHome,
+  getReservesList,
+};
