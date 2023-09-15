@@ -123,13 +123,47 @@ const getReservesList = async (page) => {
       },
       {
         model: Driver,
-        attributes: ["name", "lastName", "carId"],
+        attributes: ["name", "lastName"],
       },
       {
         model: Car,
         attributes: ["type"],
       },
     ],
+  });
+};
+
+const getReserveDetail = async (id) => {
+  return await Reserve.findOne({
+    attributes: [
+      "id",
+      "startTime",
+      "serviceType",
+      "tripType",
+      "startAddress",
+      "endAddress",
+      "price",
+      "silverPercent",
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Driver,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Car,
+        attributes: ["type", "licensePlate"],
+      },
+    ],
+    where: { id },
   });
 };
 
@@ -142,4 +176,5 @@ module.exports = {
   getPaginated,
   getReservesHome,
   getReservesList,
+  getReserveDetail,
 };

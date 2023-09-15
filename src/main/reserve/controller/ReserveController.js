@@ -137,6 +137,16 @@ const getReservesList = async (req, res) => {
   }
 };
 
+const getReserveDetail = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const reserve = await ReserveService.getReserveDetail(id);
+    return res.status(200).json(reserve);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 const { auth } = require("express-oauth2-jwt-bearer");
 const jwtCheck = auth({
   audience: "http://localhost:5000",
@@ -151,6 +161,7 @@ ReserveRouter.get("/", getAll);
 ReserveRouter.post("/", create);
 ReserveRouter.get("/admin-home", getReservesHome);
 ReserveRouter.get("/admin-reserves", getReservesList);
+ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
 ReserveRouter.get("/:id", get);
 ReserveRouter.patch("/:id", update);
 ReserveRouter.delete("/:id", erase);
