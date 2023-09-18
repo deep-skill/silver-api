@@ -1,4 +1,4 @@
-const { Reserve } = require("../../database");
+const { Reserve, User, Enterprise, Driver, Car } = require("../../database");
 
 const getAll = async () => {
   return Reserve.findAll();
@@ -20,7 +20,7 @@ const create = async (
   endAddress,
   price,
   driverPercent,
-  silverPercent,
+  silverPercent
 ) => {
   return await Reserve.create({
     userId,
@@ -51,10 +51,10 @@ const update = async (
   endAddress,
   price,
   driverPercent,
-  silverPercent,
+  silverPercent
 ) => {
   const reserve = await Reserve.findOne({ where: { id } });
-  if(!reserve) throw new Error("Driver not exist");
+  if (!reserve) throw new Error("Driver not exist");
 
   userId ? (reserve.userId = userId) : null;
   driverId ? (reserve.driverId = driverId) : null;
@@ -86,4 +86,95 @@ const getPaginated = async (page, size = 10) => {
   });
 };
 
-module.exports = {getAll, get, create, erase, update, getPaginated};
+const getReservesHome = async (page) => {
+  return await Reserve.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ["id", "tripType", "startTime"],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+    ],
+    where: {
+      driverId: null,
+    },
+  });
+};
+
+const getReservesList = async (page) => {
+  return await Reserve.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ["id", "tripType", "startTime"],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Driver,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Car,
+        attributes: ["type"],
+      },
+    ],
+  });
+};
+
+const getReserveDetail = async (id) => {
+  return await Reserve.findOne({
+    attributes: [
+      "id",
+      "startTime",
+      "serviceType",
+      "tripType",
+      "startAddress",
+      "endAddress",
+      "price",
+      "silverPercent",
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Driver,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Car,
+        attributes: ["type", "licensePlate"],
+      },
+    ],
+    where: { id },
+  });
+};
+
+module.exports = {
+  getAll,
+  get,
+  create,
+  erase,
+  update,
+  getPaginated,
+  getReservesHome,
+  getReservesList,
+  getReserveDetail,
+};

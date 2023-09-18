@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
     },
     status: {
       type: DataTypes.ENUM,
-      values: ['COMPLETED', 'CANCELER', 'INPROGRESS'],
+      values: ['COMPLETED', 'CANCELED', 'INPROGRESS'],
       defaultValue: 'INPROGRESS'
     },
     driverRating: {

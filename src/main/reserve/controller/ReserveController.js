@@ -1,23 +1,23 @@
 const { Router } = require("express");
-const ReserveService = require('../service/ReserveService');
+const ReserveService = require("../service/ReserveService");
 
 const getAll = async (req, res) => {
   const { page, size } = req.query;
-  if(page) {
+  if (page) {
     try {
       const reserves = await ReserveService.getPaginated(page, size);
       return res.status(200).json(reserves);
-      } catch (error) {
-        return res.status(400).json({ error: error.message });
-      }
-      } else {
-        try {
-          const reserves = await ReserveService.getAll();
-          return res.status(200).json(reserves);
-        } catch (error) {
-          return res.status(400).json({ error: error.message });
-          }
-      }
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  } else {
+    try {
+      const reserves = await ReserveService.getAll();
+      return res.status(200).json(reserves);
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  }
 };
 
 const get = async (req, res) => {
@@ -44,7 +44,7 @@ const create = async (req, res) => {
     endAddress,
     price,
     driverPercent,
-    silverPercent
+    silverPercent,
   } = req.body;
   try {
     const reserve = await ReserveService.create(
@@ -60,15 +60,15 @@ const create = async (req, res) => {
       price,
       driverPercent,
       silverPercent
-      );
-      return res.status(201).json(reserve);
+    );
+    return res.status(201).json(reserve);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
 
 const update = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const {
     userId,
     driverId,
@@ -81,7 +81,7 @@ const update = async (req, res) => {
     endAddress,
     price,
     driverPercent,
-    silverPercent
+    silverPercent,
   } = req.body;
   try {
     if (!id) throw new Error("Missing data");
@@ -112,25 +112,58 @@ const erase = async (req, res) => {
     if (!id) throw new Error("Missing data");
     await ReserveService.erase(id);
     return res.status(204).json();
-    } catch (error) {
-      return res.status(400).json({ error: error.message });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
   }
 };
 
-const { auth } = require('express-oauth2-jwt-bearer');
+const getReservesHome = async (req, res) => {
+  const { page } = req.query;
+  try {
+    const reserves = await ReserveService.getReservesHome(page);
+    return res.status(200).json(reserves);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+const getReservesList = async (req, res) => {
+  const { page } = req.query;
+  try {
+    const reserves = await ReserveService.getReservesList(page);
+    return res.status(200).json(reserves);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+const getReserveDetail = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const reserve = await ReserveService.getReserveDetail(id);
+    return res.status(200).json(reserve);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+const { auth } = require("express-oauth2-jwt-bearer");
 const jwtCheck = auth({
-  audience: 'http://localhost:5000',
-  issuerBaseURL: 'https://dev-4aecm50nap6pl2q5.us.auth0.com/',
-  tokenSigningAlg: 'RS256'
+  audience: "http://localhost:5000",
+  issuerBaseURL: "https://dev-4aecm50nap6pl2q5.us.auth0.com/",
+  tokenSigningAlg: "RS256",
 });
 
 const ReserveRouter = Router();
 
 /* driverRouter.get("/", jwtCheck, getDriversHandler); */
-ReserveRouter.get('/', getAll);
-ReserveRouter.post('/', create);
-ReserveRouter.get('/:id', get);
-ReserveRouter.patch('/:id', update);
-ReserveRouter.delete('/:id', erase);
+ReserveRouter.get("/", getAll);
+ReserveRouter.post("/", create);
+ReserveRouter.get("/admin-home", getReservesHome);
+ReserveRouter.get("/admin-reserves", getReservesList);
+ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
+ReserveRouter.get("/:id", get);
+ReserveRouter.patch("/:id", update);
+ReserveRouter.delete("/:id", erase);
 
 module.exports = ReserveRouter;

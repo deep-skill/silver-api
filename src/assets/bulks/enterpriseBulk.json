@@ -1,32 +1,32 @@
 [
   {
     "ruc": "20523621211",
-    "name": "Enterprise A",
-    "address": "Av. Address 1, Lima, Peru"
+    "name": "Yape Market",
+    "address": "Av. Arequipa 1234, Lima, Peru"
   },
   {
     "ruc": "20523621212",
-    "name": "Enterprise B",
-    "address": "Av. Address 2, Lima, Peru"
+    "name": "Owens SAC",
+    "address": "Carabaya 5678, Lima, Peru"
   },
   {
     "ruc": "20523621213",
-    "name": "Enterprise C",
-    "address": "Av. Address C, Lima, Peru"
+    "name": "Imperium SAC",
+    "address": "Jr. Cusco 9012, Lima, Peru"
   },
   {
     "ruc": "20523621214",
-    "name": "Enterprise D",
-    "address": "Av. Address 4, Lima, Peru"
+    "name": "Nintendo Company, Ltd",
+    "address": "Pje. Lira 3456, Lima, Peru"
   },
   {
     "ruc": "20523621215",
-    "name": "Enterprise E",
-    "address": "Av. Address 5, Lima, Peru"
+    "name": "Esta-Met SRL",
+    "address": "Tacna 7890, Lima, Peru"
   },
   {
     "ruc": "20523621216",
-    "name": "Enterprise F",
-    "address": "Av. Address 6, Lima, Peru"
+    "name": "The Coca-Cola Company",
+    "address": "Vía Paseo de la República 1000, Lima, Peru"
   }
 ]
