@@ -148,19 +148,19 @@ const getReserveDetail = async (id) => {
     include: [
       {
         model: User,
-        attributes: ["name", "lastName"],
+        attributes: ["id", "name", "lastName"],
       },
       {
         model: Enterprise,
-        attributes: ["name"],
+        attributes: ["id", "name"],
       },
       {
         model: Driver,
-        attributes: ["name", "lastName"],
+        attributes: ["id", "name", "lastName"],
       },
       {
         model: Car,
-        attributes: ["type", "licensePlate", "brand", "model", "color"],
+        attributes: ["id", "type", "licensePlate", "brand", "model", "color"],
       },
     ],
     where: { id },

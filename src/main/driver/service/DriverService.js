@@ -1,4 +1,5 @@
 const { Driver, DriverAccount, Car } = require("../../database");
+const Sequelize = require("sequelize");
 
 const getAll = async () => {
   return Driver.findAll({ include: [DriverAccount, Car] });
@@ -74,4 +75,28 @@ const erase = async (id) => {
   };
 };
 
-module.exports = {getAll, get, create, erase, update};
+const getDriverByName = async (query) => {
+  return await Driver.findAll({
+    attributes: ["id", "name", "lastName"],
+    where: {
+      [Sequelize.Op.and]: [
+        {
+          [Sequelize.Op.or]: [
+            {
+              name: {
+                [Sequelize.Op.iLike]: `%${query}%`,
+              },
+            },
+            {
+              lastName: {
+                [Sequelize.Op.iLike]: `%${query}%`,
+              },
+            },
+          ],
+        },
+      ],
+    },
+  });
+};
+
+module.exports = {getAll, get, create, erase, update, getDriverByName};

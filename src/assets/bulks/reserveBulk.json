@@ -1,7 +1,7 @@
 [
   {
     "user_id": 1,
-    "enterprise_id": "1",
+    "enterprise_id": 1,
     "car_id": 1,
     "trip_type": "POR HORA",
     "service_type": "PERSONAL",
@@ -15,7 +15,7 @@
   {
     "user_id": 2,
     "driver_id": 3,
-    "enterprise_id": "2",
+    "enterprise_id": 2,
     "car_id": 2,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "ENTERPRISE",
@@ -28,7 +28,7 @@
   },
   {
     "user_id": 3,
-    "enterprise_id": "3",
+    "enterprise_id": 3,
     "car_id": 3,
     "trip_type": "POR HORA",
     "service_type": "PERSONAL",
@@ -41,7 +41,7 @@
   },
   {
     "user_id": 4,
-    "enterprise_id": "2",
+    "enterprise_id": 2,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "ENTERPRISE",
     "start_time": "2023-09-21T15:30:00",
@@ -54,7 +54,7 @@
   {
     "user_id": 5,
     "driver_id": 6,
-    "enterprise_id": "4",
+    "enterprise_id": 4,
     "trip_type": "POR PUNTO",
     "service_type": "ENTERPRISE",
     "start_time": "2023-09-21T15:30:00",
@@ -67,7 +67,7 @@
   {
     "user_id": 6,
     "driver_id": 7,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
     "start_time": "2023-09-21T15:30:00",
@@ -80,7 +80,7 @@
   {
     "user_id": 7,
     "driver_id": 8,
-    "enterprise_id": "6",
+    "enterprise_id": 6,
     "car_id": 4,
     "trip_type": "POR HORA",
     "service_type": "PERSONAL",
@@ -93,7 +93,7 @@
   },
   {
     "user_id": 7,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -106,7 +106,7 @@
   },
   {
     "user_id": 14,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -119,7 +119,7 @@
   },
   {
     "user_id": 2,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -133,7 +133,7 @@
   {
     "user_id": 9,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -147,7 +147,7 @@
   {
     "user_id": 10,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -161,7 +161,7 @@
   {
     "user_id": 7,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -175,7 +175,7 @@
   {
     "user_id": 8,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -188,7 +188,7 @@
   },
   {
     "user_id": 14,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -201,7 +201,7 @@
   },
   {
     "user_id": 13,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -215,7 +215,7 @@
   {
     "user_id": 12,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -228,7 +228,7 @@
   },
   {
     "user_id": 11,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -242,7 +242,7 @@
   {
     "user_id": 7,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -256,7 +256,7 @@
   {
     "user_id": 3,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -270,7 +270,7 @@
   {
     "user_id": 4,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -284,7 +284,7 @@
   {
     "user_id": 1,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -298,7 +298,7 @@
   {
     "user_id": 6,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -311,7 +311,7 @@
   },
   {
     "user_id": 5,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -325,7 +325,7 @@
   {
     "user_id": 4,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -339,7 +339,7 @@
   {
     "user_id": 10,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -352,7 +352,7 @@
   },
   {
     "user_id": 3,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -365,7 +365,7 @@
   },
   {
     "user_id": 2,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -379,7 +379,7 @@
   {
     "user_id": 3,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -393,7 +393,7 @@
   {
     "user_id": 5,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -407,7 +407,7 @@
   {
     "user_id": 10,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -421,7 +421,7 @@
   {
     "user_id": 9,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -435,7 +435,7 @@
   {
     "user_id": 12,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -449,7 +449,7 @@
   {
     "user_id": 2,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -463,7 +463,7 @@
   {
     "user_id": 1,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -476,7 +476,7 @@
   },
   {
     "user_id": 6,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -490,7 +490,7 @@
   {
     "user_id": 3,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -504,7 +504,7 @@
   {
     "user_id": 4,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -517,7 +517,7 @@
   },
   {
     "user_id": 10,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -531,7 +531,7 @@
   {
     "user_id": 2,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -545,7 +545,7 @@
   {
     "user_id": 8,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -558,7 +558,7 @@
   },
   {
     "user_id": 4,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -572,7 +572,7 @@
   {
     "user_id": 5,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -586,7 +586,7 @@
   {
     "user_id": 7,
     "driver_id": 8,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
@@ -599,7 +599,7 @@
   },
   {
     "user_id": 1,
-    "enterprise_id": "5",
+    "enterprise_id": 5,
     "car_id": 5,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
