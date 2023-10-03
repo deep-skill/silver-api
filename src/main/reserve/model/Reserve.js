@@ -48,7 +48,7 @@ module.exports = (sequelize) => {
     driverPercent: {
       type: DataTypes.INTEGER,
       field: 'driver_percent',
-      allowNull: false
+      allowNull: true
     },
     silverPercent: {
       type: DataTypes.INTEGER,

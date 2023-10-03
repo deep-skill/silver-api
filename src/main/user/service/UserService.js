@@ -1,4 +1,4 @@
-const { User } = require("../../database");
+const { User, Enterprise } = require("../../database");
 const Sequelize = require("sequelize");
 
 const getAll = async () => {
@@ -74,6 +74,10 @@ const erase = async (id) => {
 const getUserByName = async (query) => {
   return await User.findAll({
     attributes: ["id", "name", "lastName"],
+    include: {
+      model: Enterprise,
+      attributes: ["id"],
+    },
     where: {
       [Sequelize.Op.and]: [
         {

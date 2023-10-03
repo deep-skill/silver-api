@@ -15,7 +15,6 @@
   {
     "user_id": 2,
     "driver_id": 3,
-    "enterprise_id": 2,
     "car_id": 2,
     "trip_type": "PUNTO A PUNTO",
     "service_type": "ENTERPRISE",
@@ -441,7 +440,7 @@
     "service_type": "PERSONAL",
     "start_time": "2023-09-21T15:30:00",
     "start_address": "Jr. Andahuaylas 4, Lima, Peru",
-    "end_address": "Jr. Andahuaylas 400, Lima, Peru",
+    "end_address": null,
     "price": 15.50,
     "driver_percent": 10,
     "silver_percent": 17
