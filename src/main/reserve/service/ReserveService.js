@@ -202,6 +202,18 @@ const getReserveByQuery = async (query) => {
             [Sequelize.Op.iLike]: `%${query}%`,
           },
         },
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("start_time"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("service_type"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("trip_type"), "varchar"), {
+          [Sequelize.Op.iLike]: `%${query}%`,
+        }),
+
         {
           "$User.name$": {
             [Sequelize.Op.iLike]: `%${query}%`,
