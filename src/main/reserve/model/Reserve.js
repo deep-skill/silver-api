@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     },
     tripType: {
       type: DataTypes.ENUM,
-      values: ['PUNTO - PUNTO', 'POR PUNTO', 'POR HORA'],
+      values: ['PUNTO A PUNTO', 'POR PUNTO', 'POR HORA'],
       field: 'trip_type',
       allowNull: false
     },
@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
       allowNull: true,
       validate: {
         checkPuntoAPunto() {
-          if (this.tripType == 'PUNTO - PUNTO' && this.endAddress == null) {
+          if (this.tripType == 'PUNTO A PUNTO' && this.endAddress == null) {
             throw new Error('End address must be defined');
           }
         }
