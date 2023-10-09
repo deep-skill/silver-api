@@ -100,6 +100,17 @@ const erase = async (req, res) => {
   }
 };
 
+const getDriverByName = async (req, res) => {
+  const { query } = req.query;
+    try {
+    if (!query) throw new Error("Missing data");
+    const drivers = await DriverService.getDriverByName(query);
+    return res.status(200).json(drivers);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  } 
+};
+
 const { auth } = require('express-oauth2-jwt-bearer');
 const jwtCheck = auth({
   audience: 'http://localhost:5000',
@@ -113,6 +124,7 @@ const DriverRouter = Router();
 DriverRouter.use('/bank-accounts', DriverAccountController);
 DriverRouter.get('/', getAll);
 DriverRouter.post('/', create);
+DriverRouter.get('/drivers', getDriverByName);
 DriverRouter.get('/:id', get);
 DriverRouter.patch('/:id', update);
 DriverRouter.delete('/:id', erase);

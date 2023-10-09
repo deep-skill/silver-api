@@ -1,4 +1,5 @@
 const { Reserve, User, Enterprise, Driver, Car } = require("../../database");
+const Sequelize = require("sequelize");
 
 const getAll = async () => {
   return Reserve.findAll();
@@ -148,22 +149,113 @@ const getReserveDetail = async (id) => {
     include: [
       {
         model: User,
+        attributes: ["id", "name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["id", "name"],
+      },
+      {
+        model: Driver,
+        attributes: ["id", "name", "lastName"],
+      },
+      {
+        model: Car,
+        attributes: ["id", "type", "licensePlate", "brand", "model", "color"],
+      },
+    ],
+    where: { id },
+  });
+};
+
+const getReserveByQuery = async (query) => {
+  return await Reserve.findAll({
+    attributes: ["id", "tripType", "startTime"],
+    include: [
+      {
+        model: User,
         attributes: ["name", "lastName"],
       },
       {
         model: Enterprise,
         attributes: ["name"],
       },
+
       {
         model: Driver,
         attributes: ["name", "lastName"],
       },
       {
         model: Car,
-        attributes: ["type", "licensePlate"],
+        attributes: ["type"],
       },
     ],
-    where: { id },
+    where: {
+      [Sequelize.Op.or]: [
+        {
+          startAddress: {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          endAddress: {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("start_time"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("service_type"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("trip_type"), "varchar"), {
+          [Sequelize.Op.iLike]: `%${query}%`,
+        }),
+
+        {
+          "$User.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$User.last_name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Enterprise.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Driver.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Driver.last_name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Car.license_plate$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Car.brand$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Car.model$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+      ],
+    },
   });
 };
 
@@ -177,4 +269,5 @@ module.exports = {
   getReservesHome,
   getReservesList,
   getReserveDetail,
+  getReserveByQuery,
 };

@@ -147,6 +147,17 @@ const getReserveDetail = async (req, res) => {
   }
 };
 
+const getReserveByQuery = async (req, res) => {
+  const { query } = req.query;
+    try {
+    if (!query) throw new Error("Missing data");
+    const reserves = await ReserveService.getReserveByQuery(query);
+    return res.status(200).json(reserves);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  } 
+};
+
 const { auth } = require("express-oauth2-jwt-bearer");
 const jwtCheck = auth({
   audience: "http://localhost:5000",
@@ -162,6 +173,7 @@ ReserveRouter.post("/", create);
 ReserveRouter.get("/admin-home", getReservesHome);
 ReserveRouter.get("/admin-reserves", getReservesList);
 ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
+ReserveRouter.get('/search', getReserveByQuery);
 ReserveRouter.get("/:id", get);
 ReserveRouter.patch("/:id", update);
 ReserveRouter.delete("/:id", erase);

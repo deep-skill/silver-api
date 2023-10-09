@@ -1,4 +1,5 @@
-const { User } = require("../../database");
+const { User, Enterprise } = require("../../database");
+const Sequelize = require("sequelize");
 
 const getAll = async () => {
   return User.findAll();
@@ -17,7 +18,7 @@ const create = async (
   ruc,
   phoneNumber,
   email,
-  address,
+  address
 ) => {
   return await User.create({
     enterpriseId,
@@ -42,10 +43,10 @@ const update = async (
   ruc,
   phoneNumber,
   email,
-  address,
+  address
 ) => {
   const user = await User.findOne({ where: { id } });
-  if(!user) throw new Error("Driver not exist");
+  if (!user) throw new Error("Driver not exist");
 
   enterpriseId ? (user.enterpriseId = enterpriseId) : null;
   role ? (user.role = role) : null;
@@ -70,4 +71,37 @@ const erase = async (id) => {
   };
 };
 
-module.exports = {getAll, get, create, erase, update};
+const getUserByName = async (query) => {
+  return await User.findAll({
+    attributes: ["id", "name", "lastName"],
+    include: {
+      model: Enterprise,
+      attributes: ["id"],
+    },
+    where: {
+      [Sequelize.Op.and]: [
+        {
+          [Sequelize.Op.or]: [
+            {
+              name: {
+                [Sequelize.Op.iLike]: `%${query}%`,
+              },
+            },
+            {
+              lastName: {
+                [Sequelize.Op.iLike]: `%${query}%`,
+              },
+            },
+          ],
+        },
+        {
+          role: {
+            [Sequelize.Op.eq]: "passenger",
+          },
+        },
+      ],
+    },
+  });
+};
+
+module.exports = { getAll, get, create, erase, update, getUserByName };

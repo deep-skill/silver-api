@@ -94,6 +94,16 @@ const erase = async (req, res) => {
       return res.status(400).json({ error: error.message });
   }
 };
+const getUserByName = async (req, res) => {
+  const { query } = req.query;
+    try {
+    if (!query) throw new Error("Missing data");
+    const users = await UserService.getUserByName(query);
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  } 
+};
 
 const { auth } = require('express-oauth2-jwt-bearer');
 const jwtCheck = auth({
@@ -107,6 +117,7 @@ const UserRouter = Router();
 /* driverRouter.get("/", jwtCheck, getDriversHandler); */
 UserRouter.get('/', getAll);
 UserRouter.post('/', create);
+UserRouter.get('/passengers', getUserByName);
 UserRouter.get('/:id', get);
 UserRouter.patch('/:id', update);
 UserRouter.delete('/:id', erase);
