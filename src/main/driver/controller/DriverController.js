@@ -110,6 +110,16 @@ const getDriverByName = async (req, res) => {
     return res.status(400).json({ error: error.message });
   } 
 };
+const getDriverByEmail = async (req, res) => {
+  const { query } = req.query;
+    try {
+    if (!query) throw new Error("Missing data");
+    const driver = await DriverService.getDriverByEmail(query);
+    return res.status(200).json(driver);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  } 
+};
 
 const { auth } = require('express-oauth2-jwt-bearer');
 const jwtCheck = auth({
@@ -125,6 +135,7 @@ DriverRouter.use('/bank-accounts', DriverAccountController);
 DriverRouter.get('/', getAll);
 DriverRouter.post('/', create);
 DriverRouter.get('/drivers', getDriverByName);
+DriverRouter.get('/driver', getDriverByEmail);
 DriverRouter.get('/:id', get);
 DriverRouter.patch('/:id', update);
 DriverRouter.delete('/:id', erase);
