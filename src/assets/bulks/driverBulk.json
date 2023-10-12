@@ -91,5 +91,17 @@
     "phone_number": "+51-84-574-868",
     "email": "email8@email.com",
     "address": "Jr. Andahuaylas 8, Lima, Peru"
+  },
+  {
+    "car_id": 5,
+    "driver_account_id": 8,
+    "name": "Roque Nicolas",
+    "last_name": "Molina",
+    "dni": "74747747",
+    "ruc": "73628394854",
+    "license_number": "Q8473628",
+    "phone_number": "+51-84-574-868",
+    "email": "roquemolinaph@outlook.com",
+    "address": "Catamarca 1271, Cordoba, Argentina"
   }
 ]

@@ -19,7 +19,7 @@ const create = async (
   licenseNumber,
   phoneNumber,
   email,
-  address,
+  address
 ) => {
   return await Driver.create({
     carId,
@@ -46,10 +46,10 @@ const update = async (
   licenseNumber,
   phoneNumber,
   email,
-  address,
+  address
 ) => {
   const driver = await Driver.findOne({ where: { id } });
-  if(!driver) throw new Error("Driver not exist");
+  if (!driver) throw new Error("Driver not exist");
 
   carId ? (driver.carId = carId) : null;
   driverAccountId ? (driver.driverAccountId = driverAccountId) : null;
@@ -64,7 +64,7 @@ const update = async (
 
   await driver.save();
 
-  return driver
+  return driver;
 };
 
 const erase = async (id) => {
@@ -99,4 +99,21 @@ const getDriverByName = async (query) => {
   });
 };
 
-module.exports = {getAll, get, create, erase, update, getDriverByName};
+const getDriverByEmail = async (query) => {
+  return await Driver.findOne({
+    attributes: ["id", "name", "lastName", "email"],
+    where: {
+      email: query,
+    },
+  });
+};
+
+module.exports = {
+  getAll,
+  get,
+  create,
+  erase,
+  update,
+  getDriverByName,
+  getDriverByEmail,
+};

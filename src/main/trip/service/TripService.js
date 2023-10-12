@@ -1,11 +1,18 @@
 const { Trip, Reserve } = require("../../database");
+const Sequelize = require("sequelize");
 
 const getAll = async () => {
   return Trip.findAll();
 };
 
 const get = async (id) => {
-  return Trip.findOne({ where: { id } });
+  return Trip.findOne({
+    include: [
+      {
+        model: Reserve,
+      },
+    ], 
+    where: { id } });
 };
 
 const create = async (
@@ -92,6 +99,7 @@ const erase = async (id) => {
 };
 
 const getTripsSummary = async () => {
+  const today = new Date;
   const totalPrice = await Trip.findAll({
     attributes: ["id", "totalPrice"],
     include: [
@@ -100,6 +108,14 @@ const getTripsSummary = async () => {
         attributes: ["silverPercent"],
       },
     ],
+    where: {
+      endTime: {
+        [Sequelize.Op.between]: [
+          new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0),
+          new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59),
+        ],
+      },
+    }
   });
   const income = totalPrice.reduce((acc, trip) => {
     return acc + trip.totalPrice;
@@ -117,4 +133,42 @@ const getTripsSummary = async () => {
   return tripMonthSummary;
 };
 
-module.exports = { getAll, get, create, erase, update, getTripsSummary };
+const getDriverMonthSummary = async (id) => {
+  const today = new Date;
+  const totalPrice = await Trip.findAll({
+    attributes: ["id", "totalPrice"],
+    include: [
+      {
+        model: Reserve,
+        attributes: ["silverPercent"],
+      },
+    ],
+    where: {
+         endTime: {
+        [Sequelize.Op.between]: [
+          new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0),
+          new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59),
+        ],
+      },
+        "$Reserve.driver_id$": {
+        [Sequelize.Op.eq]: id,
+      },  
+    }
+  });
+  const income = totalPrice.reduce((acc, trip) => {
+    return acc + trip.totalPrice;
+  }, 0);
+
+  const revenue = totalPrice.reduce((acc, trip) => {
+    return acc + trip.totalPrice - trip.totalPrice * trip.Reserve.silverPercent * 0.01;
+  }, 0);
+
+  const tripMonthSummary = {
+    trips: totalPrice.length,
+    income,
+    revenue: Number(revenue.toFixed(2)),
+  };
+  return tripMonthSummary;
+};
+
+module.exports = { getAll, get, create, erase, update, getTripsSummary, getDriverMonthSummary };
