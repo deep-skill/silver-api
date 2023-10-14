@@ -259,6 +259,40 @@ const getReserveByQuery = async (query) => {
   });
 };
 
+const getNearestReserve = async (id) => {
+  const today = new Date();
+
+  const reserve = await Reserve.findOne({
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Driver,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Car,
+        attributes: ["type"],
+      },
+    ],
+    where: {
+      driverId: id,
+      startTime: {
+        [Sequelize.Op.gte]: today,
+      },
+    },
+    order: [['startTime', 'ASC']],
+  });
+
+  return reserve;
+};
+
 module.exports = {
   getAll,
   get,
@@ -270,4 +304,5 @@ module.exports = {
   getReservesList,
   getReserveDetail,
   getReserveByQuery,
+  getNearestReserve,
 };
