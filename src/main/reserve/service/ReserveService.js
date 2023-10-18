@@ -1,4 +1,11 @@
-const { Reserve, User, Enterprise, Driver, Car } = require("../../database");
+const {
+  Reserve,
+  User,
+  Enterprise,
+  Driver,
+  Car,
+  Trip,
+} = require("../../database");
 const Sequelize = require("sequelize");
 
 const getAll = async () => {
@@ -259,10 +266,12 @@ const getReserveByQuery = async (query) => {
   });
 };
 
-const getNearestReserve = async (id) => {
+const getDriverNearestReserve = async (id) => {
   const today = new Date();
+  today.setHours(today.getHours() - 3);
 
   const reserve = await Reserve.findOne({
+    attributes: ["id", "startTime", "startAddress"],
     include: [
       {
         model: User,
@@ -273,12 +282,8 @@ const getNearestReserve = async (id) => {
         attributes: ["name"],
       },
       {
-        model: Driver,
-        attributes: ["name", "lastName"],
-      },
-      {
-        model: Car,
-        attributes: ["type"],
+        model: Trip,
+        attributes: ["id"],
       },
     ],
     where: {
@@ -287,10 +292,42 @@ const getNearestReserve = async (id) => {
         [Sequelize.Op.gte]: today,
       },
     },
-    order: [['startTime', 'ASC']],
+    order: [["startTime", "ASC"]],
   });
 
   return reserve;
+};
+const getDriverReservesHome = async (page, id) => {
+  const today = new Date();
+  return await Reserve.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ["id", "startTime", "startAddress"],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Trip,
+        attributes: ["id"],
+      },
+    ],
+    where: {
+      driverId: id,
+      startTime: {
+        [Sequelize.Op.between]: [
+          new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0),
+          new Date(today.getFullYear(), today.getMonth() + 1, 1, 23, 59, 59),
+        ],
+      },
+      "$Trip.id$": null,
+    },
+  });
 };
 
 module.exports = {
@@ -304,5 +341,6 @@ module.exports = {
   getReservesList,
   getReserveDetail,
   getReserveByQuery,
-  getNearestReserve,
+  getDriverNearestReserve,
+  getDriverReservesHome,
 };
