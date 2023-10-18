@@ -157,11 +157,11 @@ const getReserveByQuery = async (req, res) => {
     return res.status(400).json({ error: error.message });
   } 
 };
-const getNearestReserve = async (req, res) => {
+const getDriverNearestReserve = async (req, res) => {
   const { id } = req.params;
     try {
     if (!id) throw new Error("Missing data");
-    const reserve = await ReserveService.getNearestReserve(id);
+    const reserve = await ReserveService.getDriverNearestReserve(id);
     return res.status(200).json(reserve);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -175,6 +175,16 @@ const jwtCheck = auth({
   tokenSigningAlg: "RS256",
 });
 
+const getDriverReservesHome = async (req, res) => {
+  const { page, id } = req.query;
+  try {
+    const reserves = await ReserveService.getDriverReservesHome(page, id);
+    return res.status(200).json(reserves);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 const ReserveRouter = Router();
 
 /* driverRouter.get("/", jwtCheck, getDriversHandler); */
@@ -183,7 +193,8 @@ ReserveRouter.post("/", create);
 ReserveRouter.get("/admin-home", getReservesHome);
 ReserveRouter.get("/admin-reserves", getReservesList);
 ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
-ReserveRouter.get("/driver-nearest/:id", getNearestReserve);
+ReserveRouter.get("/driver-nearest/:id", getDriverNearestReserve);
+ReserveRouter.get("/driver-home", getDriverReservesHome);
 ReserveRouter.get('/search', getReserveByQuery);
 ReserveRouter.get("/:id", get);
 ReserveRouter.patch("/:id", update);
