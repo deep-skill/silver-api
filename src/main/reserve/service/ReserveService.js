@@ -322,7 +322,7 @@ const getDriverReservesHome = async (page, id) => {
       startTime: {
         [Sequelize.Op.between]: [
           new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0),
-          new Date(today.getFullYear(), today.getMonth() + 1, 1, 23, 59, 59),
+          new Date(today.getFullYear(), today.getMonth() + 1, 0, 0, 0, 0),
         ],
       },
       "$Trip.id$": null,
