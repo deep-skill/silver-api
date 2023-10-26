@@ -170,6 +170,10 @@ const getReserveDetail = async (id) => {
         model: Car,
         attributes: ["id", "type", "licensePlate", "brand", "model", "color"],
       },
+      {
+        model: Trip,
+        attributes: ["status"],
+      },
     ],
     where: { id },
   });
