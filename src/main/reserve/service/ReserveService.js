@@ -141,6 +141,34 @@ const getReservesList = async (page) => {
   });
 };
 
+const getReservesHistory = async (page) => {
+  return await Trip.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ["id", "totalPrice", "onWayDriver", "status"],
+    include: [
+      {
+        model: Reserve,
+        attributes: ["id", "startAddress"],
+        include: [
+          {
+            model: User,
+            attributes: ["id", "name", "lastName"],
+          },
+          {
+            model: Driver,
+            attributes: ["id", "name", "lastName"],
+          },
+          {
+            model: Enterprise,
+            attributes: ["id", "name"],
+          },
+        ],
+      },
+    ],
+  });
+};
+
 const getReserveDetail = async (id) => {
   return await Reserve.findOne({
     attributes: [
@@ -343,4 +371,5 @@ module.exports = {
   getReserveByQuery,
   getDriverNearestReserve,
   getDriverReservesHome,
+  getReservesHistory,
 };
