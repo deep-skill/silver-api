@@ -1,4 +1,4 @@
-const { Trip, Reserve } = require("../../database");
+const { Trip, Reserve, User, Driver, Enterprise } = require("../../database");
 const Sequelize = require("sequelize");
 
 const getAll = async () => {
@@ -11,8 +11,9 @@ const get = async (id) => {
       {
         model: Reserve,
       },
-    ], 
-    where: { id } });
+    ],
+    where: { id },
+  });
 };
 
 const create = async (
@@ -99,7 +100,7 @@ const erase = async (id) => {
 };
 
 const getTripsSummary = async () => {
-  const today = new Date;
+  const today = new Date();
   const totalPrice = await Trip.findAll({
     attributes: ["id", "totalPrice"],
     include: [
@@ -115,7 +116,7 @@ const getTripsSummary = async () => {
           new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59),
         ],
       },
-    }
+    },
   });
   const income = totalPrice.reduce((acc, trip) => {
     return acc + trip.totalPrice;
@@ -132,9 +133,35 @@ const getTripsSummary = async () => {
   };
   return tripMonthSummary;
 };
-
+const getTripsHistory = async (page) => {
+  return await Trip.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ["id", "totalPrice", "onWayDriver", "status"],
+    include: [
+      {
+        model: Reserve,
+        attributes: ["id", "startAddress"],
+        include: [
+          {
+            model: User,
+            attributes: ["id", "name", "lastName"],
+          },
+          {
+            model: Driver,
+            attributes: ["id", "name", "lastName"],
+          },
+          {
+            model: Enterprise,
+            attributes: ["id", "name"],
+          },
+        ],
+      },
+    ],
+  });
+};
 const getDriverMonthSummary = async (id) => {
-  const today = new Date;
+  const today = new Date();
   const totalPrice = await Trip.findAll({
     attributes: ["id", "totalPrice"],
     include: [
@@ -144,23 +171,27 @@ const getDriverMonthSummary = async (id) => {
       },
     ],
     where: {
-         endTime: {
+      endTime: {
         [Sequelize.Op.between]: [
           new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0),
           new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59),
         ],
       },
-        "$Reserve.driver_id$": {
+      "$Reserve.driver_id$": {
         [Sequelize.Op.eq]: id,
-      },  
-    }
+      },
+    },
   });
   const income = totalPrice.reduce((acc, trip) => {
     return acc + trip.totalPrice;
   }, 0);
 
   const revenue = totalPrice.reduce((acc, trip) => {
-    return acc + trip.totalPrice - trip.totalPrice * trip.Reserve.silverPercent * 0.01;
+    return (
+      acc +
+      trip.totalPrice -
+      trip.totalPrice * trip.Reserve.silverPercent * 0.01
+    );
   }, 0);
 
   const tripMonthSummary = {
@@ -171,4 +202,13 @@ const getDriverMonthSummary = async (id) => {
   return tripMonthSummary;
 };
 
-module.exports = { getAll, get, create, erase, update, getTripsSummary, getDriverMonthSummary };
+module.exports = {
+  getAll,
+  get,
+  create,
+  erase,
+  update,
+  getTripsSummary,
+  getDriverMonthSummary,
+  getTripsHistory,
+};

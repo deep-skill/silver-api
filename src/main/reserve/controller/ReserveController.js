@@ -137,16 +137,6 @@ const getReservesList = async (req, res) => {
   }
 };
 
-const getReservesHistory = async (req, res) => {
-  const { page } = req.query;
-  try {
-    const trips = await ReserveService.getReservesHistory(page);
-    return res.status(200).json(trips);
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
-  }
-};
-
 const getReserveDetail = async (req, res) => {
   const { id } = req.params;
   try {
@@ -202,7 +192,6 @@ ReserveRouter.get("/", getAll);
 ReserveRouter.post("/", create);
 ReserveRouter.get("/admin-home", getReservesHome);
 ReserveRouter.get("/admin-reserves", getReservesList);
-ReserveRouter.get("/admin-history", getReservesHistory);
 
 ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
 

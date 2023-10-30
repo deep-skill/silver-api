@@ -89,6 +89,16 @@ const erase = async (req, res) => {
   }
 };
 
+const getTripsHistory = async (req, res) => {
+  const { page } = req.query;
+  try {
+    const trips = await TripService.getTripsHistory(page);
+    return res.status(200).json(trips);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 const getTripsSummary = async (req, res) => {
   try {
     const trips = await TripService.getTripsSummary();
@@ -121,6 +131,8 @@ const TripRouter = Router();
 TripRouter.get("/", getAll);
 TripRouter.post("/", create);
 TripRouter.get("/admin-summary", getTripsSummary);
+TripRouter.get("/admin-history", getTripsHistory);
+
 TripRouter.get("/driver-summary", getDriverMonthSummary);
 TripRouter.get("/:id", get);
 TripRouter.patch("/:id", update);
