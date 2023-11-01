@@ -158,6 +158,9 @@ const getTripsHistory = async (page) => {
         ],
       },
     ],
+    order: [
+      ["onWayDriver", "DESC"], // Ordenar por onWayDriver en orden ascendente
+    ],
   });
 };
 const getDriverMonthSummary = async (id) => {
