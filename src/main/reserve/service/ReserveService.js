@@ -268,7 +268,6 @@ const getReserveByQuery = async (query) => {
 
 const getDriverNearestReserve = async (id) => {
   const today = new Date();
-  today.setHours(today.getHours() - 3);
 
   const reserve = await Reserve.findOne({
     attributes: ["id", "startTime", "startAddress"],
@@ -298,7 +297,9 @@ const getDriverNearestReserve = async (id) => {
   return reserve;
 };
 const getDriverReservesHome = async (page, id) => {
-  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1)
+
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
@@ -321,8 +322,8 @@ const getDriverReservesHome = async (page, id) => {
       driverId: id,
       startTime: {
         [Sequelize.Op.between]: [
-          new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0),
-          new Date(today.getFullYear(), today.getMonth() + 1, 0, 0, 0, 0),
+          new Date(),
+          new Date(tomorrow),
         ],
       },
       "$Trip.id$": null,
