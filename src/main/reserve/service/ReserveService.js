@@ -151,7 +151,6 @@ const getReserveDetail = async (id) => {
       "startAddress",
       "endAddress",
       "price",
-      "silverPercent",
     ],
     include: [
       {
@@ -177,6 +176,44 @@ const getReserveDetail = async (id) => {
     ],
     where: { id },
   });
+};
+const getDriverReserveDetail = async (id) => {
+  let reserve = await Reserve.findOne({
+    attributes: [
+      "id",
+      "startTime",
+      "serviceType",
+      "tripType",
+      "startAddress",
+      "endAddress",
+      "price",
+    ],
+    include: [
+      {
+        model: User,
+        attributes: [ "name", "lastName"],
+      },
+      {
+        model: Trip,
+        attributes: ["status"],
+      },
+    ],
+    where: { id },
+  });
+
+  let reserveId ={
+    id:reserve.id,
+    startTime:reserve.startTime,
+    serviceType:reserve.serviceType,
+    tripType:reserve.tripType,
+    startAddress:reserve.startAddress,
+    endAddress:reserve.endAddress,
+    price:reserve.price,
+    user: reserve.User.name + " " + reserve.User.lastName,
+    status:  reserve.Trip = null ?  reserve.Trip.status : 'INPROGRESS'
+  }
+
+  return reserveId;
 };
 
 const getReserveByQuery = async (query) => {
@@ -348,4 +385,5 @@ module.exports = {
   getReserveByQuery,
   getDriverNearestReserve,
   getDriverReservesHome,
+  getDriverReserveDetail
 };

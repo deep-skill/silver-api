@@ -147,6 +147,16 @@ const getReserveDetail = async (req, res) => {
   }
 };
 
+const getDriverReserveDetail = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const reserve = await ReserveService.getDriverReserveDetail(id);
+    return res.status(200).json(reserve);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 const getReserveByQuery = async (req, res) => {
   const { query } = req.query;
     try {
@@ -193,6 +203,7 @@ ReserveRouter.post("/", create);
 ReserveRouter.get("/admin-home", getReservesHome);
 ReserveRouter.get("/admin-reserves", getReservesList);
 ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
+ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
 ReserveRouter.get("/driver-nearest/:id", getDriverNearestReserve);
 ReserveRouter.get("/driver-home", getDriverReservesHome);
 ReserveRouter.get('/search', getReserveByQuery);
