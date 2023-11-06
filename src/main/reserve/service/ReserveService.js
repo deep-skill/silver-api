@@ -178,7 +178,7 @@ const getReserveDetail = async (id) => {
   });
 };
 const getDriverReserveDetail = async (id) => {
-  let reserve = await Reserve.findOne({
+  return await Reserve.findOne({
     attributes: [
       "id",
       "startTime",
@@ -197,23 +197,15 @@ const getDriverReserveDetail = async (id) => {
         model: Trip,
         attributes: ["status"],
       },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      }
     ],
     where: { id },
   });
 
-  let reserveId ={
-    id:reserve.id,
-    startTime:reserve.startTime,
-    serviceType:reserve.serviceType,
-    tripType:reserve.tripType,
-    startAddress:reserve.startAddress,
-    endAddress:reserve.endAddress,
-    price:reserve.price,
-    user: reserve.User.name + " " + reserve.User.lastName,
-    status:  reserve.Trip = null ?  reserve.Trip.status : 'INPROGRESS'
-  }
-
-  return reserveId;
+  
 };
 
 const getReserveByQuery = async (query) => {
