@@ -1,6 +1,6 @@
 const { Trip, Reserve, User, Driver, Enterprise } = require("../../database");
 const Sequelize = require("sequelize");
-
+const handleStatusQuery = require("../../../main/utils/handleStatusQuery");
 const getAll = async () => {
   return Trip.findAll();
 };
@@ -165,6 +165,8 @@ const getTripsHistory = async (page) => {
 };
 
 const getTripByQuery = async (query) => {
+  const statusQuery = handleStatusQuery(query);
+  if (statusQuery != undefined) query = statusQuery;
   return await Trip.findAll({
     attributes: ["id", "totalPrice", "onWayDriver", "status"],
     include: [
@@ -190,15 +192,10 @@ const getTripByQuery = async (query) => {
     where: {
       [Sequelize.Op.or]: [
         // {
-        //   onWayDriver: {
+        //   status: {
         //     [Sequelize.Op.iLike]: `%${query}%`,
         //   },
         // },
-        // Sequelize.where(
-        //   Sequelize.cast(Sequelize.col("on_way_driver"), "varchar"),
-        //   { [Sequelize.Op.iLike]: `%${query}%` }
-        // ),
-
         {
           "$Reserve.User.name$": {
             [Sequelize.Op.iLike]: `%${query}%`,
@@ -206,6 +203,11 @@ const getTripByQuery = async (query) => {
         },
         {
           "$Reserve.User.last_name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Reserve.start_address$": {
             [Sequelize.Op.iLike]: `%${query}%`,
           },
         },
@@ -224,6 +226,13 @@ const getTripByQuery = async (query) => {
             [Sequelize.Op.iLike]: `%${query}%`,
           },
         },
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("on_way_driver"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
+          [Sequelize.Op.iLike]: `%${query}%`,
+        }),
       ],
     },
   });

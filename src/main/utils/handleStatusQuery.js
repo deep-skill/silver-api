@@ -15,5 +15,5 @@ const handleStatusQuery = (query) => {
   console.log(result);
   return result;
 };
-handleStatusQuery("roque");
+
 module.exports = handleStatusQuery;

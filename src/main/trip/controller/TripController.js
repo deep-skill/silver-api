@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const TripService = require("../service/TripService");
-const handleStatusQuery = require("../../../main/utils/handleStatusQuery");
 
 const getAll = async (req, res) => {
   try {
@@ -102,14 +101,10 @@ const getTripsHistory = async (req, res) => {
 
 const getTripsByQuery = async (req, res) => {
   let { query } = req.query;
-  let search = query;
-  // const tripStatusQuery = handleStatusQuery(search);
-  // if (tripStatusQuery !== undefined || tripStatusQuery !== null)
-  //   search = tripStatusQuery;
 
   try {
-    if (!search) throw new Error("Missing data");
-    const trips = await TripService.getTripByQuery(search);
+    if (!query) throw new Error("Missing data");
+    const trips = await TripService.getTripByQuery(query);
     return res.status(200).json(trips);
   } catch (error) {
     console.log(error);
@@ -151,7 +146,7 @@ TripRouter.get("/", getAll);
 TripRouter.post("/", create);
 TripRouter.get("/admin-summary", getTripsSummary);
 TripRouter.get("/admin-history", getTripsHistory);
-TripRouter.get("/search", getTripsByQuery);
+TripRouter.get("/trip-search", getTripsByQuery);
 
 TripRouter.get("/driver-summary", getDriverMonthSummary);
 TripRouter.get("/:id", get);
