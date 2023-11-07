@@ -87,11 +87,23 @@ const erase = async (req, res) => {
   }
 };
 
+const getCarByLicensePlate = async (req, res) => {
+  const { query } = req.query;
+    try {
+    if (!query) throw new Error("Missing data");
+    const cars = await CarService.getCarByLicensePlate(query);
+    return res.status(200).json(cars);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  } 
+};
+
 const CarRouter = Router();
 
 /* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
 CarRouter.get('/',  getAll);
 CarRouter.post('/', create);
+CarRouter.get('/cars', getCarByLicensePlate);
 CarRouter.get('/:id', get);
 CarRouter.put('/:id', update);
 CarRouter.delete('/:id', erase);
