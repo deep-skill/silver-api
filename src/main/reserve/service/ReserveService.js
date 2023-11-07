@@ -13,7 +13,9 @@ const getAll = async () => {
 };
 
 const get = async (id) => {
-  return Reserve.findOne({ where: { id } });
+  return Reserve.findOne({
+    where: { id },
+  });
 };
 
 const create = async (
