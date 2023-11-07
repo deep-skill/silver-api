@@ -1,4 +1,5 @@
 const {Car} = require("../../database");
+const Sequelize = require("sequelize");
 
 const getAll = async () => {
   return Car.findAll();
@@ -56,4 +57,16 @@ const erase = async (id) => {
   await car.destroy();
 };
 
-module.exports = {getAll, get, create, erase, update};
+const getCarByLicensePlate = async (query) => {
+  return await Car.findAll({
+    attributes: ["id", "licensePlate", "model", "brand", "color"],
+    where: {
+      licensePlate: {
+        [Sequelize.Op.iLike]: `%${query}%`,
+      },
+    },
+  });
+};
+
+
+module.exports = {getAll, get, create, erase, update, getCarByLicensePlate};
