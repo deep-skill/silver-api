@@ -158,9 +158,7 @@ const getTripsHistory = async (page) => {
         ],
       },
     ],
-    order: [
-      ["onWayDriver", "DESC"], // Ordenar por onWayDriver en orden ascendente
-    ],
+    order: [["onWayDriver", "DESC"]],
   });
 };
 
