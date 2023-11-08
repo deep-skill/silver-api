@@ -147,7 +147,6 @@ TripRouter.post("/", create);
 TripRouter.get("/admin-summary", getTripsSummary);
 TripRouter.get("/admin-history", getTripsHistory);
 TripRouter.get("/trip-search", getTripsByQuery);
-
 TripRouter.get("/driver-summary", getDriverMonthSummary);
 TripRouter.get("/:id", get);
 TripRouter.patch("/:id", update);

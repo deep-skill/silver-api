@@ -97,6 +97,7 @@ const getPaginated = async (page, size = 10) => {
 };
 
 const getReservesHome = async (page) => {
+  const today = new Date();
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
@@ -113,6 +114,57 @@ const getReservesHome = async (page) => {
     ],
     where: {
       driverId: null,
+      startTime: {
+        [Sequelize.Op.gte]: today,
+      },
+    },
+    order: [["startTime", "ASC"]],
+  });
+};
+const getReserveHomeByQuery = async (query) => {
+  return await Reserve.findAll({
+    attributes: ["id", "tripType", "startTime", "serviceType"],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+    ],
+    where: {
+      driverId: null,
+      [Sequelize.Op.or]: [
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("start_time"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("service_type"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("trip_type"), "varchar"), {
+          [Sequelize.Op.iLike]: `%${query}%`,
+        }),
+
+        {
+          "$User.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$User.last_name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Enterprise.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+      ],
     },
   });
 };
@@ -152,6 +204,7 @@ const getReserveDetail = async (id) => {
       "tripType",
       "startAddress",
       "endAddress",
+      "silverPercent",
       "price",
     ],
     include: [
@@ -193,7 +246,7 @@ const getDriverReserveDetail = async (id) => {
     include: [
       {
         model: User,
-        attributes: [ "name", "lastName"],
+        attributes: ["name", "lastName"],
       },
       {
         model: Trip,
@@ -202,12 +255,10 @@ const getDriverReserveDetail = async (id) => {
       {
         model: Enterprise,
         attributes: ["name"],
-      }
+      },
     ],
     where: { id },
   });
-
-  
 };
 
 const getReserveByQuery = async (query) => {
@@ -333,7 +384,7 @@ const getDriverNearestReserve = async (id) => {
 };
 const getDriverReservesHome = async (page, id) => {
   const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1)
+  tomorrow.setDate(tomorrow.getDate() + 1);
 
   return await Reserve.findAndCountAll({
     limit: 10,
@@ -356,10 +407,7 @@ const getDriverReservesHome = async (page, id) => {
     where: {
       driverId: id,
       startTime: {
-        [Sequelize.Op.between]: [
-          new Date(),
-          new Date(tomorrow),
-        ],
+        [Sequelize.Op.between]: [new Date(), new Date(tomorrow)],
       },
       "$Trip.id$": null,
     },
@@ -374,10 +422,11 @@ module.exports = {
   update,
   getPaginated,
   getReservesHome,
+  getReserveHomeByQuery,
   getReservesList,
   getReserveDetail,
   getReserveByQuery,
   getDriverNearestReserve,
   getDriverReservesHome,
-  getDriverReserveDetail
+  getDriverReserveDetail,
 };
