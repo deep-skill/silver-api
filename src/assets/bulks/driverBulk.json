@@ -81,7 +81,7 @@
     "address": "Jr. Andahuaylas 7, Lima, Peru"
   },
   {
-    "car_id": "5",
+    "car_id": 5,
     "driver_account_id": "8",
     "name": "Jorge",
     "last_name": "Llamas",
@@ -93,7 +93,7 @@
     "address": "Jr. Andahuaylas 8, Lima, Peru"
   },
   {
-    "car_id": 5,
+    "car_id": 6,
     "driver_account_id": 8,
     "name": "Roque Nicolas",
     "last_name": "Molina",
@@ -101,7 +101,31 @@
     "ruc": "73628394854",
     "license_number": "Q8473628",
     "phone_number": "+51-84-574-868",
+    "email": "roquemolinaph@outlook.com",
+    "address": "Catamarca 1271, Cordoba, Argentina"
+  },
+  {
+    "car_id": 7,
+    "driver_account_id": 8,
+    "name": "Franco",
+    "last_name": "Galbiati",
+    "dni": "74747747",
+    "ruc": "73628394854",
+    "license_number": "Q8473628",
+    "phone_number": "+51-84-574-868",
     "email": "francogalbiati984@gmail.com",
+    "address": "Catamarca 1271, Cordoba, Argentina"
+  },
+  {
+    "car_id": 8,
+    "driver_account_id": 8,
+    "name": "Bruno",
+    "last_name": "Osuna",
+    "dni": "74747747",
+    "ruc": "73628394854",
+    "license_number": "Q8473628",
+    "phone_number": "+51-84-574-868",
+    "email": "brunoosuna8@gmail.com",
     "address": "Catamarca 1271, Cordoba, Argentina"
   }
 ]
