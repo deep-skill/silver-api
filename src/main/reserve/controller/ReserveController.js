@@ -126,7 +126,16 @@ const getReservesHome = async (req, res) => {
     return res.status(400).json({ error: error.message });
   }
 };
-
+const getReserveHomeByQuery = async (req, res) => {
+  const { query } = req.query;
+  try {
+    if (!query) throw new Error("Missing data");
+    const reserves = await ReserveService.getReserveHomeByQuery(query);
+    return res.status(200).json(reserves);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
 const getReservesList = async (req, res) => {
   const { page } = req.query;
   try {
@@ -201,6 +210,7 @@ const ReserveRouter = Router();
 ReserveRouter.get("/", getAll);
 ReserveRouter.post("/", create);
 ReserveRouter.get("/admin-home", getReservesHome);
+ReserveRouter.get("/admin-search-home", getReserveHomeByQuery);
 ReserveRouter.get("/admin-reserves", getReservesList);
 ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
 ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
