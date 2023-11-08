@@ -153,7 +153,6 @@ const getReserveDetail = async (id) => {
       "startAddress",
       "endAddress",
       "price",
-      "silverPercent",
     ],
     include: [
       {
@@ -179,6 +178,36 @@ const getReserveDetail = async (id) => {
     ],
     where: { id },
   });
+};
+const getDriverReserveDetail = async (id) => {
+  return await Reserve.findOne({
+    attributes: [
+      "id",
+      "startTime",
+      "serviceType",
+      "tripType",
+      "startAddress",
+      "endAddress",
+      "price",
+    ],
+    include: [
+      {
+        model: User,
+        attributes: [ "name", "lastName"],
+      },
+      {
+        model: Trip,
+        attributes: ["status"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      }
+    ],
+    where: { id },
+  });
+
+  
 };
 
 const getReserveByQuery = async (query) => {
@@ -350,4 +379,5 @@ module.exports = {
   getReserveByQuery,
   getDriverNearestReserve,
   getDriverReservesHome,
+  getDriverReserveDetail
 };
