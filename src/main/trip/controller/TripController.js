@@ -89,6 +89,29 @@ const erase = async (req, res) => {
   }
 };
 
+const getTripsHistory = async (req, res) => {
+  const { page } = req.query;
+  try {
+    const trips = await TripService.getTripsHistory(page);
+    return res.status(200).json(trips);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+const getTripsByQuery = async (req, res) => {
+  let { query } = req.query;
+
+  try {
+    if (!query) throw new Error("Missing data");
+    const trips = await TripService.getTripByQuery(query);
+    return res.status(200).json(trips);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 const getTripsSummary = async (req, res) => {
   try {
     const trips = await TripService.getTripsSummary();
@@ -109,6 +132,7 @@ const getDriverMonthSummary = async (req, res) => {
 };
 
 const { auth } = require("express-oauth2-jwt-bearer");
+
 const jwtCheck = auth({
   audience: "http://localhost:5000",
   issuerBaseURL: "https://dev-4aecm50nap6pl2q5.us.auth0.com/",
@@ -121,6 +145,9 @@ const TripRouter = Router();
 TripRouter.get("/", getAll);
 TripRouter.post("/", create);
 TripRouter.get("/admin-summary", getTripsSummary);
+TripRouter.get("/admin-history", getTripsHistory);
+TripRouter.get("/trip-search", getTripsByQuery);
+
 TripRouter.get("/driver-summary", getDriverMonthSummary);
 TripRouter.get("/:id", get);
 TripRouter.patch("/:id", update);

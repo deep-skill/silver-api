@@ -159,23 +159,23 @@ const getDriverReserveDetail = async (req, res) => {
 
 const getReserveByQuery = async (req, res) => {
   const { query } = req.query;
-    try {
+  try {
     if (!query) throw new Error("Missing data");
     const reserves = await ReserveService.getReserveByQuery(query);
     return res.status(200).json(reserves);
   } catch (error) {
     return res.status(400).json({ error: error.message });
-  } 
+  }
 };
 const getDriverNearestReserve = async (req, res) => {
   const { id } = req.params;
-    try {
+  try {
     if (!id) throw new Error("Missing data");
     const reserve = await ReserveService.getDriverNearestReserve(id);
     return res.status(200).json(reserve);
   } catch (error) {
     return res.status(400).json({ error: error.message });
-  } 
+  }
 };
 
 const { auth } = require("express-oauth2-jwt-bearer");
@@ -206,7 +206,7 @@ ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
 ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
 ReserveRouter.get("/driver-nearest/:id", getDriverNearestReserve);
 ReserveRouter.get("/driver-home", getDriverReservesHome);
-ReserveRouter.get('/search', getReserveByQuery);
+ReserveRouter.get("/search", getReserveByQuery);
 ReserveRouter.get("/:id", get);
 ReserveRouter.patch("/:id", update);
 ReserveRouter.delete("/:id", erase);
