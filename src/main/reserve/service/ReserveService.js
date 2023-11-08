@@ -97,6 +97,7 @@ const getPaginated = async (page, size = 10) => {
 };
 
 const getReservesHome = async (page) => {
+  const today = new Date();
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
@@ -113,7 +114,11 @@ const getReservesHome = async (page) => {
     ],
     where: {
       driverId: null,
+      startTime: {
+        [Sequelize.Op.gte]: today,
+      },
     },
+    order: [["startTime", "ASC"]],
   });
 };
 const getReserveHomeByQuery = async (query) => {
@@ -199,6 +204,7 @@ const getReserveDetail = async (id) => {
       "tripType",
       "startAddress",
       "endAddress",
+      "silverPercent",
       "price",
     ],
     include: [
