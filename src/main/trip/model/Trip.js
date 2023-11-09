@@ -30,8 +30,7 @@ module.exports = (sequelize) => {
     endTime: {
       type: DataTypes.DATE,
       field: 'end_time',
-      //allowNull: true,
-      defaultValue: Date.now(),
+      allowNull: true,
     },
     status: {
       type: DataTypes.ENUM,

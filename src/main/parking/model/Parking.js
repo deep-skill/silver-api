@@ -1,10 +1,10 @@
-const { DataTypes, UUIDV4 } = require('sequelize')
+const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => {
-  sequelize.define('TollMap', {
+  sequelize.define('Parking', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true
     },
     amount: {
@@ -12,10 +12,6 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    location: {
       type: DataTypes.STRING,
       allowNull: false
     },
