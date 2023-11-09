@@ -1,10 +1,10 @@
 const { Router } = require("express");
-const ObservationService = require("../service/ObservationService");
+const StopService = require("../service/StopService");
 
 const getAll = async (req, res) => {
   try {
-    const observations = await ObservationService.getAll();
-    return res.status(200).json(observations);
+    const stops = await StopService.getAll();
+    return res.status(200).json(stops);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -14,18 +14,18 @@ const get = async (req, res) => {
   const { id } = req.params;
   try {
     if (!id) throw new Error("Missing data");
-    const observation = await ObservationService.get(id);
-    return res.status(200).json(observation);
+    const stop = await StopService.get(id);
+    return res.status(200).json(stop);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
 
 const create = async (req, res) => {
-  const {  newObservation } = req.body;
+  const { id , location } = req.body;
   try {
-    const observation = await ObservationService.create( newObservation);
-    return res.status(201).json(observation);
+    const stop = await StopService.create(id , location);
+    return res.status(201).json(stop);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -33,14 +33,14 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { updateObservation } = req.body;
+  const { location} = req.body;
   try {
     if (!id) throw new Error("Missing data");
-    const updatedObservation = await ObservationService.update(
+    const updatedStop = await StopService.update(
       id,
-      updateObservation,
+      location
     );
-    return res.status(200).json(updatedObservation);
+    return res.status(200).json(updatedStop);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -50,20 +50,20 @@ const erase = async (req, res) => {
   const { id } = req.params;
   try {
     if (!id) throw new Error("Missing data");
-    await ObservationService.erase(id);
-    return res.status(204).json();
+    const deletedStop = await StopService.erase(id);
+    return res.status(204).json(deletedStop);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
 
-const ObservationRouter = Router();
+const stopRouter = Router();
 
 /* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
-ObservationRouter.get("/", getAll);
-ObservationRouter.post("/", create);
-ObservationRouter.get("/:id", get);
-ObservationRouter.put("/:id", update);
-ObservationRouter.delete("/:id", erase);
+stopRouter.get("/", getAll);
+stopRouter.post("/", create);
+stopRouter.get("/:id", get);
+stopRouter.put("/:id", update);
+stopRouter.delete("/:id", erase);
 
-module.exports = ObservationRouter;
+module.exports = stopRouter;

@@ -28,9 +28,8 @@ const update = async (id, amount, name ) => {
   const parking = await Parking.findOne({ where: { id } });
   if (!parking) throw new Error("Trip not exist");
 
-  updateParking
-    ? (parking.updateParking = updateParking)
-    : null;
+  amount ? (parking.amount = amount) : null;
+  name ? (parking.name = name) : null;
 
   await parking.save();
   return parking;

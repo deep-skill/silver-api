@@ -16,20 +16,19 @@ const get = async (id) => {
   });
 };
 
-const create = async (tripId, newObservation) => {
+const create = async ( newObservation) => {
   return await Observation.create({
-    tripId,
-    newObservation,
+    observation: newObservation,
   });
 };
 
 const update = async (id, updateObservation) => {
   const observation = await Observation.findOne({ where: { id } });
-  if (!observation) throw new Error("Trip not exist");
-
-  updateObservation
-    ? (observation.updateObservation = updateObservation)
-    : null;
+  if (!observation) throw new Error("Obsetrvation not exist");
+  
+  if(updateObservation){
+    observation.observation = updateObservation
+  }
 
   await observation.save();
   return observation;

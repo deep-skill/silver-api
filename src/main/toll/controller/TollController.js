@@ -1,10 +1,10 @@
 const { Router } = require("express");
-const ObservationService = require("../service/ObservationService");
+const TollService = require("../service/TollService");
 
 const getAll = async (req, res) => {
   try {
-    const observations = await ObservationService.getAll();
-    return res.status(200).json(observations);
+    const tolls = await TollService.getAll();
+    return res.status(200).json(tolls);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -14,18 +14,18 @@ const get = async (req, res) => {
   const { id } = req.params;
   try {
     if (!id) throw new Error("Missing data");
-    const observation = await ObservationService.get(id);
-    return res.status(200).json(observation);
+    const toll = await TollService.get(id);
+    return res.status(200).json(toll);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
 
 const create = async (req, res) => {
-  const {  newObservation } = req.body;
+  const {  name , amount , lat , lon } = req.body;
   try {
-    const observation = await ObservationService.create( newObservation);
-    return res.status(201).json(observation);
+    const toll = await TollService.create( name , amount , lat , lon);
+    return res.status(201).json(toll);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -33,14 +33,17 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { updateObservation } = req.body;
+  const { name , amount , lat , lon} = req.body;
   try {
     if (!id) throw new Error("Missing data");
-    const updatedObservation = await ObservationService.update(
+    const updatedtoll = await TollService.update(
       id,
-      updateObservation,
+      name,
+      amount,
+      lat,
+      lon
     );
-    return res.status(200).json(updatedObservation);
+    return res.status(200).json(updatedtoll);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -50,20 +53,20 @@ const erase = async (req, res) => {
   const { id } = req.params;
   try {
     if (!id) throw new Error("Missing data");
-    await ObservationService.erase(id);
-    return res.status(204).json();
+    const deletedtoll = await TollService.erase(id);
+    return res.status(204).json(deletedtoll);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 };
 
-const ObservationRouter = Router();
+const tollRouter = Router();
 
 /* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
-ObservationRouter.get("/", getAll);
-ObservationRouter.post("/", create);
-ObservationRouter.get("/:id", get);
-ObservationRouter.put("/:id", update);
-ObservationRouter.delete("/:id", erase);
+tollRouter.get("/", getAll);
+tollRouter.post("/", create);
+tollRouter.get("/:id", get);
+tollRouter.put("/:id", update);
+tollRouter.delete("/:id", erase);
 
-module.exports = ObservationRouter;
+module.exports = tollRouter;
