@@ -1,4 +1,4 @@
-const { Trip, Reserve, User, Driver, Enterprise, Observation } = require("../../database");
+const { Trip, Reserve, User, Driver, Enterprise, Observation , Stop , Parking , Toll , } = require("../../database");
 const Sequelize = require("sequelize");
 const handleStatusQuery = require("../../../main/utils/handleStatusQuery");
 const getAll = async () => {
@@ -10,10 +10,23 @@ const get = async (id) => {
     include: [
       {
         model: Reserve,
+        attributes: [
+          "startAddress",
+          "endAddress"
+        ]
       },
       {
         model: Observation,
       },
+      {
+        model: Stop
+      },
+      {
+        model: Parking
+      },
+      {
+        model: Toll
+      }
     ],
     where: { id },
   });
