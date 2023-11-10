@@ -35,7 +35,7 @@ router.use('/silver-api/reserves', reserveController);
 router.use('/silver-api/trips', tripController);
 router.use('/silver-api/cars', carController);
 router.use('/silver-api/parkings', parkingController);
-router.use('/silver-api/observation', observationController);
+router.use('/silver-api/observations', observationController);
 router.use('/silver-api/stops', stopController);
 router.use('/silver-api/tolls', tollController);
 

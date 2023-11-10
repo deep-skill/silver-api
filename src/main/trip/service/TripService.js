@@ -1,4 +1,4 @@
-const { Trip, Reserve, User, Driver, Enterprise } = require("../../database");
+const { Trip, Reserve, User, Driver, Enterprise, Observation } = require("../../database");
 const Sequelize = require("sequelize");
 const handleStatusQuery = require("../../../main/utils/handleStatusQuery");
 const getAll = async () => {
@@ -10,6 +10,9 @@ const get = async (id) => {
     include: [
       {
         model: Reserve,
+      },
+      {
+        model: Observation,
       },
     ],
     where: { id },

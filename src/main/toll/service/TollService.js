@@ -16,25 +16,25 @@ const get = async (id) => {
   });
 };
 
-const create = async ( name , amount, lat , lon ,tripId) => {
+const create = async (tripId, name, amount, lat, lon) => {
   return await Toll.create({
+    tripId,
     name,
     amount,
     lat,
-    lon,
-    tripId
+    lon
   });
 };
 
-const update = async (id, name , amount , lat , lon ,tripId) => {
+const update = async (id, tripId, name, amount, lat, lon) => {
   const toll = await Toll.findOne({ where: { id } });
   if (!toll) throw new Error("Toll not exist");
 
+  tripId ?(toll.tripId = tripId) : null;
   name ? (toll.name = name) : null;
   amount ?(toll.amount = amount) : null;
   lat ?(toll.lat = lat) : null;
   lon ?(toll.lon = lon) : null;
-  tripId ?(toll.tripId = tripId) : null;
 
   await toll.save();
   return toll;

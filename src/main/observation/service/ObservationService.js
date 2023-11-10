@@ -16,22 +16,22 @@ const get = async (id) => {
   });
 };
 
-const create = async ( newObservation,tripId) => {
+const create = async ( tripId, observation) => {
   return await Observation.create({
-    observation: newObservation,
-    tripId: tripId
+    tripId,
+    observation,
   });
 };
 
-const update = async (id, updateObservation ,tripId ) => {
-  const observation = await Observation.findOne({ where: { id } });
-  if (!observation) throw new Error("Obsetrvation not exist");
+const update = async (id, observation ,tripId ) => {
+  const updatedObservation = await Observation.findOne({ where: { id } });
+  if (!updatedObservation) throw new Error("Observation not exist");
   
-  updateObservation ?  (observation.observation = updateObservation) : null
-  tripId ? (observation.tripId = tripId) : null
+  tripId ? (updatedObservation.tripId = tripId) : null
+  observation ?  (updatedObservation.observation = observation) : null
 
-  await observation.save();
-  return observation;
+  await updatedObservation.save();
+  return updatedObservation;
 };
 
 const erase = async (id) => {
