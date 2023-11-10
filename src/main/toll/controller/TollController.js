@@ -22,9 +22,9 @@ const get = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const {  name , amount , lat , lon } = req.body;
+  const {  name , amount , lat , lon ,tripId } = req.body;
   try {
-    const toll = await TollService.create( name , amount , lat , lon);
+    const toll = await TollService.create( name , amount , lat , lon , tripId);
     return res.status(201).json(toll);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -33,7 +33,7 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { name , amount , lat , lon} = req.body;
+  const { name , amount , lat , lon ,tripId} = req.body;
   try {
     if (!id) throw new Error("Missing data");
     const updatedtoll = await TollService.update(
@@ -41,7 +41,8 @@ const update = async (req, res) => {
       name,
       amount,
       lat,
-      lon
+      lon,
+      tripId
     );
     return res.status(200).json(updatedtoll);
   } catch (error) {

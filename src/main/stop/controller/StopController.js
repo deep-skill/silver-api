@@ -22,9 +22,9 @@ const get = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const { id , location } = req.body;
+  const { id , location , tripId } = req.body;
   try {
-    const stop = await StopService.create(id , location);
+    const stop = await StopService.create(id , location ,tripId);
     return res.status(201).json(stop);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -33,12 +33,13 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { location} = req.body;
+  const { location ,tripId} = req.body;
   try {
     if (!id) throw new Error("Missing data");
     const updatedStop = await StopService.update(
       id,
-      location
+      location,
+      tripId
     );
     return res.status(200).json(updatedStop);
   } catch (error) {

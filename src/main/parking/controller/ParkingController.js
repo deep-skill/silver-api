@@ -33,14 +33,14 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { updateParking, amount, name} = req.body;
+  const {  amount, name ,tripId} = req.body;
   try {
     if (!id) throw new Error("Missing data");
     const updatedParking = await ParkingService.update(
       id,
-      updateParking,
       amount,
-      name
+      name,
+      tripId
     );
     return res.status(200).json(updatedParking);
   } catch (error) {

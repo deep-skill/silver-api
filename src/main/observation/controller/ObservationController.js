@@ -22,9 +22,9 @@ const get = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const {  newObservation } = req.body;
+  const {  newObservation  ,tripId } = req.body;
   try {
-    const observation = await ObservationService.create( newObservation);
+    const observation = await ObservationService.create( newObservation ,tripId);
     return res.status(201).json(observation);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -33,12 +33,13 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { updateObservation } = req.body;
+  const { updateObservation ,tripId } = req.body;
   try {
     if (!id) throw new Error("Missing data");
     const updatedObservation = await ObservationService.update(
       id,
       updateObservation,
+      tripId 
     );
     return res.status(200).json(updatedObservation);
   } catch (error) {
@@ -51,7 +52,7 @@ const erase = async (req, res) => {
   try {
     if (!id) throw new Error("Missing data");
     await ObservationService.erase(id);
-    return res.status(204).json();
+    return res.status(204).json("Observation deleted");
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }

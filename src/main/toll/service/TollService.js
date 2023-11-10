@@ -16,16 +16,17 @@ const get = async (id) => {
   });
 };
 
-const create = async ( name , amount, lat , lon) => {
+const create = async ( name , amount, lat , lon ,tripId) => {
   return await Toll.create({
     name,
     amount,
     lat,
-    lon
+    lon,
+    tripId
   });
 };
 
-const update = async (id, name , amount , lat , lon) => {
+const update = async (id, name , amount , lat , lon ,tripId) => {
   const toll = await Toll.findOne({ where: { id } });
   if (!toll) throw new Error("Toll not exist");
 
@@ -33,6 +34,7 @@ const update = async (id, name , amount , lat , lon) => {
   amount ?(toll.amount = amount) : null;
   lat ?(toll.lat = lat) : null;
   lon ?(toll.lon = lon) : null;
+  tripId ?(toll.tripId = tripId) : null;
 
   await toll.save();
   return toll;
@@ -40,10 +42,9 @@ const update = async (id, name , amount , lat , lon) => {
 
 const erase = async (id) => {
   const toll = await Toll.findOne({ where: { id } });
+  if (!toll) throw new Error("Toll not exist");
   await toll.destroy();
-  return {
-    deleted: true,
-  };
+  return toll;
 };
 
 module.exports = {

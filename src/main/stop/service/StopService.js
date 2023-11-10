@@ -16,19 +16,20 @@ const get = async (id) => {
   });
 };
 
-const create = async (id , location) => {
+const create = async (id , location, tripId) => {
   return await Stop.create({
     id,
-    location
+    location,
+    tripId
   });
 };
 
-const update = async (id, location) => {
+const update = async (id, location ,tripId) => {
   const stop = await Stop.findOne({ where: { id } });
   if (!stop) throw new Error("Stop not exist");
-  if(location) {
-    stop.location = location
-  }
+
+  location ? (stop.location = location) : null;
+  tripId ? (stop.tripId = tripId) : null;
 
   await stop.save();
   return stop;
