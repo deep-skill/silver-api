@@ -242,6 +242,7 @@ const getDriverReserveDetail = async (id) => {
       "startAddress",
       "endAddress",
       "price",
+      "silverPercent"
     ],
     include: [
       {
