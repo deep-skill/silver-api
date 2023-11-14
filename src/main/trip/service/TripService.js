@@ -11,6 +11,7 @@ const get = async (id) => {
       {
         model: Reserve,
         attributes: [
+          "id",
           "startAddress",
           "endAddress"
         ]
