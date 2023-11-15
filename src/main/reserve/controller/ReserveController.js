@@ -45,6 +45,7 @@ const create = async (req, res) => {
     price,
     driverPercent,
     silverPercent,
+    carId,
   } = req.body;
   try {
     const reserve = await ReserveService.create(
@@ -59,7 +60,8 @@ const create = async (req, res) => {
       endAddress,
       price,
       driverPercent,
-      silverPercent
+      silverPercent,
+      carId
     );
     return res.status(201).json(reserve);
   } catch (error) {
@@ -82,6 +84,7 @@ const update = async (req, res) => {
     price,
     driverPercent,
     silverPercent,
+    carId,
   } = req.body;
   try {
     if (!id) throw new Error("Missing data");
@@ -98,7 +101,8 @@ const update = async (req, res) => {
       endAddress,
       price,
       driverPercent,
-      silverPercent
+      silverPercent,
+      carId
     );
     return res.status(200).json(updatedReserve);
   } catch (error) {
