@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     },
     tripType: {
       type: DataTypes.ENUM,
-      values: ['PUNTO A PUNTO', 'POR PUNTO', 'POR HORA'],
+      values: ['PUNTO A PUNTO', 'POR HORA'],
       field: 'trip_type',
       allowNull: false
     },
