@@ -30,7 +30,8 @@ const create = async (
   endAddress,
   price,
   driverPercent,
-  silverPercent
+  silverPercent,
+  carId
 ) => {
   return await Reserve.create({
     userId,
@@ -45,6 +46,7 @@ const create = async (
     price,
     driverPercent,
     silverPercent,
+    carId,
   });
 };
 
@@ -61,7 +63,8 @@ const update = async (
   endAddress,
   price,
   driverPercent,
-  silverPercent
+  silverPercent,
+  carId
 ) => {
   const reserve = await Reserve.findOne({ where: { id } });
   if (!reserve) throw new Error("Driver not exist");
@@ -78,6 +81,7 @@ const update = async (
   price ? (reserve.price = price) : null;
   driverPercent ? (reserve.driverPercent = driverPercent) : null;
   silverPercent ? (reserve.silverPercent = silverPercent) : null;
+  carId ? (reserve.carId = carId) : null;
 
   await reserve.save();
 
