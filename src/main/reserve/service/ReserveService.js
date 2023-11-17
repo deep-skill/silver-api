@@ -418,6 +418,46 @@ const getDriverReservesHome = async (page, id) => {
   });
 };
 
+const getDriverReservesList = async (page, id) => {
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
+  const currentMinute = currentDate.getMinutes();
+  return await Reserve.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ["tripType", "startTime", "startAddress"],
+    where: {
+      driverId: id,
+      startTime: {
+        [Sequelize.Op.gte]: new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth(),
+          currentDate.getDate(),
+          currentHour,
+          currentMinute
+        ),
+      },
+    },
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Trip,
+        attributes: ["status"],
+        status: {
+          [Sequelize.Op.ne]: "CANCELED",
+        },
+      },
+    ],
+  });
+};
+
 module.exports = {
   getAll,
   get,
@@ -433,4 +473,5 @@ module.exports = {
   getDriverNearestReserve,
   getDriverReservesHome,
   getDriverReserveDetail,
+  getDriverReservesList,
 };
