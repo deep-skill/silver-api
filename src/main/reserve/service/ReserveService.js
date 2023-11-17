@@ -310,7 +310,6 @@ const getReserveByQuery = async (query) => {
         Sequelize.where(Sequelize.cast(Sequelize.col("trip_type"), "varchar"), {
           [Sequelize.Op.iLike]: `%${query}%`,
         }),
-
         {
           "$User.name$": {
             [Sequelize.Op.iLike]: `%${query}%`,
@@ -380,6 +379,15 @@ const getDriverNearestReserve = async (id) => {
       startTime: {
         [Sequelize.Op.gte]: today,
       },
+      [Sequelize.Op.or]: [
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("status"), "varchar"),
+          { [Sequelize.Op.like]: `%INPROGRESS%` }
+        ),
+        {
+          "$Trip.id$": null,
+        }
+      ],
     },
     order: [["startTime", "ASC"]],
   });
@@ -415,6 +423,7 @@ const getDriverReservesHome = async (page, id) => {
       },
       "$Trip.id$": null,
     },
+    order: [["startTime", "ASC"]],
   });
 };
 

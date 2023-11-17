@@ -151,5 +151,8 @@ TripRouter.get("/driver-summary", getDriverMonthSummary);
 TripRouter.get("/:id", get);
 TripRouter.patch("/:id", update);
 TripRouter.delete("/:id", erase);
+TripRouter.get("/driver-trip/:id", get);
+TripRouter.patch("/driver-trip/:id", update);
+TripRouter.delete("/driver-trip/:id", erase);
 
 module.exports = TripRouter;
