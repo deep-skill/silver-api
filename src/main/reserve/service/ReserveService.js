@@ -419,6 +419,7 @@ const getDriverReservesHome = async (page, id) => {
       },
       "$Trip.id$": null,
     },
+    order: [["startTime", "ASC"]],
   });
 };
 
