@@ -457,7 +457,90 @@ const getDriverReservesList = async (page, id) => {
     ],
   });
 };
+const getDriverReserveByQuery = async (query, id) => {
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
+  const currentMinute = currentDate.getMinutes();
+  return await Reserve.findAll({
+    attributes: [
+      "id",
+      "tripType",
+      "startTime",
+      "startAddress",
+      "endAddress",
+      "tripType",
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Trip,
+        attributes: ["id", "status"],
+        status: {
+          [Sequelize.Op.ne]: "CANCELED",
+        },
+      },
+    ],
 
+    where: {
+      driverId: id,
+      startTime: {
+        [Sequelize.Op.gte]: new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth(),
+          currentDate.getDate(),
+          currentHour,
+          currentMinute
+        ),
+      },
+      [Sequelize.Op.or]: [
+        {
+          startAddress: {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          endAddress: {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("Reserve.start_time"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("service_type"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("trip_type"), "varchar"), {
+          [Sequelize.Op.iLike]: `%${query}%`,
+        }),
+
+        {
+          "$User.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$User.last_name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Enterprise.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+      ],
+    },
+  });
+};
 module.exports = {
   getAll,
   get,
@@ -474,4 +557,5 @@ module.exports = {
   getDriverReservesHome,
   getDriverReserveDetail,
   getDriverReservesList,
+  getDriverReserveByQuery,
 };
