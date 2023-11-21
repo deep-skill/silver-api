@@ -130,6 +130,7 @@ database.sync({ force: true }).then(() => {
           reserveId: e.reserve_id,
           totalPrice: e.total_price,
           onWayDriver: e.on_way_driver,
+          status: e.status,
         }
       });
       await Trip.bulkCreate(bulk);

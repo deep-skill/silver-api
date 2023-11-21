@@ -428,6 +428,112 @@ const getDriverReservesHome = async (page, id) => {
   });
 };
 
+const getDriverReservesList = async (page, id) => {
+  return await Reserve.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ["id", "tripType", "startTime", "startAddress"],
+    where: {
+      driverId: id,
+      [Sequelize.Op.and]: [
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("status"), "varchar"),
+          { [Sequelize.Op.notLike]: `%CANCELED%` }
+        ),
+      ],
+    },
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Trip,
+        attributes: ["id", "status"],
+      },
+    ],
+    order: [["startTime", "DESC"]],
+  });
+};
+const getDriverReserveByQuery = async (query, id) => {
+  return await Reserve.findAll({
+    attributes: [
+      "id",
+      "tripType",
+      "startTime",
+      "startAddress",
+      "endAddress",
+      "tripType",
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "lastName"],
+      },
+      {
+        model: Enterprise,
+        attributes: ["name"],
+      },
+      {
+        model: Trip,
+        attributes: ["id", "status"],
+      },
+    ],
+    where: {
+      driverId: id,
+      [Sequelize.Op.and]: [
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("status"), "varchar"),
+          { [Sequelize.Op.notLike]: `%CANCELED%` }
+        ),
+      ],
+      [Sequelize.Op.or]: [
+        {
+          startAddress: {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          endAddress: {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("Reserve.start_time"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("service_type"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("trip_type"), "varchar"), {
+          [Sequelize.Op.iLike]: `%${query}%`,
+        }),
+
+        {
+          "$User.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$User.last_name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Enterprise.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+      ],
+    },
+    order: [["startTime", "DESC"]],
+  });
+};
 module.exports = {
   getAll,
   get,
@@ -443,4 +549,6 @@ module.exports = {
   getDriverNearestReserve,
   getDriverReservesHome,
   getDriverReserveDetail,
+  getDriverReservesList,
+  getDriverReserveByQuery,
 };
