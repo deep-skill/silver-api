@@ -425,7 +425,7 @@ const getDriverReservesList = async (page, id) => {
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
-    attributes: ["tripType", "startTime", "startAddress"],
+    attributes: ["id", "tripType", "startTime", "startAddress"],
     where: {
       driverId: id,
       startTime: {
@@ -449,7 +449,7 @@ const getDriverReservesList = async (page, id) => {
       },
       {
         model: Trip,
-        attributes: ["status"],
+        attributes: ["id", "status"],
         status: {
           [Sequelize.Op.ne]: "CANCELED",
         },
