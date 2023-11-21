@@ -54,7 +54,7 @@
     "user_id": 5,
     "driver_id": 9,
     "enterprise_id": 4,
-    "trip_type": "POR PUNTO",
+    "trip_type": "POR HORA",
     "service_type": "ENTERPRISE",
     "start_time": "2023-09-21T15:30:00Z",
     "start_address": "Jr. Callao 36, Lima, Peru",
