@@ -244,7 +244,6 @@ ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
 ReserveRouter.get("/driver-nearest/:id", getDriverNearestReserve);
 ReserveRouter.get("/driver-home", getDriverReservesHome);
 ReserveRouter.get("/driver-search/:id", getDriverReserveByQuery);
-
 ReserveRouter.get("/search", getReserveByQuery);
 ReserveRouter.get("/:id", get);
 ReserveRouter.patch("/:id", update);

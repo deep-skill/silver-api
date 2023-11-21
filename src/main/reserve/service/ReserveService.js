@@ -419,24 +419,18 @@ const getDriverReservesHome = async (page, id) => {
 };
 
 const getDriverReservesList = async (page, id) => {
-  const currentDate = new Date();
-  const currentHour = currentDate.getHours();
-  const currentMinute = currentDate.getMinutes();
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
     attributes: ["id", "tripType", "startTime", "startAddress"],
     where: {
       driverId: id,
-      startTime: {
-        [Sequelize.Op.gte]: new Date(
-          currentDate.getFullYear(),
-          currentDate.getMonth(),
-          currentDate.getDate(),
-          currentHour,
-          currentMinute
+      [Sequelize.Op.and]: [
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("status"), "varchar"),
+          { [Sequelize.Op.notLike]: `%CANCELED%` }
         ),
-      },
+      ],
     },
     include: [
       {
@@ -450,17 +444,12 @@ const getDriverReservesList = async (page, id) => {
       {
         model: Trip,
         attributes: ["id", "status"],
-        status: {
-          [Sequelize.Op.ne]: "CANCELED",
-        },
       },
     ],
+    order: [["startTime", "DESC"]],
   });
 };
 const getDriverReserveByQuery = async (query, id) => {
-  const currentDate = new Date();
-  const currentHour = currentDate.getHours();
-  const currentMinute = currentDate.getMinutes();
   return await Reserve.findAll({
     attributes: [
       "id",
@@ -482,23 +471,16 @@ const getDriverReserveByQuery = async (query, id) => {
       {
         model: Trip,
         attributes: ["id", "status"],
-        status: {
-          [Sequelize.Op.ne]: "CANCELED",
-        },
       },
     ],
-
     where: {
       driverId: id,
-      startTime: {
-        [Sequelize.Op.gte]: new Date(
-          currentDate.getFullYear(),
-          currentDate.getMonth(),
-          currentDate.getDate(),
-          currentHour,
-          currentMinute
+      [Sequelize.Op.and]: [
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("status"), "varchar"),
+          { [Sequelize.Op.notLike]: `%CANCELED%` }
         ),
-      },
+      ],
       [Sequelize.Op.or]: [
         {
           startAddress: {
@@ -539,6 +521,7 @@ const getDriverReserveByQuery = async (query, id) => {
         },
       ],
     },
+    order: [["startTime", "DESC"]],
   });
 };
 module.exports = {
