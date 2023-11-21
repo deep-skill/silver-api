@@ -359,7 +359,7 @@ const getDriverNearestReserve = async (id) => {
   const today = new Date();
 
   const reserve = await Reserve.findOne({
-    attributes: ["id", "startTime", "startAddress" , "price" , "driverPercent" , "silverPercent"],
+    attributes: ["id", "startTime", "startAddress" , "price" ],
     include: [
       {
         model: User,
