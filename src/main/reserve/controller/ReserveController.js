@@ -228,7 +228,7 @@ ReserveRouter.get("/admin-home", getReservesHome);
 ReserveRouter.get("/admin-search-home", getReserveHomeByQuery);
 ReserveRouter.get("/admin-reserves", getReservesList);
 ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
-ReserveRouter.get("/driver-reserves/:id", getDriverReservesList);
+ReserveRouter.get("/driver-reserves-list/:id", getDriverReservesList);
 ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
 ReserveRouter.get("/driver-nearest/:id", getDriverNearestReserve);
 ReserveRouter.get("/driver-home", getDriverReservesHome);
