@@ -687,7 +687,7 @@
     "start_time": "2023-11-21T18:30-05:00",
     "start_address": "Jr. Andahuaylas 4, Lima, Peru",
     "end_address": "Jr. Andahuaylas 400, Lima, Peru",
-    "price": 40,
+    "price": 40.1,
     "driver_percent": 10,
     "silver_percent": 17
   },
@@ -701,7 +701,7 @@
     "start_time": "2023-11-23T06:30-05:00",
     "start_address": "Jr. Andahuaylas 4, Lima, Peru",
     "end_address": "Jr. Andahuaylas 400, Lima, Peru",
-    "price": 60,
+    "price": 60.2,
     "driver_percent": 10,
     "silver_percent": 17
   },
@@ -715,7 +715,7 @@
     "start_time": "2023-11-23T23:30-05:00",
     "start_address": "Jr. Calamuchita 4, Lima, Peru",
     "end_address": "Jr. Andahuaylas 400, Lima, Peru",
-    "price": 30,
+    "price": 30.3,
     "driver_percent": 10,
     "silver_percent": 17
   },
@@ -729,7 +729,7 @@
     "start_time": "2023-11-23T23:30-05:00",
     "start_address": "Jr. Velez Sarfield 4, Lima, Peru",
     "end_address": "Jr. Andahuaylas 400, Lima, Peru",
-    "price": 10,
+    "price": 10.4,
     "driver_percent": 10,
     "silver_percent": 17
   },
@@ -743,7 +743,7 @@
     "start_time": "2023-11-25T23:30-05:00",
     "start_address": "Jr. Velez Sarfield 4, Lima, Peru",
     "end_address": "Jr. Andahuaylas 400, Lima, Peru",
-    "price": 10,
+    "price": 10.3,
     "driver_percent": 10,
     "silver_percent": 17
   },
@@ -757,7 +757,7 @@
     "start_time": "2023-11-26T23:30-05:00",
     "start_address": "Jr. Velez Sarfield 4, Lima, Peru",
     "end_address": "Jr. Andahuaylas 400, Lima, Peru",
-    "price": 10,
+    "price": 10.2,
     "driver_percent": 10,
     "silver_percent": 17
   },
@@ -771,7 +771,7 @@
     "start_time": "2023-11-21T22:30-05:00",
     "start_address": "Jr. Velez Sarfield 4, Lima, Peru",
     "end_address": "Jr. Andahuaylas 400, Lima, Peru",
-    "price": 10,
+    "price": 10.1,
     "driver_percent": 10,
     "silver_percent": 17
   }
