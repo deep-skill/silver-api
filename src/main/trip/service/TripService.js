@@ -294,6 +294,36 @@ const getDriverMonthSummary = async (id) => {
   return tripMonthSummary;
 };
 
+const getAllTripsDriver = async (id, page) => {
+  console.log(id, page);
+  return Trip.findAndCountAll({
+    attributes:["onWayDriver" ,"status", "totalPrice"],
+    limit: 10,
+    offset: page * 10,
+    include: [
+      {
+        model:Reserve,
+        attributes: ["id"],
+        where:{
+          driver_id: id
+        },
+        include: [
+          {
+            model: User,
+            attributes: [ "name", "lastName"],
+          },
+          {
+            model: Enterprise,
+            attributes: ["id", "name"],
+          },
+        ],
+
+      }
+    ],
+    order: [["startTime", "DESC"]],
+  });
+};
+
 module.exports = {
   getAll,
   get,
@@ -304,4 +334,5 @@ module.exports = {
   getDriverMonthSummary,
   getTripsHistory,
   getTripByQuery,
+  getAllTripsDriver
 };
