@@ -132,9 +132,8 @@ const getDriverMonthSummary = async (req, res) => {
 };
 
 const getAllDriverTrips = async (req, res) => {
-  const { id , page } = req.query;
-  console.log(id , page)
-  console.log((id ), page)
+  const { id } = req.params;
+  const { page } = req.query;
 
   if (!id) throw new Error("Missing data");
   try {
@@ -160,13 +159,13 @@ TripRouter.get("/", getAll);
 TripRouter.post("/", create);
 TripRouter.get("/admin-summary", getTripsSummary);
 TripRouter.get("/admin-history", getTripsHistory);
+TripRouter.get("/driver-trip-all/:id", getAllDriverTrips);
 TripRouter.get("/trip-search", getTripsByQuery);
 TripRouter.get("/driver-summary", getDriverMonthSummary);
 TripRouter.get("/:id", get);
 TripRouter.patch("/:id", update);
 TripRouter.delete("/:id", erase);
 TripRouter.get("/driver-trip/:id", get);
-TripRouter.get("/driver-trip-all", getAllDriverTrips);
 TripRouter.patch("/driver-trip/:id", update);
 TripRouter.delete("/driver-trip/:id", erase);
 

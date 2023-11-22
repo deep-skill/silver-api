@@ -1,4 +1,14 @@
-const { Trip, Reserve, User, Driver, Enterprise, Observation , Stop , Parking , Toll , } = require("../../database");
+const {
+  Trip,
+  Reserve,
+  User,
+  Driver,
+  Enterprise,
+  Observation,
+  Stop,
+  Parking,
+  Toll,
+} = require("../../database");
 const Sequelize = require("sequelize");
 const handleStatusQuery = require("../../../main/utils/handleStatusQuery");
 const getAll = async () => {
@@ -10,24 +20,20 @@ const get = async (id) => {
     include: [
       {
         model: Reserve,
-        attributes: [
-          "id",
-          "startAddress",
-          "endAddress"
-        ]
+        attributes: ["id", "startAddress", "endAddress"],
       },
       {
         model: Observation,
       },
       {
-        model: Stop
+        model: Stop,
       },
       {
-        model: Parking
+        model: Parking,
       },
       {
-        model: Toll
-      }
+        model: Toll,
+      },
     ],
     where: { id },
   });
@@ -294,44 +300,40 @@ const getDriverMonthSummary = async (id) => {
   return tripMonthSummary;
 };
 
-const getAllDriverTrips = async (idDriver, page) => {
-
-  return Trip.findAndCountAll({
-    attributes:["onWayDriver" ,"status", "totalPrice", "id"],
+const getAllDriverTrips = async (id, page) => {
+  return await Trip.findAndCountAll({
     limit: 10,
     offset: page * 10,
+    attributes: ["id", "totalPrice", "onWayDriver", "status"],
     include: [
       {
-        model:Reserve,
+        model: Reserve,
+        attributes: ["id", "startAddress"],
+        where: {
+          driverId: id,
+        },
         include: [
           {
             model: User,
-            attributes: [ "name", "lastName"],
+            attributes: ["id", "name", "lastName"],
+          },
+          {
+            model: Driver,
+            attributes: ["id", "name", "lastName"],
           },
           {
             model: Enterprise,
             attributes: ["id", "name"],
           },
-          {
-            model: Driver,
-            attributes: ["id", "name", "lastName"],
-          }
         ],
       },
       {
-        model:Toll,
-      },
-      {
         model: Parking,
-      }
-    ],
-    where: {
-      
-      "$Reserve.driver_id$": {
-        [Sequelize.Op.eq]: idDriver,
+        attributes: ["id", "name"],
+        // required: false,
       },
-    },
-   // order: [["startTime", "DESC"]],
+    ],
+    order: [["onWayDriver", "DESC"]],
   });
 };
 
@@ -345,5 +347,5 @@ module.exports = {
   getDriverMonthSummary,
   getTripsHistory,
   getTripByQuery,
-  getAllDriverTrips
+  getAllDriverTrips,
 };
