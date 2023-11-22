@@ -301,8 +301,12 @@ const getAllDriverTrips = async (idDriver, page) => {
     limit: 10,
     offset: page * 10,
     include: [
+      
       {
         model:Reserve,
+        where: {
+          driver_id: idDriver,
+        },
         include: [
           {
             model: User,
@@ -323,14 +327,14 @@ const getAllDriverTrips = async (idDriver, page) => {
       },
       {
         model: Parking,
-      }
-    ],
-    where: {
+      },
       
+    ],
+  /*   where: {
       "$Reserve.driver_id$": {
         [Sequelize.Op.eq]: idDriver,
       },
-    },
+    }, */
    // order: [["startTime", "DESC"]],
   });
 };
