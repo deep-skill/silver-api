@@ -300,64 +300,46 @@ const getDriverMonthSummary = async (id) => {
   return tripMonthSummary;
 };
 
-const getAllDriverTrips = async (id, page) => {
-  let trips = await Trip.findAndCountAll({
-    limit: 10,
-    offset: page * 10,
-    attributes: ["id", "totalPrice", "onWayDriver", "status"],
-    include: [
-      {
-        model: Reserve,
-        where: {
-          driverId: id,
+
+  const getAllDriverTrips = async (id, page) => {
+    return await Trip.findAndCountAll({
+      limit: 10,
+      offset: page * 10,
+      attributes: ["id", "totalPrice", "onWayDriver", "status"],
+      include: [
+        {
+          model: Reserve,
+          where: {
+            driverId: id,
+          },
+          attributes: ["id", "userId", "driverId", "enterpriseId"],
+          include: [
+            {
+              model: User,
+              attributes: ["id", "name", "lastName"],
+            },
+            {
+              model: Driver,
+              attributes: ["id", "name", "lastName"],
+            },
+            {
+              model: Enterprise,
+              attributes: ["id", "name"],
+            },
+          ],
         },
-        include: [
-          {
-            model: User,
-            attributes: ["id", "name", "lastName"],
-          },
-          {
-            model: Driver,
-            attributes: ["id", "name", "lastName"],
-          },
-          {
-            model: Enterprise,
-            attributes: ["id", "name"],
-          },
-        ],
-        
-      },
-      {
-        model: Toll
-      },
-      {
-        model: Parking
-      }
-    ],
-    
-    
-    order: [["onWayDriver", "DESC"]],
-  });
-  let couts = trips.count;
-
-  let objetReturn = trips.rows.map((trip) => {
-    return {
-      id: trip.id,
-      totalPrice: trip.totalPrice,
-      onWayDriver: trip.onWayDriver,
-      status: trip.status,
-      usernName: trip.Reserve.User.name ,
-      usernLast: trip.Reserve.User.lastName ,
-      enterpriseName: trip.Reserve.Enterprise.name,
-      Tolls: trip.Tolls,
-      Parkings: trip.Parkings
-    };
-  });
-  
-  return {  couts ,objetReturn};
+        {
+          model: Toll
+        },
+        {
+          model: Parking
+        }
+      ],
+      order: [["onWayDriver", "DESC"]],
+    });
+  };
 
 
-};
 
 module.exports = {
   getAll,
