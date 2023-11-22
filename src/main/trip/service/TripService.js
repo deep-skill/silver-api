@@ -301,14 +301,13 @@ const getDriverMonthSummary = async (id) => {
 };
 
 const getAllDriverTrips = async (id, page) => {
-  return await Trip.findAndCountAll({
+  let trips = await Trip.findAndCountAll({
     limit: 10,
     offset: page * 10,
     attributes: ["id", "totalPrice", "onWayDriver", "status"],
     include: [
       {
         model: Reserve,
-        attributes: ["id", "startAddress"],
         where: {
           driverId: id,
         },
@@ -326,15 +325,38 @@ const getAllDriverTrips = async (id, page) => {
             attributes: ["id", "name"],
           },
         ],
+        
       },
       {
-        model: Parking,
-        attributes: ["id", "name"],
-        // required: false,
+        model: Toll
       },
+      {
+        model: Parking
+      }
     ],
+    
+    
     order: [["onWayDriver", "DESC"]],
   });
+  let couts = trips.count;
+
+  let objetReturn = trips.rows.map((trip) => {
+    return {
+      id: trip.id,
+      totalPrice: trip.totalPrice,
+      onWayDriver: trip.onWayDriver,
+      status: trip.status,
+      usernName: trip.Reserve.User.name ,
+      usernLast: trip.Reserve.User.lastName ,
+      enterpriseName: trip.Reserve.Enterprise.name,
+      Tolls: trip.Tolls,
+      Parkings: trip.Parkings
+    };
+  });
+  
+  return {  couts ,objetReturn};
+
+
 };
 
 module.exports = {

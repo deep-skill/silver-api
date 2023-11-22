@@ -159,7 +159,7 @@ TripRouter.get("/", getAll);
 TripRouter.post("/", create);
 TripRouter.get("/admin-summary", getTripsSummary);
 TripRouter.get("/admin-history", getTripsHistory);
-TripRouter.get("/driver-trip-all/:id", getAllDriverTrips);
+TripRouter.get("/driver-trips/:id", getAllDriverTrips);
 TripRouter.get("/trip-search", getTripsByQuery);
 TripRouter.get("/driver-summary", getDriverMonthSummary);
 TripRouter.get("/:id", get);
