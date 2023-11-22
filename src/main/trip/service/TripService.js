@@ -294,19 +294,15 @@ const getDriverMonthSummary = async (id) => {
   return tripMonthSummary;
 };
 
-const getAllTripsDriver = async (id, page) => {
-  console.log(id, page);
+const getAllDriverTrips = async (idDriver, page) => {
+
   return Trip.findAndCountAll({
-    attributes:["onWayDriver" ,"status", "totalPrice"],
+    attributes:["onWayDriver" ,"status", "totalPrice", "id"],
     limit: 10,
     offset: page * 10,
     include: [
       {
         model:Reserve,
-        attributes: ["id"],
-        where:{
-          driver_id: id
-        },
         include: [
           {
             model: User,
@@ -316,11 +312,26 @@ const getAllTripsDriver = async (id, page) => {
             model: Enterprise,
             attributes: ["id", "name"],
           },
+          {
+            model: Driver,
+            attributes: ["id", "name", "lastName"],
+          }
         ],
-
+      },
+      {
+        model:Toll,
+      },
+      {
+        model: Parking,
       }
     ],
-    order: [["startTime", "DESC"]],
+    where: {
+      
+      "$Reserve.driver_id$": {
+        [Sequelize.Op.eq]: idDriver,
+      },
+    },
+   // order: [["startTime", "DESC"]],
   });
 };
 
@@ -334,5 +345,5 @@ module.exports = {
   getDriverMonthSummary,
   getTripsHistory,
   getTripByQuery,
-  getAllTripsDriver
+  getAllDriverTrips
 };
