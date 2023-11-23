@@ -432,7 +432,7 @@ const getDriverReservesList = async (page, id) => {
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
-    attributes: ["id", "tripType", "startTime", "startAddress"],
+    attributes: ["id", "tripType", "startTime", "startAddress", "price"],
     where: {
       driverId: id,
       [Sequelize.Op.and]: [
