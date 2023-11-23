@@ -144,6 +144,21 @@ const getAllDriverTrips = async (req, res) => {
   }
 };
 
+const getDriverTripByQuery = async (req, res) => {
+
+  const { id } = req.params;
+  const { query } = req.query;
+  console.log("id", id);
+  console.log("query", query);
+
+  try {
+    const reserves = await TripService.getDriverTripByQuery( id, query );
+    return res.status(200).json(reserves);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 const { auth } = require("express-oauth2-jwt-bearer");
 
 const jwtCheck = auth({
@@ -168,5 +183,6 @@ TripRouter.delete("/:id", erase);
 TripRouter.get("/driver-trip/:id", get);
 TripRouter.patch("/driver-trip/:id", update);
 TripRouter.delete("/driver-trip/:id", erase);
+TripRouter.get("/driver-search/:id", getDriverTripByQuery);
 
 module.exports = TripRouter;

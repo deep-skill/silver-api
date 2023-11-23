@@ -339,6 +339,71 @@ const getDriverMonthSummary = async (id) => {
     });
   };
 
+  const getDriverTripByQuery = async (id, query) => {
+    console.log("id", id);
+    console.log("query", query);
+    return await Trip.findAll({
+      attributes: ["id", "totalPrice", "onWayDriver", "status"],
+      include: [
+        {
+          model: Reserve,
+          where: {
+            driverId: id,
+          },
+          attributes: ["id", "userId", "driverId", "enterpriseId"],
+          include: [
+            {
+              model: User,
+              attributes: ["id", "name", "lastName"],
+            },
+            {
+              model: Enterprise,
+              attributes: ["id", "name"],
+            },
+          ],
+        },
+        {
+          model: Toll
+        },
+        {
+          model: Parking
+        }
+      ],
+      where: {
+        [Sequelize.Op.or]: [
+          // {
+          //   status: {
+          //     [Sequelize.Op.iLike]: `%${query}%`,
+          //   },
+          // },
+          {
+            "$Reserve.User.name$": {
+              [Sequelize.Op.iLike]: `%${query}%`,
+            },
+          },
+          {
+            "$Reserve.User.last_name$": {
+              [Sequelize.Op.iLike]: `%${query}%`,
+            },
+          },
+          {
+            "$Reserve.Enterprise.name$": {
+              [Sequelize.Op.iLike]: `%${query}%`,
+            },
+          },
+          Sequelize.where(
+            Sequelize.cast(Sequelize.col("on_way_driver"), "varchar"),
+            { [Sequelize.Op.iLike]: `%${query}%` }
+          ),
+          Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          }),
+        ],
+      },
+      order: [["onWayDriver", "DESC"]],
+    });
+  };
+
 
 
 module.exports = {
@@ -352,4 +417,5 @@ module.exports = {
   getTripsHistory,
   getTripByQuery,
   getAllDriverTrips,
+  getDriverTripByQuery
 };
