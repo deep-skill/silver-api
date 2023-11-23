@@ -1,4 +1,14 @@
-const { Trip, Reserve, User, Driver, Enterprise, Observation , Stop , Parking , Toll , } = require("../../database");
+const {
+  Trip,
+  Reserve,
+  User,
+  Driver,
+  Enterprise,
+  Observation,
+  Stop,
+  Parking,
+  Toll,
+} = require("../../database");
 const Sequelize = require("sequelize");
 const handleStatusQuery = require("../../../main/utils/handleStatusQuery");
 const getAll = async () => {
@@ -10,24 +20,20 @@ const get = async (id) => {
     include: [
       {
         model: Reserve,
-        attributes: [
-          "id",
-          "startAddress",
-          "endAddress"
-        ]
+        attributes: ["id", "startAddress", "endAddress"],
       },
       {
         model: Observation,
       },
       {
-        model: Stop
+        model: Stop,
       },
       {
-        model: Parking
+        model: Parking,
       },
       {
-        model: Toll
-      }
+        model: Toll,
+      },
     ],
     where: { id },
   });
@@ -206,11 +212,6 @@ const getTripByQuery = async (query) => {
     ],
     where: {
       [Sequelize.Op.or]: [
-        // {
-        //   status: {
-        //     [Sequelize.Op.iLike]: `%${query}%`,
-        //   },
-        // },
         {
           "$Reserve.User.name$": {
             [Sequelize.Op.iLike]: `%${query}%`,
@@ -294,6 +295,107 @@ const getDriverMonthSummary = async (id) => {
   return tripMonthSummary;
 };
 
+
+  const getAllDriverTrips = async (id, page) => {
+    return await Trip.findAndCountAll({
+      limit: 10,
+      offset: page * 10,
+      attributes: ["id", "totalPrice", "onWayDriver", "status"],
+      include: [
+        {
+          model: Reserve,
+          where: {
+            driverId: id,
+          },
+          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent"],
+          include: [
+            {
+              model: User,
+              attributes: ["id", "name", "lastName"],
+            },
+            {
+              model: Driver,
+              attributes: ["id", "name", "lastName"],
+            },
+            {
+              model: Enterprise,
+              attributes: ["id", "name"],
+            },
+          ],
+        },
+        {
+          model: Toll
+        },
+        {
+          model: Parking
+        }
+      ],
+      order: [["onWayDriver", "DESC"]],
+    });
+  };
+
+  const getDriverTripByQuery = async (id, query) => {
+    const statusQuery = handleStatusQuery(query);
+  if (statusQuery != undefined) query = statusQuery;
+    return await Trip.findAll({
+      attributes: ["id", "totalPrice", "onWayDriver", "status"],
+      include: [
+        {
+          model: Reserve,
+          where: {
+            driverId: id,
+          },
+          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent", "price"],
+          include: [
+            {
+              model: User,
+              attributes: ["id", "name", "lastName"],
+            },
+            {
+              model: Enterprise,
+              attributes: ["id", "name"],
+            },
+          ],
+        },
+        {
+          model: Toll
+        },
+        {
+          model: Parking
+        }
+      ],
+      where: {
+        [Sequelize.Op.or]: [
+          {
+            "$Reserve.User.name$": {
+              [Sequelize.Op.iLike]: `%${query}%`,
+            },
+          },
+          {
+            "$Reserve.User.last_name$": {
+              [Sequelize.Op.iLike]: `%${query}%`,
+            },
+          },
+          {
+            "$Reserve.Enterprise.name$": {
+              [Sequelize.Op.iLike]: `%${query}%`,
+            },
+          },
+          Sequelize.where(
+            Sequelize.cast(Sequelize.col("on_way_driver"), "varchar"),
+            { [Sequelize.Op.iLike]: `%${query}%` }
+          ),
+          Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          }),
+        ],
+      },
+      order: [["onWayDriver", "DESC"]],
+    });
+  };
+
+
+
 module.exports = {
   getAll,
   get,
@@ -304,4 +406,6 @@ module.exports = {
   getDriverMonthSummary,
   getTripsHistory,
   getTripByQuery,
+  getAllDriverTrips,
+  getDriverTripByQuery
 };
