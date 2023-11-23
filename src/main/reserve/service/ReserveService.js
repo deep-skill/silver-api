@@ -27,7 +27,11 @@ const create = async (
   serviceType,
   startTime,
   startAddress,
+  startAddressLat,
+  startAddressLon,
   endAddress,
+  endAddressLat,
+  endAddressLon,
   price,
   driverPercent,
   silverPercent,
@@ -42,7 +46,11 @@ const create = async (
     serviceType,
     startTime,
     startAddress,
+    startAddressLat,
+    startAddressLon,
     endAddress,
+    endAddressLat,
+    endAddressLon,
     price,
     driverPercent,
     silverPercent,
@@ -60,7 +68,11 @@ const update = async (
   serviceType,
   startTime,
   startAddress,
+  startAddressLat,
+  startAddressLon,
   endAddress,
+  endAddressLat,
+  endAddressLon,
   price,
   driverPercent,
   silverPercent,
@@ -77,7 +89,11 @@ const update = async (
   serviceType ? (reserve.serviceType = serviceType) : null;
   startTime ? (reserve.startTime = startTime) : null;
   startAddress ? (reserve.startAddress = startAddress) : null;
+  startAddressLat ? (reserve.startAddressLat = startAddressLat) : null;
+  startAddressLon ? (reserve.startAddressLon = startAddressLon) : null;
   endAddress ? (reserve.endAddress = endAddress) : null;
+  endAddressLat ? (reserve.endAddressLat = endAddressLat) : null;
+  endAddressLon ? (reserve.endAddressLon = endAddressLon) : null;
   price ? (reserve.price = price) : null;
   driverPercent ? (reserve.driverPercent = driverPercent) : null;
   silverPercent ? (reserve.silverPercent = silverPercent) : null;
