@@ -114,6 +114,8 @@ database.sync({ force: true }).then(() => {
           serviceType: e.service_type,
           startTime: e.start_time,
           startAddress: e.start_address,
+          startAddressLat: e.start_address_lat,
+          startAddressLon: e.start_address_lon,
           endAddress: e.end_address,
           price: e.price,
           driverPercent: e.driver_percent,
