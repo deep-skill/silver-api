@@ -312,7 +312,7 @@ const getDriverMonthSummary = async (id) => {
           where: {
             driverId: id,
           },
-          attributes: ["id", "userId", "driverId", "enterpriseId"],
+          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent"],
           include: [
             {
               model: User,
@@ -340,8 +340,6 @@ const getDriverMonthSummary = async (id) => {
   };
 
   const getDriverTripByQuery = async (id, query) => {
-    console.log("id", id);
-    console.log("query", query);
     return await Trip.findAll({
       attributes: ["id", "totalPrice", "onWayDriver", "status"],
       include: [
@@ -350,7 +348,7 @@ const getDriverMonthSummary = async (id) => {
           where: {
             driverId: id,
           },
-          attributes: ["id", "userId", "driverId", "enterpriseId"],
+          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent"],
           include: [
             {
               model: User,
@@ -371,11 +369,6 @@ const getDriverMonthSummary = async (id) => {
       ],
       where: {
         [Sequelize.Op.or]: [
-          // {
-          //   status: {
-          //     [Sequelize.Op.iLike]: `%${query}%`,
-          //   },
-          // },
           {
             "$Reserve.User.name$": {
               [Sequelize.Op.iLike]: `%${query}%`,
