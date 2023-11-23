@@ -212,11 +212,6 @@ const getTripByQuery = async (query) => {
     ],
     where: {
       [Sequelize.Op.or]: [
-        // {
-        //   status: {
-        //     [Sequelize.Op.iLike]: `%${query}%`,
-        //   },
-        // },
         {
           "$Reserve.User.name$": {
             [Sequelize.Op.iLike]: `%${query}%`,
@@ -340,6 +335,8 @@ const getDriverMonthSummary = async (id) => {
   };
 
   const getDriverTripByQuery = async (id, query) => {
+    const statusQuery = handleStatusQuery(query);
+  if (statusQuery != undefined) query = statusQuery;
     return await Trip.findAll({
       attributes: ["id", "totalPrice", "onWayDriver", "status"],
       include: [
