@@ -52,7 +52,7 @@ module.exports = (sequelize) => {
       }
     },
     endAddressLat: {
-      type: DataTypes.STRING,
+      type: DataTypes.DOUBLE,
       field: 'end_address_lat',
       allowNull: true,
       validate: {
@@ -64,7 +64,7 @@ module.exports = (sequelize) => {
       }
     },
     endAddressLon: {
-      type: DataTypes.STRING,
+      type: DataTypes.DOUBLE,
       field: 'end_address_lon',
       allowNull: true,
       validate: {
