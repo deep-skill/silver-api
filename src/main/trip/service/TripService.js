@@ -308,7 +308,7 @@ const getDriverMonthSummary = async (id) => {
           where: {
             driverId: id,
           },
-          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent"],
+          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent",],
           include: [
             {
               model: User,
@@ -400,7 +400,7 @@ const getDriverMonthSummary = async (id) => {
       include: [
         {
           model: Reserve,
-          attributes: ["id", "startAddress", "endAddress", "price", "driverPercent", "silverPercent"],
+          attributes: ["id", "startAddress", "endAddress", "price", "driverPercent", "silverPercent", "tripType", "serviceType" ],
           include: [
             {
               model: User,
