@@ -20,7 +20,24 @@ const get = async (id) => {
     include: [
       {
         model: Reserve,
-        attributes: ["id", "startAddress", "endAddress"],
+        attributes: [
+          "id",
+          "startAddress",
+          "endAddress",
+          "tripType",
+          "silverPercent",
+          "serviceType",
+        ],
+        include: [
+          {
+            model: User,
+            attributes: ["id", "name", "lastName"],
+          },
+          {
+            model: Enterprise,
+            attributes: ["id", "name"],
+          },
+        ],
       },
       {
         model: Observation,
@@ -295,106 +312,116 @@ const getDriverMonthSummary = async (id) => {
   return tripMonthSummary;
 };
 
-
-  const getAllDriverTrips = async (id, page) => {
-    return await Trip.findAndCountAll({
-      limit: 10,
-      offset: page * 10,
-      attributes: ["id", "totalPrice", "onWayDriver", "status"],
-      include: [
-        {
-          model: Reserve,
-          where: {
-            driverId: id,
-          },
-          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent"],
-          include: [
-            {
-              model: User,
-              attributes: ["id", "name", "lastName"],
-            },
-            {
-              model: Driver,
-              attributes: ["id", "name", "lastName"],
-            },
-            {
-              model: Enterprise,
-              attributes: ["id", "name"],
-            },
-          ],
+const getAllDriverTrips = async (id, page) => {
+  return await Trip.findAndCountAll({
+    limit: 10,
+    offset: page * 10,
+    attributes: ["id", "totalPrice", "onWayDriver", "status"],
+    include: [
+      {
+        model: Reserve,
+        where: {
+          driverId: id,
         },
-        {
-          model: Toll
-        },
-        {
-          model: Parking
-        }
-      ],
-      order: [["onWayDriver", "DESC"]],
-    });
-  };
-
-  const getDriverTripByQuery = async (id, query) => {
-    const statusQuery = handleStatusQuery(query);
-  if (statusQuery != undefined) query = statusQuery;
-    return await Trip.findAll({
-      attributes: ["id", "totalPrice", "onWayDriver", "status"],
-      include: [
-        {
-          model: Reserve,
-          where: {
-            driverId: id,
-          },
-          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent", "price"],
-          include: [
-            {
-              model: User,
-              attributes: ["id", "name", "lastName"],
-            },
-            {
-              model: Enterprise,
-              attributes: ["id", "name"],
-            },
-          ],
-        },
-        {
-          model: Toll
-        },
-        {
-          model: Parking
-        }
-      ],
-      where: {
-        [Sequelize.Op.or]: [
+        attributes: [
+          "id",
+          "userId",
+          "driverId",
+          "enterpriseId",
+          "silverPercent",
+        ],
+        include: [
           {
-            "$Reserve.User.name$": {
-              [Sequelize.Op.iLike]: `%${query}%`,
-            },
+            model: User,
+            attributes: ["id", "name", "lastName"],
           },
           {
-            "$Reserve.User.last_name$": {
-              [Sequelize.Op.iLike]: `%${query}%`,
-            },
+            model: Driver,
+            attributes: ["id", "name", "lastName"],
           },
           {
-            "$Reserve.Enterprise.name$": {
-              [Sequelize.Op.iLike]: `%${query}%`,
-            },
+            model: Enterprise,
+            attributes: ["id", "name"],
           },
-          Sequelize.where(
-            Sequelize.cast(Sequelize.col("on_way_driver"), "varchar"),
-            { [Sequelize.Op.iLike]: `%${query}%` }
-          ),
-          Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
-            [Sequelize.Op.iLike]: `%${query}%`,
-          }),
         ],
       },
-      order: [["onWayDriver", "DESC"]],
-    });
-  };
+      {
+        model: Toll,
+      },
+      {
+        model: Parking,
+      },
+    ],
+    order: [["onWayDriver", "DESC"]],
+  });
+};
 
-
+const getDriverTripByQuery = async (id, query) => {
+  const statusQuery = handleStatusQuery(query);
+  if (statusQuery != undefined) query = statusQuery;
+  return await Trip.findAll({
+    attributes: ["id", "totalPrice", "onWayDriver", "status"],
+    include: [
+      {
+        model: Reserve,
+        where: {
+          driverId: id,
+        },
+        attributes: [
+          "id",
+          "userId",
+          "driverId",
+          "enterpriseId",
+          "silverPercent",
+          "price",
+        ],
+        include: [
+          {
+            model: User,
+            attributes: ["id", "name", "lastName"],
+          },
+          {
+            model: Enterprise,
+            attributes: ["id", "name"],
+          },
+        ],
+      },
+      {
+        model: Toll,
+      },
+      {
+        model: Parking,
+      },
+    ],
+    where: {
+      [Sequelize.Op.or]: [
+        {
+          "$Reserve.User.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Reserve.User.last_name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        {
+          "$Reserve.Enterprise.name$": {
+            [Sequelize.Op.iLike]: `%${query}%`,
+          },
+        },
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col("on_way_driver"), "varchar"),
+          { [Sequelize.Op.iLike]: `%${query}%` }
+        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
+          [Sequelize.Op.iLike]: `%${query}%`,
+        }),
+      ],
+    },
+    order: [["onWayDriver", "DESC"]],
+  });
+};
 
 module.exports = {
   getAll,
@@ -407,5 +434,5 @@ module.exports = {
   getTripsHistory,
   getTripByQuery,
   getAllDriverTrips,
-  getDriverTripByQuery
+  getDriverTripByQuery,
 };

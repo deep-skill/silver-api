@@ -48,5 +48,14 @@
     "reserve_id": 44,
     "total_price": 16,
     "on_way_driver": "2023-08-21T15:10:00"
+  },
+  {
+    "reserve_id": 58,
+    "total_price": 40.1,
+    "on_way_driver": "2023-08-24T11:10:00",
+    "arrived_driver": "2023-08-24T11:10:00",
+    "start_time": "2023-08-24T11:10:00",
+    "end_time": "2023-08-24T11:10:00",
+    "status": "COMPLETED"
   }
 ]
