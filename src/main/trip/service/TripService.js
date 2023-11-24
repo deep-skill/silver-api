@@ -27,6 +27,7 @@ const get = async (id) => {
           "tripType",
           "silverPercent",
           "serviceType",
+          "startTime",
         ],
         include: [
           {
