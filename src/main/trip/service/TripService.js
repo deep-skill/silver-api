@@ -20,7 +20,7 @@ const get = async (id) => {
     include: [
       {
         model: Reserve,
-        attributes: ["id", "startAddress", "endAddress"],
+        attributes: ["id", "startAddress", "startAddressLat", "startAddressLon", "endAddress", "endAddressLat", "endAddressLon"],
       },
       {
         model: Observation,
