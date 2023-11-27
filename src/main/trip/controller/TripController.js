@@ -159,6 +159,17 @@ const getDriverTripByQuery = async (req, res) => {
   }
 };
 
+const getAdminTripById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (!id) throw new Error("Missing data");
+    const trip = await TripService.getAdminTripById(id);
+    return res.status(200).json(trip);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 const { auth } = require("express-oauth2-jwt-bearer");
 
 const jwtCheck = auth({
@@ -174,6 +185,7 @@ TripRouter.get("/", getAll);
 TripRouter.post("/", create);
 TripRouter.get("/admin-summary", getTripsSummary);
 TripRouter.get("/admin-history", getTripsHistory);
+TripRouter.get("/admin-trip/:id", getAdminTripById);
 TripRouter.get("/driver-trips/:id", getAllDriverTrips);
 TripRouter.get("/trip-search", getTripsByQuery);
 TripRouter.get("/driver-summary", getDriverMonthSummary);

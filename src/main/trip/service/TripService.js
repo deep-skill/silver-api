@@ -8,6 +8,7 @@ const {
   Stop,
   Parking,
   Toll,
+  Car
 } = require("../../database");
 const Sequelize = require("sequelize");
 const handleStatusQuery = require("../../../main/utils/handleStatusQuery");
@@ -394,6 +395,47 @@ const getDriverMonthSummary = async (id) => {
     });
   };
 
+  const getAdminTripById = async (id) => {
+    return Trip.findOne({
+      include: [
+        {
+          model: Reserve,
+          attributes: ["id", "startAddress", "endAddress", "price", "driverPercent", "silverPercent", "tripType", "serviceType" ],
+          include: [
+            {
+              model: User,
+              attributes: ["id", "name", "lastName"],
+            },
+            {
+              model: Driver,
+              attributes: ["id", "name", "lastName"],
+            },
+            {
+              model: Enterprise,
+              attributes: ["id", "name"],
+            },
+            {
+              model: Car,
+              attributes: ["id", "type", "licensePlate", "brand", "model", "color"],
+            },
+          ],
+        },
+        {
+          model: Observation,
+        },
+        {
+          model: Stop,
+        },
+        {
+          model: Parking,
+        },
+        {
+          model: Toll,
+        },
+      ],
+      where: { id },
+    });
+  };
 
 
 module.exports = {
@@ -407,5 +449,6 @@ module.exports = {
   getTripsHistory,
   getTripByQuery,
   getAllDriverTrips,
-  getDriverTripByQuery
+  getDriverTripByQuery,
+  getAdminTripById
 };
