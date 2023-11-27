@@ -246,7 +246,7 @@ const getReserveDetail = async (id) => {
       },
       {
         model: Trip,
-        attributes: ["status"],
+        attributes: ["id", "status"],
       },
     ],
     where: { id },
