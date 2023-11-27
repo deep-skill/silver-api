@@ -308,7 +308,7 @@ const getDriverMonthSummary = async (id) => {
           where: {
             driverId: id,
           },
-          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent",],
+          attributes: ["id", "userId", "driverId", "enterpriseId", "silverPercent"],
           include: [
             {
               model: User,
