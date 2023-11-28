@@ -9,6 +9,9 @@
     "start_address": "Jr. Andahuaylas 44, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 25.5,
     "driver_percent": 10,
     "silver_percent": 5
@@ -40,6 +43,9 @@
     "start_address": "Jr. Ayacucho 20, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 5,
     "driver_percent": 10,
     "silver_percent": 10
@@ -70,6 +76,9 @@
     "start_address": "Jr. Callao 36, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 60,
     "driver_percent": 10,
     "silver_percent": 1
@@ -102,6 +111,9 @@
     "start_address": "Jr. Carabaya 52, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 23,
     "driver_percent": 10,
     "silver_percent": 15
@@ -785,6 +797,9 @@
     "start_address": "Jr. Andahuaylas 4, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 30.5,
     "driver_percent": 10,
     "silver_percent": 5
@@ -799,6 +814,9 @@
     "start_address": "Jr. Andahuaylas 4, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 30.5,
     "driver_percent": 10,
     "silver_percent": 5
@@ -922,6 +940,9 @@
     "start_address": "Jr. Velez Sarfield 4, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 10.4,
     "driver_percent": 10,
     "silver_percent": 17
@@ -937,6 +958,9 @@
     "start_address": "Jr. Velez Sarfield 4, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 10.3,
     "driver_percent": 10,
     "silver_percent": 17
@@ -952,6 +976,9 @@
     "start_address": "Jr. Velez Sarfield 4, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 10.2,
     "driver_percent": 10,
     "silver_percent": 17
@@ -967,6 +994,9 @@
     "start_address": "Jr. Velez Sarfield 4, Lima, Peru",
     "start_address_lat": -34.123456789012345,
     "start_address_lon": -34.123456789012345,
+    "end_address": "Alvear, Centro, Córdoba, Municipio de Córdoba, Pedanía Capital, Departamento Capital, Córdoba, X5000, Argentina",
+    "end_address_lat": -31.41047137183987,
+    "end_address_lon": -64.17911008221401,
     "price": 10.1,
     "driver_percent": 10,
     "silver_percent": 17
