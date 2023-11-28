@@ -22,9 +22,9 @@ const get = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const { tripId, location } = req.body;
+  const { tripId, location, lat, lon } = req.body;
   try {
-    const stop = await StopService.create(tripId, location);
+    const stop = await StopService.create(tripId, location, lat, lon);
     return res.status(201).json(stop);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -33,13 +33,15 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { tripId, location} = req.body;
+  const { tripId, location, lat, lon } = req.body;
   try {
     if (!id) throw new Error("Missing data");
     const updatedStop = await StopService.update(
       id,
       tripId,
-      location
+      location,
+      lat,
+      lon
     );
     return res.status(200).json(updatedStop);
   } catch (error) {
@@ -58,13 +60,13 @@ const erase = async (req, res) => {
   }
 };
 
-const stopRouter = Router();
+const StopRouter = Router();
 
 /* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
-stopRouter.get("/", getAll);
-stopRouter.post("/", create);
-stopRouter.get("/:id", get);
-stopRouter.put("/:id", update);
-stopRouter.delete("/:id", erase);
+StopRouter.get("/", getAll);
+StopRouter.post("/", create);
+StopRouter.get("/:id", get);
+StopRouter.put("/:id", update);
+StopRouter.delete("/:id", erase);
 
-module.exports = stopRouter;
+module.exports = StopRouter;
