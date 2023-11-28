@@ -246,6 +246,26 @@ const getDriverReserveByQuery = async (req, res) => {
     return res.status(400).json({ error: error.message });
   }
 };
+
+const createDriverPorHoraStop = async (req, res) => {
+  const { id } = req.params;
+  const { endAddress, endAddressLat, endAddressLon, tripId } = req.body;
+  try {
+    if (!id) throw new Error("Missing data");
+    const updatedReserve = await ReserveService.updateEndAddress(
+      id,
+      endAddress,
+      endAddressLat,
+      endAddressLon,
+      tripId
+    );
+
+    return res.status(200).json(updatedReserve);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 const ReserveRouter = Router();
 
 /* driverRouter.get("/", jwtCheck, getDriversHandler); */
@@ -260,6 +280,7 @@ ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
 ReserveRouter.get("/driver-nearest/:id", getDriverNearestReserve);
 ReserveRouter.get("/driver-home", getDriverReservesHome);
 ReserveRouter.get("/driver-search/:id", getDriverReserveByQuery);
+ReserveRouter.post("/driver-stop/:id", createDriverPorHoraStop);
 ReserveRouter.get("/search", getReserveByQuery);
 ReserveRouter.get("/:id", get);
 ReserveRouter.patch("/:id", update);

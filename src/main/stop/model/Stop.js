@@ -1,16 +1,27 @@
-const { DataTypes } = require('sequelize')
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define('Stop', {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+  sequelize.define(
+    "Stop",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lat: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+      },
+      lon: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+      },
     },
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-  },
-  { timestamps: false });
+    { timestamps: false }
+  );
 };

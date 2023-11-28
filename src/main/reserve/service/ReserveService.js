@@ -5,6 +5,7 @@ const {
   Driver,
   Car,
   Trip,
+  Stop,
 } = require("../../database");
 const Sequelize = require("sequelize");
 
@@ -102,6 +103,39 @@ const update = async (
   await reserve.save();
 
   return reserve;
+};
+const updateEndAddress = async (
+  id,
+  endAddress,
+  endAddressLat,
+  endAddressLon,
+  tripId
+) => {
+  const reserve = await Reserve.findOne({ where: { id } });
+
+  if (!reserve) throw new Error("Driver not exist");
+
+  if (reserve.endAddress == null) {
+    endAddress ? (reserve.endAddress = endAddress) : null;
+    endAddressLat ? (reserve.endAddressLat = endAddressLat) : null;
+    endAddressLon ? (reserve.endAddressLon = endAddressLon) : null;
+    await reserve.save();
+    return reserve;
+  } else {
+    await Stop.create({
+      tripId,
+      location: reserve.endAddress,
+      lat: reserve.endAddressLat,
+      lon: reserve.endAddressLon,
+    });
+
+    endAddress ? (reserve.endAddress = endAddress) : null;
+    endAddressLat ? (reserve.endAddressLat = endAddressLat) : null;
+    endAddressLon ? (reserve.endAddressLon = endAddressLon) : null;
+
+    await reserve.save();
+    return reserve;
+  }
 };
 
 const erase = async (id) => {
@@ -262,7 +296,7 @@ const getDriverReserveDetail = async (id) => {
       "startAddress",
       "endAddress",
       "price",
-      "silverPercent"
+      "silverPercent",
     ],
     include: [
       {
@@ -376,7 +410,7 @@ const getDriverNearestReserve = async (id) => {
   const today = new Date();
 
   const reserve = await Reserve.findOne({
-    attributes: ["id", "startTime", "startAddress", "price" ],
+    attributes: ["id", "startTime", "startAddress", "price"],
     include: [
       {
         model: User,
@@ -397,13 +431,12 @@ const getDriverNearestReserve = async (id) => {
         [Sequelize.Op.gte]: today,
       },
       [Sequelize.Op.or]: [
-        Sequelize.where(
-          Sequelize.cast(Sequelize.col("status"), "varchar"),
-          { [Sequelize.Op.like]: `%INPROGRESS%` }
-        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
+          [Sequelize.Op.like]: `%INPROGRESS%`,
+        }),
         {
           "$Trip.id$": null,
-        }
+        },
       ],
     },
     order: [["startTime", "ASC"]],
@@ -452,10 +485,9 @@ const getDriverReservesList = async (page, id) => {
     where: {
       driverId: id,
       [Sequelize.Op.and]: [
-        Sequelize.where(
-          Sequelize.cast(Sequelize.col("status"), "varchar"),
-          { [Sequelize.Op.notLike]: `%CANCELED%` }
-        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
+          [Sequelize.Op.notLike]: `%CANCELED%`,
+        }),
       ],
     },
     include: [
@@ -502,10 +534,9 @@ const getDriverReserveByQuery = async (query, id) => {
     where: {
       driverId: id,
       [Sequelize.Op.and]: [
-        Sequelize.where(
-          Sequelize.cast(Sequelize.col("status"), "varchar"),
-          { [Sequelize.Op.notLike]: `%CANCELED%` }
-        ),
+        Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
+          [Sequelize.Op.notLike]: `%CANCELED%`,
+        }),
       ],
       [Sequelize.Op.or]: [
         {
@@ -556,6 +587,7 @@ module.exports = {
   create,
   erase,
   update,
+  updateEndAddress,
   getPaginated,
   getReservesHome,
   getReserveHomeByQuery,
