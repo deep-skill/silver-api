@@ -117,6 +117,8 @@ database.sync({ force: true }).then(() => {
           startAddressLat: e.start_address_lat,
           startAddressLon: e.start_address_lon,
           endAddress: e.end_address,
+          endAddressLat: e.end_address_lat,
+          endAddressLon: e.end_address_lon,
           price: e.price,
           driverPercent: e.driver_percent,
           silverPercent: e.silver_percent,
