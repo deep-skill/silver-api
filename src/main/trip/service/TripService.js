@@ -28,7 +28,7 @@ const get = async (id) => {
           "startAddressLon",
           "endAddress",
           "endAddressLat",
-          "endAddressLon"
+          "endAddressLon",
           "tripType",
           "silverPercent",
           "serviceType",
