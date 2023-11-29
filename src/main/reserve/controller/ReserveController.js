@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const ReserveService = require("../service/ReserveService");
 
 const getAll = async (req, res) => {
@@ -218,13 +220,6 @@ const getDriverNearestReserve = async (req, res) => {
   }
 };
 
-const { auth } = require("express-oauth2-jwt-bearer");
-const jwtCheck = auth({
-  audience: "http://localhost:5000",
-  issuerBaseURL: "https://dev-4aecm50nap6pl2q5.us.auth0.com/",
-  tokenSigningAlg: "RS256",
-});
-
 const getDriverReservesHome = async (req, res) => {
   const { page, id } = req.query;
   try {
@@ -268,7 +263,6 @@ const createDriverPerHourStop = async (req, res) => {
 
 const ReserveRouter = Router();
 
-/* driverRouter.get("/", jwtCheck, getDriversHandler); */
 ReserveRouter.get("/", getAll);
 ReserveRouter.post("/", create);
 ReserveRouter.get("/admin-home", getReservesHome);
@@ -278,7 +272,7 @@ ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
 ReserveRouter.get("/driver-reserves-list/:id", getDriverReservesList);
 ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
 ReserveRouter.get("/driver-nearest/:id", getDriverNearestReserve);
-ReserveRouter.get("/driver-home", getDriverReservesHome);
+ReserveRouter.get("/driver-home", jwtCheck, requiredScopes('driver'), getDriverReservesHome);
 ReserveRouter.get("/driver-search/:id", getDriverReserveByQuery);
 ReserveRouter.post("/driver-stop/:id", createDriverPerHourStop);
 ReserveRouter.get("/search", getReserveByQuery);
