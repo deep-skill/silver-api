@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const DriverService = require('../service/DriverService');
 const DriverAccountController = require('./DriverAccountController');
 
@@ -121,21 +123,13 @@ const getDriverByEmail = async (req, res) => {
   } 
 };
 
-const { auth } = require('express-oauth2-jwt-bearer');
-const jwtCheck = auth({
-  audience: 'http://localhost:5000',
-  issuerBaseURL: 'https://dev-4aecm50nap6pl2q5.us.auth0.com/',
-  tokenSigningAlg: 'RS256'
-});
-
 const DriverRouter = Router();
 
-/* driverRouter.get("/", jwtCheck, getDriversHandler); */
 DriverRouter.use('/bank-accounts', DriverAccountController);
 DriverRouter.get('/', getAll);
 DriverRouter.post('/', create);
 DriverRouter.get('/drivers', getDriverByName);
-DriverRouter.get('/driver', getDriverByEmail);
+DriverRouter.get('/driver', jwtCheck, requiredScopes('driver'), getDriverByEmail);
 DriverRouter.get('/:id', get);
 DriverRouter.patch('/:id', update);
 DriverRouter.delete('/:id', erase);
