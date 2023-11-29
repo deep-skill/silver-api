@@ -247,7 +247,7 @@ const getDriverReserveByQuery = async (req, res) => {
   }
 };
 
-const createDriverPorHoraStop = async (req, res) => {
+const createDriverPerHourStop = async (req, res) => {
   const { id } = req.params;
   const { endAddress, endAddressLat, endAddressLon, tripId } = req.body;
   try {
@@ -280,7 +280,7 @@ ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
 ReserveRouter.get("/driver-nearest/:id", getDriverNearestReserve);
 ReserveRouter.get("/driver-home", getDriverReservesHome);
 ReserveRouter.get("/driver-search/:id", getDriverReserveByQuery);
-ReserveRouter.post("/driver-stop/:id", createDriverPorHoraStop);
+ReserveRouter.post("/driver-stop/:id", createDriverPerHourStop);
 ReserveRouter.get("/search", getReserveByQuery);
 ReserveRouter.get("/:id", get);
 ReserveRouter.patch("/:id", update);
