@@ -65,11 +65,12 @@ const erase = async (req, res) => {
 
 const tollRouter = Router();
 
-/* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
 tollRouter.get("/", getAll);
-tollRouter.post("/", jwtCheck, requiredScopes('admin'), create);
+
+tollRouter.post("/", jwtCheck, requiredScopes('admin'), create);//and driver
 tollRouter.get("/:id", get);
 tollRouter.put("/:id", update);
-tollRouter.delete("/:id", jwtCheck, requiredScopes('admin'), erase);
+tollRouter.delete("/:id", jwtCheck, requiredScopes('admin'), erase);//and driver
+
 
 module.exports = tollRouter;

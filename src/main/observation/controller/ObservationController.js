@@ -62,11 +62,11 @@ const erase = async (req, res) => {
 
 const ObservationRouter = Router();
 
-/* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
 ObservationRouter.get("/", getAll);
 ObservationRouter.post("/", jwtCheck, requiredScopes('admin'), create);
 ObservationRouter.get("/:id", get);
 ObservationRouter.put("/:id", update);
 ObservationRouter.delete("/:id", jwtCheck, requiredScopes('admin'), erase);
+
 
 module.exports = ObservationRouter;

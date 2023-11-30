@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const TripService = require("../service/TripService");
 const {requiredScopes} = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
@@ -172,25 +174,29 @@ const getAdminTripById = async (req, res) => {
   }
 };
 
-
-
 const TripRouter = Router();
 
-/* driverRouter.get("/", jwtCheck, getDriversHandler); */
 TripRouter.get("/", getAll);
-TripRouter.post("/", create);
+TripRouter.post("/", jwtCheck, requiredScopes('driver'), create);
 TripRouter.get("/admin-summary", getTripsSummary);
-TripRouter.get("/admin-history", jwtCheck, requiredScopes('admin'), getTripsHistory);
-TripRouter.get("/admin-trip/:id", jwtCheck, requiredScopes('admin'), getAdminTripById);
-TripRouter.get("/driver-trips/:id", getAllDriverTrips);
-TripRouter.get("/trip-search", jwtCheck, requiredScopes('admin'), getTripsByQuery);
-TripRouter.get("/driver-summary", getDriverMonthSummary);
+
+TripRouter.get("/admin-history", jwtCheck, requiredScopes('admin'), getTripsHistory);//admin
+TripRouter.get("/admin-trip/:id", jwtCheck, requiredScopes('admin'), getAdminTripById);//admin
+TripRouter.get("/trip-search", jwtCheck, requiredScopes('admin'), getTripsByQuery);//admin
+
+
+
+
+TripRouter.get("/driver-trips/:id", jwtCheck, requiredScopes('driver'), getAllDriverTrips);//driver
+
+TripRouter.get("/driver-summary", jwtCheck, requiredScopes('driver'), getDriverMonthSummary);//driver
+
 TripRouter.get("/:id", get);
 TripRouter.patch("/:id", update);
 TripRouter.delete("/:id", erase);
 TripRouter.get("/driver-trip/:id", get);
-TripRouter.patch("/driver-trip/:id", update);
+TripRouter.patch("/driver-trip/:id", jwtCheck, requiredScopes('driver'), update);
 TripRouter.delete("/driver-trip/:id", erase);
-TripRouter.get("/driver-search/:id", getDriverTripByQuery);
+TripRouter.get("/driver-search/:id", jwtCheck, requiredScopes('driver'), getDriverTripByQuery);
 
 module.exports = TripRouter;
