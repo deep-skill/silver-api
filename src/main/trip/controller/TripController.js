@@ -1,5 +1,7 @@
 const { Router } = require("express");
 const TripService = require("../service/TripService");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 
 const getAll = async (req, res) => {
   try {
@@ -170,13 +172,7 @@ const getAdminTripById = async (req, res) => {
   }
 };
 
-const { auth } = require("express-oauth2-jwt-bearer");
 
-const jwtCheck = auth({
-  audience: "http://localhost:5000",
-  issuerBaseURL: "https://dev-4aecm50nap6pl2q5.us.auth0.com/",
-  tokenSigningAlg: "RS256",
-});
 
 const TripRouter = Router();
 
