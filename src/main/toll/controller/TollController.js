@@ -67,10 +67,12 @@ const tollRouter = Router();
 
 tollRouter.get("/", getAll);
 
-tollRouter.post("/", jwtCheck, requiredScopes('admin', 'driver'), create);//and driver
+tollRouter.post("/", jwtCheck, requiredScopes('admin'), create);
+tollRouter.post("/driver", jwtCheck, requiredScopes('driver'), create);
 tollRouter.get("/:id", get);
 tollRouter.put("/:id", update);
-tollRouter.delete("/:id", jwtCheck, requiredScopes('admin', 'driver'), erase);//and driver
+tollRouter.delete("/:id", jwtCheck, requiredScopes('admin', 'driver'), erase);
+tollRouter.delete("/driver/:id", jwtCheck, requiredScopes('driver'), erase);
 
 
 module.exports = tollRouter;
