@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const ParkingService = require("../service/ParkingService");
 
 const getAll = async (req, res) => {
@@ -61,11 +63,10 @@ const erase = async (req, res) => {
 
 const ParkingRouter = Router();
 
-/* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
 ParkingRouter.get("/", getAll);
-ParkingRouter.post("/", create);
+ParkingRouter.post("/", jwtCheck, requiredScopes('driver'), create);
 ParkingRouter.get("/:id", get);
 ParkingRouter.put("/:id", update);
-ParkingRouter.delete("/:id", erase);
+ParkingRouter.delete("/:id", jwtCheck, requiredScopes('driver'), erase);
 
 module.exports = ParkingRouter;

@@ -23,11 +23,11 @@ module.exports = (sequelize) => {
     },
     dni: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     ruc: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     phoneNumber: {
       type: DataTypes.STRING,

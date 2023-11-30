@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const TripService = require("../service/TripService");
 
 const getAll = async (req, res) => {
@@ -170,31 +172,22 @@ const getAdminTripById = async (req, res) => {
   }
 };
 
-const { auth } = require("express-oauth2-jwt-bearer");
-
-const jwtCheck = auth({
-  audience: "http://localhost:5000",
-  issuerBaseURL: "https://dev-4aecm50nap6pl2q5.us.auth0.com/",
-  tokenSigningAlg: "RS256",
-});
-
 const TripRouter = Router();
 
-/* driverRouter.get("/", jwtCheck, getDriversHandler); */
 TripRouter.get("/", getAll);
-TripRouter.post("/", create);
+TripRouter.post("/", jwtCheck, requiredScopes('driver'), create);
 TripRouter.get("/admin-summary", getTripsSummary);
 TripRouter.get("/admin-history", getTripsHistory);
 TripRouter.get("/admin-trip/:id", getAdminTripById);
-TripRouter.get("/driver-trips/:id", getAllDriverTrips);
+TripRouter.get("/driver-trips/:id", jwtCheck, requiredScopes('driver'), getAllDriverTrips);
 TripRouter.get("/trip-search", getTripsByQuery);
-TripRouter.get("/driver-summary", getDriverMonthSummary);
+TripRouter.get("/driver-summary", jwtCheck, requiredScopes('driver'), getDriverMonthSummary);
 TripRouter.get("/:id", get);
 TripRouter.patch("/:id", update);
 TripRouter.delete("/:id", erase);
 TripRouter.get("/driver-trip/:id", get);
-TripRouter.patch("/driver-trip/:id", update);
+TripRouter.patch("/driver-trip/:id", jwtCheck, requiredScopes('driver'), update);
 TripRouter.delete("/driver-trip/:id", erase);
-TripRouter.get("/driver-search/:id", getDriverTripByQuery);
+TripRouter.get("/driver-search/:id", jwtCheck, requiredScopes('driver'), getDriverTripByQuery);
 
 module.exports = TripRouter;
