@@ -64,10 +64,10 @@ const erase = async (req, res) => {
 const ParkingRouter = Router();
 
 ParkingRouter.get("/", getAll);
-ParkingRouter.post("/", jwtCheck, requiredScopes('admin'), create);
+ParkingRouter.post("/", jwtCheck, requiredScopes('admin', 'driver'), create);
 ParkingRouter.get("/:id", get);
 ParkingRouter.put("/:id", update);
-ParkingRouter.delete("/:id", jwtCheck, requiredScopes('admin'), erase);
+ParkingRouter.delete("/:id", jwtCheck, requiredScopes('admin', 'driver'), erase);
 
 
 module.exports = ParkingRouter;
