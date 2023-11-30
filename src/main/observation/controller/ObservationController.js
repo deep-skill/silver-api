@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const ObservationService = require("../service/ObservationService");
 
 const getAll = async (req, res) => {
@@ -62,9 +64,9 @@ const ObservationRouter = Router();
 
 /* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
 ObservationRouter.get("/", getAll);
-ObservationRouter.post("/", create);
+ObservationRouter.post("/", jwtCheck, requiredScopes('admin'), create);
 ObservationRouter.get("/:id", get);
 ObservationRouter.put("/:id", update);
-ObservationRouter.delete("/:id", erase);
+ObservationRouter.delete("/:id", jwtCheck, requiredScopes('admin'), erase);
 
 module.exports = ObservationRouter;

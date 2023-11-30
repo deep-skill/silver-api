@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const StopService = require("../service/StopService");
 
 const getAll = async (req, res) => {
@@ -64,9 +66,9 @@ const StopRouter = Router();
 
 /* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
 StopRouter.get("/", getAll);
-StopRouter.post("/", create);
+StopRouter.post("/", jwtCheck, requiredScopes('admin'), create);
 StopRouter.get("/:id", get);
 StopRouter.put("/:id", update);
-StopRouter.delete("/:id", erase);
+StopRouter.delete("/:id",jwtCheck, requiredScopes('admin'), erase);
 
 module.exports = StopRouter;

@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const TollService = require("../service/TollService");
 
 const getAll = async (req, res) => {
@@ -65,9 +67,9 @@ const tollRouter = Router();
 
 /* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
 tollRouter.get("/", getAll);
-tollRouter.post("/", create);
+tollRouter.post("/", jwtCheck, requiredScopes('admin'), create);
 tollRouter.get("/:id", get);
 tollRouter.put("/:id", update);
-tollRouter.delete("/:id", erase);
+tollRouter.delete("/:id", jwtCheck, requiredScopes('admin'), erase);
 
 module.exports = tollRouter;
