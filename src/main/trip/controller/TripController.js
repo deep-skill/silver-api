@@ -2,6 +2,8 @@ const { Router } = require("express");
 const {requiredScopes} = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const TripService = require("../service/TripService");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 
 const getAll = async (req, res) => {
   try {
@@ -177,11 +179,18 @@ const TripRouter = Router();
 TripRouter.get("/", getAll);
 TripRouter.post("/", jwtCheck, requiredScopes('driver'), create);
 TripRouter.get("/admin-summary", getTripsSummary);
-TripRouter.get("/admin-history", getTripsHistory);
-TripRouter.get("/admin-trip/:id", getAdminTripById);
-TripRouter.get("/driver-trips/:id", jwtCheck, requiredScopes('driver'), getAllDriverTrips);
-TripRouter.get("/trip-search", getTripsByQuery);
-TripRouter.get("/driver-summary", jwtCheck, requiredScopes('driver'), getDriverMonthSummary);
+
+TripRouter.get("/admin-history", jwtCheck, requiredScopes('admin'), getTripsHistory);//admin
+TripRouter.get("/admin-trip/:id", jwtCheck, requiredScopes('admin'), getAdminTripById);//admin
+TripRouter.get("/trip-search", jwtCheck, requiredScopes('admin'), getTripsByQuery);//admin
+
+
+
+
+TripRouter.get("/driver-trips/:id", jwtCheck, requiredScopes('driver'), getAllDriverTrips);//driver
+
+TripRouter.get("/driver-summary", jwtCheck, requiredScopes('driver'), getDriverMonthSummary);//driver
+
 TripRouter.get("/:id", get);
 TripRouter.patch("/:id", update);
 TripRouter.delete("/:id", erase);

@@ -265,17 +265,24 @@ const ReserveRouter = Router();
 
 ReserveRouter.get("/", getAll);
 ReserveRouter.post("/", create);
-ReserveRouter.get("/admin-home", getReservesHome);
-ReserveRouter.get("/admin-search-home", getReserveHomeByQuery);
-ReserveRouter.get("/admin-reserves", getReservesList);
-ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
-ReserveRouter.get("/driver-reserves-list/:id", jwtCheck, requiredScopes('driver'), getDriverReservesList);
-ReserveRouter.get("/driver-reserves/:id", jwtCheck, requiredScopes('driver'), getDriverReserveDetail);
-ReserveRouter.get("/driver-nearest/:id", jwtCheck, requiredScopes('driver'), getDriverNearestReserve);
-ReserveRouter.get("/driver-home", jwtCheck, requiredScopes('driver'), getDriverReservesHome);
-ReserveRouter.get("/driver-search/:id", jwtCheck, requiredScopes('driver'), getDriverReserveByQuery);
-ReserveRouter.post("/driver-stop/:id", jwtCheck, requiredScopes('driver'), createDriverPerHourStop);
-ReserveRouter.get("/search", getReserveByQuery);
+
+ReserveRouter.get("/admin-home",jwtCheck, requiredScopes('admin'), getReservesHome);//admin
+ReserveRouter.get("/admin-search-home",jwtCheck, requiredScopes('admin'), getReserveHomeByQuery);//admin
+ReserveRouter.get("/admin-reserves", jwtCheck, requiredScopes('admin'),getReservesList);//admin
+ReserveRouter.get("/admin-reserves/:id", jwtCheck, requiredScopes('admin'), getReserveDetail);//admin
+
+ReserveRouter.get("/driver-home", jwtCheck, requiredScopes('driver'), getDriverReservesHome);//admin and driver
+
+
+
+ReserveRouter.get("/driver-reserves-list/:id", jwtCheck, requiredScopes('driver'), getDriverReservesList);//driver
+ReserveRouter.get("/driver-reserves/:id", jwtCheck, requiredScopes('driver'), getDriverReserveDetail);//drver
+ReserveRouter.get("/driver-nearest/:id", jwtCheck, requiredScopes('driver'), getDriverNearestReserve);//driver
+
+ReserveRouter.get("/driver-search/:id", jwtCheck, requiredScopes('driver'), getDriverReserveByQuery);//driver
+ReserveRouter.post("/driver-stop/:id", jwtCheck, requiredScopes('driver'), createDriverPerHourStop);//driver
+
+
 ReserveRouter.get("/:id", get);
 ReserveRouter.patch("/:id", update);
 ReserveRouter.delete("/:id", erase);
