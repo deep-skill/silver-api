@@ -128,7 +128,7 @@ const DriverRouter = Router();
 DriverRouter.use('/bank-accounts', DriverAccountController);
 DriverRouter.get('/', getAll);
 DriverRouter.post('/', create);
-DriverRouter.get('/drivers', getDriverByName);
+DriverRouter.get('/drivers', jwtCheck, requiredScopes('admin'),getDriverByName);
 DriverRouter.get('/driver', jwtCheck, requiredScopes('driver'), getDriverByEmail);
 DriverRouter.get('/:id', get);
 DriverRouter.patch('/:id', update);
