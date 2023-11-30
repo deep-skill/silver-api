@@ -105,12 +105,6 @@ const getUserByName = async (req, res) => {
   } 
 };
 
-const { auth } = require('express-oauth2-jwt-bearer');
-const jwtCheck = auth({
-  audience: 'http://localhost:5000',
-  issuerBaseURL: 'https://dev-4aecm50nap6pl2q5.us.auth0.com/',
-  tokenSigningAlg: 'RS256'
-});
 
 const UserRouter = Router();
 

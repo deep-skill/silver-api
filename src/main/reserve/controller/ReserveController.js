@@ -267,7 +267,7 @@ ReserveRouter.get("/", getAll);
 ReserveRouter.post("/", create);
 ReserveRouter.get("/admin-home",jwtCheck, requiredScopes('admin'), getReservesHome);
 ReserveRouter.get("/admin-search-home", getReserveHomeByQuery);
-ReserveRouter.get("/admin-reserves", getReservesList);
+ReserveRouter.get("/admin-reserves", jwtCheck, requiredScopes('admin'),getReservesList);
 ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
 ReserveRouter.get("/driver-reserves-list/:id", getDriverReservesList);
 ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
