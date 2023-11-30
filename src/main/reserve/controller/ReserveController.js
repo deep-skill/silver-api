@@ -265,7 +265,7 @@ const ReserveRouter = Router();
 
 ReserveRouter.get("/", getAll);
 ReserveRouter.post("/", create);
-ReserveRouter.get("/admin-home", getReservesHome);
+ReserveRouter.get("/admin-home",jwtCheck, requiredScopes('admin'), getReservesHome);
 ReserveRouter.get("/admin-search-home", getReserveHomeByQuery);
 ReserveRouter.get("/admin-reserves", getReservesList);
 ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
