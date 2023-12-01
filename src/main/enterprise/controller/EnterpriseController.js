@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const { requiredScopes } = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const EnterpriseService = require('../service/EnterpriseService');
 
 const getAll = async (req, res) => {
@@ -13,7 +15,6 @@ const getAll = async (req, res) => {
 const get = async (req, res) => {
   const {id} = req.params;
   try {
-    console.log(id);
     if (!id) throw new Error("Missing data");
     const enterprise = await EnterpriseService.get(id);
     return res.status(200).json(enterprise);
@@ -27,7 +28,6 @@ const create = async (req, res) => {
     ruc,
     name,
     address,
-
   } = req.body;
   try {
     const enterprise = await EnterpriseService.create(
@@ -75,11 +75,10 @@ const create = async (req, res) => {
 
   const EnterpriseRouter = Router();
 
-  /* EnterpriseRouters.get("/", jwtCheck, getEnterpriseHandler); */
-  EnterpriseRouter.get('/',  getAll);
-  EnterpriseRouter.post('/', create);
-  EnterpriseRouter.get('/:id', get);
-  EnterpriseRouter.put('/:id', update);
-  EnterpriseRouter.delete('/:id', erase);
+  EnterpriseRouter.get('/', jwtCheck, requiredScopes('admin'), getAll);
+  EnterpriseRouter.post('/', jwtCheck, requiredScopes('admin'), create);
+  EnterpriseRouter.get('/:id', jwtCheck, requiredScopes('admin'), get);
+  EnterpriseRouter.put('/:id', jwtCheck, requiredScopes('admin'), update);
+  EnterpriseRouter.delete('/:id', jwtCheck, requiredScopes('admin'), erase);
   
   module.exports = EnterpriseRouter;

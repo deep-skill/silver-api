@@ -516,6 +516,7 @@ const getDriverReserveByQuery = async (query, id) => {
       "startAddress",
       "endAddress",
       "tripType",
+      "price",
     ],
     include: [
       {

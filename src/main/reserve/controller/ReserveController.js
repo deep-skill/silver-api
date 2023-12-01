@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const ReserveService = require("../service/ReserveService");
 
 const getAll = async (req, res) => {
@@ -218,13 +220,6 @@ const getDriverNearestReserve = async (req, res) => {
   }
 };
 
-const { auth } = require("express-oauth2-jwt-bearer");
-const jwtCheck = auth({
-  audience: "http://localhost:5000",
-  issuerBaseURL: "https://dev-4aecm50nap6pl2q5.us.auth0.com/",
-  tokenSigningAlg: "RS256",
-});
-
 const getDriverReservesHome = async (req, res) => {
   const { page, id } = req.query;
   try {
@@ -268,22 +263,21 @@ const createDriverPerHourStop = async (req, res) => {
 
 const ReserveRouter = Router();
 
-/* driverRouter.get("/", jwtCheck, getDriversHandler); */
-ReserveRouter.get("/", getAll);
-ReserveRouter.post("/", create);
-ReserveRouter.get("/admin-home", getReservesHome);
-ReserveRouter.get("/admin-search-home", getReserveHomeByQuery);
-ReserveRouter.get("/admin-reserves", getReservesList);
-ReserveRouter.get("/admin-reserves/:id", getReserveDetail);
-ReserveRouter.get("/driver-reserves-list/:id", getDriverReservesList);
-ReserveRouter.get("/driver-reserves/:id", getDriverReserveDetail);
-ReserveRouter.get("/driver-nearest/:id", getDriverNearestReserve);
-ReserveRouter.get("/driver-home", getDriverReservesHome);
-ReserveRouter.get("/driver-search/:id", getDriverReserveByQuery);
-ReserveRouter.post("/driver-stop/:id", createDriverPerHourStop);
-ReserveRouter.get("/search", getReserveByQuery);
-ReserveRouter.get("/:id", get);
-ReserveRouter.patch("/:id", update);
-ReserveRouter.delete("/:id", erase);
+ReserveRouter.get("/", jwtCheck, requiredScopes('admin'), getAll);
+ReserveRouter.post("/", jwtCheck, requiredScopes('admin'), create);
+ReserveRouter.get("/admin-home",jwtCheck, requiredScopes('admin'), getReservesHome);
+ReserveRouter.get("/admin-search-home",jwtCheck, requiredScopes('admin'), getReserveHomeByQuery);
+ReserveRouter.get("/admin-reserves", jwtCheck, requiredScopes('admin'),getReservesList);
+ReserveRouter.get("/admin-reserves/:id", jwtCheck, requiredScopes('admin'), getReserveDetail);
+ReserveRouter.get("/driver-home", jwtCheck, requiredScopes('driver'), getDriverReservesHome);
+ReserveRouter.get("/driver-reserves-list/:id", jwtCheck, requiredScopes('driver'), getDriverReservesList);
+ReserveRouter.get("/driver-reserves/:id", jwtCheck, requiredScopes('driver'), getDriverReserveDetail)
+ReserveRouter.get("/driver-nearest/:id", jwtCheck, requiredScopes('driver'), getDriverNearestReserve);
+ReserveRouter.get("/search", jwtCheck, requiredScopes( 'admin'), getReserveByQuery);
+ReserveRouter.get("/driver-search/:id", jwtCheck, requiredScopes('driver'), getDriverReserveByQuery);
+ReserveRouter.post("/driver-stop/:id", jwtCheck, requiredScopes('driver'), createDriverPerHourStop);
+ReserveRouter.get("/:id", jwtCheck, requiredScopes('admin'), get);
+ReserveRouter.patch("/:id", jwtCheck, requiredScopes('admin'), update);
+ReserveRouter.delete("/:id", jwtCheck, requiredScopes('admin'), erase);
 
 module.exports = ReserveRouter;

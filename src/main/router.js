@@ -1,7 +1,5 @@
 const {Router} = require('express');
 
-const {auth} = require('express-oauth2-jwt-bearer');
-
 const userController = require('../main/user/controller/UserController');
 const enterpriseController = require('../main/enterprise/controller/EnterpriseController');
 const driverController = require('../main/driver/controller/DriverController');
@@ -13,20 +11,7 @@ const observationController = require('../main/observation/controller/Observatio
 const stopController = require('../main/stop/controller/StopController');
 const tollController = require('../main/toll/controller/TollController');
 
-const jwtCheck = auth({
-  audience: 'http://localhost:5000',
-  issuerBaseURL: 'https://dev-4aecm50nap6pl2q5.us.auth0.com/',
-  tokenSigningAlg: 'RS256'
-});
-
 const router = Router();
-
-router.get('/', (req, res) => {
-  res.status(200).send('Hi! Home');
-});
-/* router.get('/', jwtCheck, (req, res) => {
-  res.status(200).send('Hi! Home');
-}); */
 
 router.use('/silver-api/enterprises', enterpriseController);
 router.use('/silver-api/users', userController);
