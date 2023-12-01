@@ -109,11 +109,11 @@ const getUserByName = async (req, res) => {
 
 const UserRouter = Router();
 
+UserRouter.get('/passengers', jwtCheck, requiredScopes('admin'), getUserByName);
 UserRouter.get('/', jwtCheck, requiredScopes('admin'), getAll);
 UserRouter.get('/:id', jwtCheck, requiredScopes('admin'), get);
 UserRouter.post('/', jwtCheck, requiredScopes('admin'), create);
 UserRouter.patch('/:id', jwtCheck, requiredScopes('admin'), update);
 UserRouter.delete('/:id', jwtCheck, requiredScopes('admin'), erase);
-UserRouter.get('/passengers', jwtCheck, requiredScopes('admin'), getUserByName);
 
 module.exports = UserRouter;
