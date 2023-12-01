@@ -274,6 +274,7 @@ ReserveRouter.get("/driver-home", jwtCheck, requiredScopes('driver'), getDriverR
 ReserveRouter.get("/driver-reserves-list/:id", jwtCheck, requiredScopes('driver'), getDriverReservesList);
 ReserveRouter.get("/driver-reserves/:id", jwtCheck, requiredScopes('driver'), getDriverReserveDetail)
 ReserveRouter.get("/driver-nearest/:id", jwtCheck, requiredScopes('driver'), getDriverNearestReserve);
+ReserveRouter.get("/search", jwtCheck, requiredScopes( 'admin'), getReserveByQuery);
 ReserveRouter.get("/driver-search/:id", jwtCheck, requiredScopes('driver'), getDriverReserveByQuery);
 ReserveRouter.post("/driver-stop/:id", jwtCheck, requiredScopes('driver'), createDriverPerHourStop);
 ReserveRouter.get("/:id", get);
