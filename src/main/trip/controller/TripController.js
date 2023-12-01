@@ -174,7 +174,7 @@ const getAdminTripById = async (req, res) => {
 
 const TripRouter = Router();
 
-TripRouter.get("/", getAll);
+TripRouter.get("/", jwtCheck, requiredScopes('driver'), getAll);
 TripRouter.post("/", jwtCheck, requiredScopes('driver'), create);
 TripRouter.get("/admin-summary", getTripsSummary);
 TripRouter.get("/admin-history", jwtCheck, requiredScopes('admin'), getTripsHistory);
@@ -182,12 +182,12 @@ TripRouter.get("/admin-trip/:id", jwtCheck, requiredScopes('admin'), getAdminTri
 TripRouter.get("/trip-search", jwtCheck, requiredScopes('admin'), getTripsByQuery);
 TripRouter.get("/driver-trips/:id", jwtCheck, requiredScopes('driver'), getAllDriverTrips);
 TripRouter.get("/driver-summary", jwtCheck, requiredScopes('driver'), getDriverMonthSummary);
-TripRouter.get("/:id", get);
-TripRouter.patch("/:id", update);
-TripRouter.delete("/:id", erase);
-TripRouter.get("/driver-trip/:id", get);
+TripRouter.get("/:id", jwtCheck, requiredScopes('driver'), get);
+TripRouter.patch("/:id", jwtCheck, requiredScopes('driver'), update);
+TripRouter.delete("/:id", jwtCheck, requiredScopes('driver'), erase);
+TripRouter.get("/driver-trip/:id", jwtCheck, requiredScopes('driver'), get);
 TripRouter.patch("/driver-trip/:id", jwtCheck, requiredScopes('driver'), update);
-TripRouter.delete("/driver-trip/:id", erase);
+TripRouter.delete("/driver-trip/:id", jwtCheck, requiredScopes('driver'), erase);
 TripRouter.get("/driver-search/:id", jwtCheck, requiredScopes('driver'), getDriverTripByQuery);
 
 module.exports = TripRouter;

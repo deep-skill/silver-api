@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const { requiredScopes } = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const SilverCarService = require('../service/SilverCarService');
 
 const getAll = async (req, res) => {
@@ -83,15 +85,12 @@ const erase = async (req, res) => {
   }
 };
 
-
-
 const SilverCarRouter = Router();
 
-/* driverRouter.get("/", jwtCheck, getDriversHandler); */
-SilverCarRouter.get('/', getAll);
-SilverCarRouter.post('/', create);
-SilverCarRouter.get('/:id', get);
-SilverCarRouter.patch('/:id', update);
-SilverCarRouter.delete('/:id', erase);
+SilverCarRouter.get('/', jwtCheck, requiredScopes('admin'), getAll);
+SilverCarRouter.post('/', jwtCheck, requiredScopes('admin'), create);
+SilverCarRouter.get('/:id', jwtCheck, requiredScopes('admin'), get);
+SilverCarRouter.patch('/:id', jwtCheck, requiredScopes('admin'), update);
+SilverCarRouter.delete('/:id', jwtCheck, requiredScopes('admin'), erase);
 
 module.exports = SilverCarRouter;

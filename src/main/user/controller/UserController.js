@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const UserService = require('../service/UserService');
 
@@ -107,15 +107,13 @@ const getUserByName = async (req, res) => {
   } 
 };
 
-
 const UserRouter = Router();
 
-/* driverRouter.get("/", jwtCheck, getDriversHandler); */
-UserRouter.get('/', getAll);
-UserRouter.post('/', create);
-UserRouter.get('/passengers',jwtCheck, requiredScopes('admin'), getUserByName);
-UserRouter.get('/:id', get);
-UserRouter.patch('/:id', update);
-UserRouter.delete('/:id', erase);
+UserRouter.get('/', jwtCheck, requiredScopes('admin'), getAll);
+UserRouter.get('/:id', jwtCheck, requiredScopes('admin'), get);
+UserRouter.post('/', jwtCheck, requiredScopes('admin'), create);
+UserRouter.patch('/:id', jwtCheck, requiredScopes('admin'), update);
+UserRouter.delete('/:id', jwtCheck, requiredScopes('admin'), erase);
+UserRouter.get('/passengers', jwtCheck, requiredScopes('admin'), getUserByName);
 
 module.exports = UserRouter;

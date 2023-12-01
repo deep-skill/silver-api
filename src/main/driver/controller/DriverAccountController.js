@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const { requiredScopes } = require('express-oauth2-jwt-bearer');
+const jwtCheck = require('../../jwtCheck');
 const DriverAccountService = require('../service/DriverAccountService');
 
 const getAll = async (req, res) => {
@@ -78,11 +80,10 @@ const erase = async (req, res) => {
 
 const DriverAccountRouter = Router();
 
-/* driverRouter.get("/", jwtCheck, getDriversHandler); */
-DriverAccountRouter.get('/', getAll);
-DriverAccountRouter.post('/', create);
-DriverAccountRouter.get('/:id', get);
-DriverAccountRouter.patch('/:id', update);
-DriverAccountRouter.delete('/:id', erase);
+DriverAccountRouter.get('/', jwtCheck, requiredScopes('admin'), getAll);
+DriverAccountRouter.post('/', jwtCheck, requiredScopes('admin'), create);
+DriverAccountRouter.get('/:id', jwtCheck, requiredScopes('admin'), get);
+DriverAccountRouter.patch('/:id', jwtCheck, requiredScopes('admin'), update);
+DriverAccountRouter.delete('/:id', jwtCheck, requiredScopes('admin'), erase);
 
 module.exports = DriverAccountRouter;

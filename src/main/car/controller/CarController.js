@@ -1,5 +1,5 @@
-const {Router} = require("express");
-const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const { Router } = require("express");
+const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const CarService = require("../service/CarService");
 
@@ -102,12 +102,11 @@ const getCarByLicensePlate = async (req, res) => {
 
 const CarRouter = Router();
 
-/* ReserveRouters.get("/", jwtCheck, getReservesHandler); */
-CarRouter.get('/',  getAll);
-CarRouter.post('/', create);
+CarRouter.get('/', jwtCheck, requiredScopes('admin'), getAll);
+CarRouter.post('/', jwtCheck, requiredScopes('admin'), create);
 CarRouter.get('/cars', jwtCheck, requiredScopes('admin'), getCarByLicensePlate);
-CarRouter.get('/:id', get);
-CarRouter.put('/:id', update);
-CarRouter.delete('/:id', erase);
+CarRouter.get('/:id', jwtCheck, requiredScopes('admin'), get);
+CarRouter.put('/:id', jwtCheck, requiredScopes('admin'), update);
+CarRouter.delete('/:id', jwtCheck, requiredScopes('admin'), erase);
 
 module.exports = CarRouter;

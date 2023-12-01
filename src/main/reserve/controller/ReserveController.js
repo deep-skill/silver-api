@@ -263,9 +263,8 @@ const createDriverPerHourStop = async (req, res) => {
 
 const ReserveRouter = Router();
 
-ReserveRouter.get("/", getAll);
-ReserveRouter.post("/", create);
-
+ReserveRouter.get("/", jwtCheck, requiredScopes('admin'), getAll);
+ReserveRouter.post("/", jwtCheck, requiredScopes('admin'), create);
 ReserveRouter.get("/admin-home",jwtCheck, requiredScopes('admin'), getReservesHome);
 ReserveRouter.get("/admin-search-home",jwtCheck, requiredScopes('admin'), getReserveHomeByQuery);
 ReserveRouter.get("/admin-reserves", jwtCheck, requiredScopes('admin'),getReservesList);
@@ -277,8 +276,8 @@ ReserveRouter.get("/driver-nearest/:id", jwtCheck, requiredScopes('driver'), get
 ReserveRouter.get("/search", jwtCheck, requiredScopes( 'admin'), getReserveByQuery);
 ReserveRouter.get("/driver-search/:id", jwtCheck, requiredScopes('driver'), getDriverReserveByQuery);
 ReserveRouter.post("/driver-stop/:id", jwtCheck, requiredScopes('driver'), createDriverPerHourStop);
-ReserveRouter.get("/:id", get);
-ReserveRouter.patch("/:id", update);
-ReserveRouter.delete("/:id", erase);
+ReserveRouter.get("/:id", jwtCheck, requiredScopes('admin'), get);
+ReserveRouter.patch("/:id", jwtCheck, requiredScopes('admin'), update);
+ReserveRouter.delete("/:id", jwtCheck, requiredScopes('admin'), erase);
 
 module.exports = ReserveRouter;

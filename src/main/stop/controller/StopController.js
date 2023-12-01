@@ -64,12 +64,12 @@ const erase = async (req, res) => {
 
 const StopRouter = Router();
 
-StopRouter.get("/", getAll);
+StopRouter.get("/", jwtCheck, requiredScopes('admin'), getAll);
+StopRouter.get("/:id", jwtCheck, requiredScopes('admin'), get);
 StopRouter.post("/", jwtCheck, requiredScopes('admin'), create);
-StopRouter.post("/driver", jwtCheck, requiredScopes( 'driver'), create);
-StopRouter.get("/:id", get);
-StopRouter.put("/:id", update);
+StopRouter.put("/:id", jwtCheck, requiredScopes('admin'), update);
 StopRouter.delete("/:id",jwtCheck, requiredScopes('admin'), erase);
+StopRouter.post("/driver", jwtCheck, requiredScopes( 'driver'), create);
 StopRouter.delete("/driver/:id",jwtCheck, requiredScopes('driver'), erase);
 
 
