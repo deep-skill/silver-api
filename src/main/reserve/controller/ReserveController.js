@@ -270,7 +270,7 @@ ReserveRouter.get("/admin-home",jwtCheck, requiredScopes('admin'), getReservesHo
 ReserveRouter.get("/admin-search-home",jwtCheck, requiredScopes('admin'), getReserveHomeByQuery);
 ReserveRouter.get("/admin-reserves", jwtCheck, requiredScopes('admin'),getReservesList);
 ReserveRouter.get("/admin-reserves/:id", jwtCheck, requiredScopes('admin'), getReserveDetail);
-ReserveRouter.get("/driver-home", jwtCheck, requiredScopes( 'admin', 'driver'), getDriverReservesHome);
+ReserveRouter.get("/driver-home", jwtCheck, requiredScopes('driver'), getDriverReservesHome);
 ReserveRouter.get("/driver-reserves-list/:id", jwtCheck, requiredScopes('driver'), getDriverReservesList);
 ReserveRouter.get("/driver-reserves/:id", jwtCheck, requiredScopes('driver'), getDriverReserveDetail)
 ReserveRouter.get("/driver-nearest/:id", jwtCheck, requiredScopes('driver'), getDriverNearestReserve);
