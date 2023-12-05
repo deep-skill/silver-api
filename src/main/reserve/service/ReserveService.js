@@ -246,6 +246,7 @@ const getReservesList = async (page) => {
         attributes: ["type"],
       },
     ],
+    order: [["startTime", "DESC"]],
   });
 };
 

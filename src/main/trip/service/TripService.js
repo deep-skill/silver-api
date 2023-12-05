@@ -137,6 +137,19 @@ const update = async (
   return trip;
 };
 
+const updateTotalPrice = async (
+  id,
+  totalPrice,
+) => {
+  const trip = await Trip.findOne({ where: { id } });
+  if (!trip) throw new Error("Trip not exist");
+
+  totalPrice ? (trip.totalPrice = totalPrice) : null;
+  await trip.save();
+
+  return trip;
+};
+
 const erase = async (id) => {
   const trip = await Trip.findOne({ where: { id } });
   await trip.destroy();
@@ -477,6 +490,7 @@ module.exports = {
   create,
   erase,
   update,
+  updateTotalPrice,
   getTripsSummary,
   getDriverMonthSummary,
   getTripsHistory,
