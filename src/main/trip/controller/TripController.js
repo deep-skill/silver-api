@@ -80,6 +80,23 @@ const update = async (req, res) => {
   }
 };
 
+const updateTotalPrice = async (req, res) => {
+  const { id } = req.params;
+  const {
+    totalPrice,
+  } = req.body;
+  try {
+    if (!id) throw new Error("Missing data");
+    const updatedTrip = await TripService.updateTotalPrice(
+      id,
+      totalPrice,
+    );
+    return res.status(200).json(updatedTrip);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 const erase = async (req, res) => {
   const { id } = req.params;
   try {
@@ -183,6 +200,7 @@ TripRouter.get("/trip-search", jwtCheck, requiredScopes('admin'), getTripsByQuer
 TripRouter.get("/driver-trips/:id", jwtCheck, requiredScopes('driver'), getAllDriverTrips);
 TripRouter.get("/driver-summary", jwtCheck, requiredScopes('driver'), getDriverMonthSummary);
 TripRouter.get("/:id", jwtCheck, requiredScopes('driver'), get);
+TripRouter.patch("/admin-trip-total-price/:id", jwtCheck, requiredScopes('admin'), updateTotalPrice);
 TripRouter.patch("/:id", jwtCheck, requiredScopes('driver'), update);
 TripRouter.delete("/:id", jwtCheck, requiredScopes('driver'), erase);
 TripRouter.get("/driver-trip/:id", jwtCheck, requiredScopes('driver'), get);
