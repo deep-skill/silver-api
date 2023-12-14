@@ -5,7 +5,7 @@ Silver Express is a taxicab company.
 
 ## Run the project
 
-### Docker Setup
+### 🐳 Docker Setup
 
 If you want to use Docker to set up the app, you can use the provided docker-compose.yml file. Run the following command:
 
