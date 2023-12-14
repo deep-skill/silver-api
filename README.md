@@ -5,7 +5,17 @@ Silver Express is a taxicab company.
 
 ## Run the project
 
-To run the project:
+### Docker Setup
+
+If you want to use Docker to set up the app, you can use the provided docker-compose.yml file. Run the following command:
+
+```sh
+docker compose up
+```
+
+### Manual Setup
+
+Alternatively, if you want to run the project manually:
 
 First open the terminal and start the project in docker with the following command line.
 
@@ -29,6 +39,7 @@ Finally run the following command
 ```sh
 npm start
 ```
+
 
 ## Completed Tasks
 
