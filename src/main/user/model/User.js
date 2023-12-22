@@ -32,15 +32,15 @@ module.exports = (sequelize) => {
     phoneNumber: {
       type: DataTypes.STRING,
       field: 'phone_number',
-      allowNull: false
+      allowNull: true
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     rating: {
       type: DataTypes.INTEGER,
