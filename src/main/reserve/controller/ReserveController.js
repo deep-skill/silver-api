@@ -81,6 +81,7 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
+
   const {
     userId,
     driverId,
@@ -103,7 +104,7 @@ const update = async (req, res) => {
   try {
     if (!id) throw new Error("Missing data");
     const updatedReserve = await ReserveService.update(
-      id,
+      +id,
       userId,
       driverId,
       enterpriseId,
