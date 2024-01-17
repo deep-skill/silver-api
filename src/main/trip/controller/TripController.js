@@ -82,13 +82,14 @@ const update = async (req, res) => {
 
 const updateTotalPrice = async (req, res) => {
   const { id } = req.params;
+  
   const {
     totalPrice,
   } = req.body;
   try {
     if (!id) throw new Error("Missing data");
     const updatedTrip = await TripService.updateTotalPrice(
-      id,
+      +id,
       totalPrice,
     );
     return res.status(200).json(updatedTrip);
