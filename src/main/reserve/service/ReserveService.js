@@ -409,6 +409,7 @@ const getReserveByQuery = async (query) => {
 
 const getDriverNearestReserve = async (id) => {
   const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   const reserve = await Reserve.findOne({
     attributes: ["id", "startTime", "startAddress", "price"],
@@ -442,7 +443,6 @@ const getDriverNearestReserve = async (id) => {
     },
     order: [["startTime", "ASC"]],
   });
-
   return reserve;
 };
 const getDriverReservesHome = async (page, id) => {
