@@ -165,12 +165,17 @@ const getReservesHome = async (page) => {
         model: Enterprise,
         attributes: ["name"],
       },
+      {
+        model: Trip,
+        attributes: ["id"],
+      },
     ],
     where: {
       driverId: null,
       startTime: {
         [Sequelize.Op.gte]: today,
       },
+      "$Trip.id$": null,
     },
     order: [["startTime", "ASC"]],
   });
@@ -187,9 +192,14 @@ const getReserveHomeByQuery = async (query) => {
         model: Enterprise,
         attributes: ["name"],
       },
+      {
+        model: Trip,
+        attributes: ["id"],
+      },
     ],
     where: {
       driverId: null,
+      "$Trip.id$": null,
       [Sequelize.Op.or]: [
         Sequelize.where(
           Sequelize.cast(Sequelize.col("start_time"), "varchar"),
@@ -245,7 +255,14 @@ const getReservesList = async (page) => {
         model: Car,
         attributes: ["type"],
       },
+      {
+        model: Trip,
+        attributes: ["id"],
+      },
     ],
+    where: {
+      "$Trip.id$": null,
+    },
     order: [["startTime", "DESC"]],
   });
 };
@@ -338,8 +355,13 @@ const getReserveByQuery = async (query) => {
         model: Car,
         attributes: ["type"],
       },
+      {
+        model: Trip,
+        attributes: ["id"],
+      },
     ],
     where: {
+      "$Trip.id$": null,
       [Sequelize.Op.or]: [
         {
           startAddress: {
@@ -485,11 +507,7 @@ const getDriverReservesList = async (page, id) => {
     attributes: ["id", "tripType", "startTime", "startAddress", "price"],
     where: {
       driverId: id,
-      [Sequelize.Op.and]: [
-        Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
-          [Sequelize.Op.notLike]: `%CANCELED%`,
-        }),
-      ],
+      "$Trip.id$": null,
     },
     include: [
       {
@@ -535,6 +553,7 @@ const getDriverReserveByQuery = async (query, id) => {
     ],
     where: {
       driverId: id,
+      "$Trip.id$": null,
       [Sequelize.Op.and]: [
         Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
           [Sequelize.Op.notLike]: `%CANCELED%`,
