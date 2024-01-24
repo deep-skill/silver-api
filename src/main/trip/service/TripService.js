@@ -8,7 +8,7 @@ const {
   Stop,
   Parking,
   Toll,
-  Car
+  Car,
 } = require("../../database");
 const Sequelize = require("sequelize");
 const handleStatusQuery = require("../../../main/utils/handleStatusQuery");
@@ -137,10 +137,7 @@ const update = async (
   return trip;
 };
 
-const updateTotalPrice = async (
-  id,
-  totalPrice,
-) => {
+const updateTotalPrice = async (id, totalPrice) => {
   const trip = await Trip.findOne({ where: { id } });
   if (!trip) throw new Error("Trip not exist");
 
@@ -375,51 +372,66 @@ const getAllDriverTrips = async (id, page) => {
   });
 };
 
-  const getAdminTripById = async (id) => {
-    return Trip.findOne({
-      include: [
-        {
-          model: Reserve,
-          attributes: ["id", "startAddress", "endAddress", "price", "driverPercent", "silverPercent", "tripType", "serviceType"],
-          include: [
-            {
-              model: User,
-              attributes: ["id", "name", "lastName"],
-            },
-            {
-              model: Driver,
-              attributes: ["id", "name", "lastName"],
-            },
-            {
-              model: Enterprise,
-              attributes: ["id", "name"],
-            },
-            {
-              model: Car,
-              attributes: ["id", "type", "licensePlate", "brand", "model", "color"],
-            },
-          ],
-        },
-        {
-          model: Observation,
-        },
-        {
-          model: Stop,
-        },
-        {
-          model: Parking,
-        },
-        {
-          model: Toll,
-        },
-      ],
-      where: { id },
-    });
-  };
+const getAdminTripById = async (id) => {
+  return Trip.findOne({
+    include: [
+      {
+        model: Reserve,
+        attributes: [
+          "id",
+          "startAddress",
+          "endAddress",
+          "price",
+          "driverPercent",
+          "silverPercent",
+          "tripType",
+          "serviceType",
+        ],
+        include: [
+          {
+            model: User,
+            attributes: ["id", "name", "lastName"],
+          },
+          {
+            model: Driver,
+            attributes: ["id", "name", "lastName"],
+          },
+          {
+            model: Enterprise,
+            attributes: ["id", "name"],
+          },
+          {
+            model: Car,
+            attributes: [
+              "id",
+              "type",
+              "licensePlate",
+              "brand",
+              "model",
+              "color",
+            ],
+          },
+        ],
+      },
+      {
+        model: Observation,
+      },
+      {
+        model: Stop,
+      },
+      {
+        model: Parking,
+      },
+      {
+        model: Toll,
+      },
+    ],
+    where: { id },
+  });
+};
 
 const getDriverTripByQuery = async (id, query) => {
   const statusQuery = handleStatusQuery(query);
-  if (statusQuery != undefined) query = statusQuery;
   return await Trip.findAll({
     attributes: ["id", "totalPrice", "onWayDriver", "status"],
     include: [
@@ -476,7 +488,7 @@ const getDriverTripByQuery = async (id, query) => {
           { [Sequelize.Op.iLike]: `%${query}%` }
         ),
         Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
-          [Sequelize.Op.iLike]: `%${query}%`,
+          [Sequelize.Op.iLike]: `%${statusQuery}%`,
         }),
       ],
     },
@@ -497,5 +509,5 @@ module.exports = {
   getTripByQuery,
   getAllDriverTrips,
   getDriverTripByQuery,
-  getAdminTripById
+  getAdminTripById,
 };
