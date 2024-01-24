@@ -339,6 +339,14 @@ const getAllDriverTrips = async (id, page) => {
         where: {
           driverId: id,
         },
+        attributes: [
+          "id",
+          "userId",
+          "driverId",
+          "enterpriseId",
+          "silverPercent",
+          "startTime",
+        ],
         include: [
           {
             model: User,
