@@ -197,7 +197,7 @@ const getTripsHistory = async (page) => {
     include: [
       {
         model: Reserve,
-        attributes: ["id", "startAddress"],
+        attributes: ["id", "startAddress", "startTime"],
         include: [
           {
             model: User,
@@ -345,6 +345,7 @@ const getAllDriverTrips = async (id, page) => {
           "driverId",
           "enterpriseId",
           "silverPercent",
+          "startTime",
         ],
         include: [
           {
@@ -386,6 +387,7 @@ const getAdminTripById = async (id) => {
           "silverPercent",
           "tripType",
           "serviceType",
+          "startTime",
         ],
         include: [
           {
