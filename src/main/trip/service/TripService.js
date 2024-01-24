@@ -434,7 +434,6 @@ const getAdminTripById = async (id) => {
 
 const getDriverTripByQuery = async (id, query) => {
   const statusQuery = handleStatusQuery(query);
-  if (statusQuery != undefined) query = statusQuery;
   return await Trip.findAll({
     attributes: ["id", "totalPrice", "onWayDriver", "status"],
     include: [
@@ -491,7 +490,7 @@ const getDriverTripByQuery = async (id, query) => {
           { [Sequelize.Op.iLike]: `%${query}%` }
         ),
         Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
-          [Sequelize.Op.iLike]: `%${query}%`,
+          [Sequelize.Op.iLike]: `%${statusQuery}%`,
         }),
       ],
     },

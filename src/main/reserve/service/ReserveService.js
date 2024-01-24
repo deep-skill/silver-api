@@ -152,6 +152,10 @@ const getPaginated = async (page, size = 10) => {
 
 const getReservesHome = async (page) => {
   const today = new Date();
+  const tomorrow = new Date();
+  today.setDate(today.getDate() - 1);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
@@ -169,12 +173,13 @@ const getReservesHome = async (page) => {
     where: {
       driverId: null,
       startTime: {
-        [Sequelize.Op.gte]: today,
+        [Sequelize.Op.between]: [today, tomorrow],
       },
     },
     order: [["startTime", "ASC"]],
   });
 };
+
 const getReserveHomeByQuery = async (query) => {
   return await Reserve.findAll({
     attributes: ["id", "tripType", "startTime", "serviceType"],
@@ -245,7 +250,14 @@ const getReservesList = async (page) => {
         model: Car,
         attributes: ["type"],
       },
+      {
+        model: Trip,
+        attributes: ["id"],
+      },
     ],
+    where: {
+      "$Trip.id$": null,
+    },
     order: [["startTime", "DESC"]],
   });
 };
@@ -338,6 +350,10 @@ const getReserveByQuery = async (query) => {
         model: Car,
         attributes: ["type"],
       },
+      {
+        model: Trip,
+        attributes: ["id"],
+      },
     ],
     where: {
       [Sequelize.Op.or]: [
@@ -352,7 +368,7 @@ const getReserveByQuery = async (query) => {
           },
         },
         Sequelize.where(
-          Sequelize.cast(Sequelize.col("start_time"), "varchar"),
+          Sequelize.cast(Sequelize.col("Reserve.start_time"), "varchar"),
           { [Sequelize.Op.iLike]: `%${query}%` }
         ),
         Sequelize.where(
@@ -403,6 +419,7 @@ const getReserveByQuery = async (query) => {
           },
         },
       ],
+      "$Trip.id$": null,
     },
   });
 };
@@ -485,11 +502,7 @@ const getDriverReservesList = async (page, id) => {
     attributes: ["id", "tripType", "startTime", "startAddress", "price"],
     where: {
       driverId: id,
-      [Sequelize.Op.and]: [
-        Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
-          [Sequelize.Op.notLike]: `%CANCELED%`,
-        }),
-      ],
+      "$Trip.id$": null,
     },
     include: [
       {
@@ -535,11 +548,7 @@ const getDriverReserveByQuery = async (query, id) => {
     ],
     where: {
       driverId: id,
-      [Sequelize.Op.and]: [
-        Sequelize.where(Sequelize.cast(Sequelize.col("status"), "varchar"), {
-          [Sequelize.Op.notLike]: `%CANCELED%`,
-        }),
-      ],
+      "$Trip.id$": null,
       [Sequelize.Op.or]: [
         {
           startAddress: {
