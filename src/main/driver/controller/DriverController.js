@@ -105,7 +105,6 @@ const erase = async (req, res) => {
 const getDriverByName = async (req, res) => {
   const { query } = req.query;
     try {
-    if (!query) throw new Error("Missing data");
     const drivers = await DriverService.getDriverByName(query);
     return res.status(200).json(drivers);
   } catch (error) {

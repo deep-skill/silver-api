@@ -76,6 +76,17 @@ const erase = async (id) => {
 };
 
 const getDriverByName = async (query) => {
+
+  if(query === "") return await Driver.findAll({
+    attributes: ["id", "name", "lastName"],
+    include: [
+      {
+        model: Car,
+        attributes: ["id", "licensePlate", 'brand', 'model', 'color']
+      },
+    ],
+  });
+
   return await Driver.findAll({
     attributes: ["id", "name", "lastName"],
     include: [
