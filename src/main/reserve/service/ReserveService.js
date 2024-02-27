@@ -84,7 +84,7 @@ const update = async (
 
   userId ? (reserve.userId = userId) : null;
   driverId ? (reserve.driverId = driverId) : null;
-  enterpriseId ? (reserve.enterpriseId = enterpriseId) : null;
+  enterpriseId ? (reserve.enterpriseId = enterpriseId) : reserve.enterpriseId = null;
   silverCarId ? (reserve.silverCarId = silverCarId) : null;
   tripType ? (reserve.tripType = tripType) : null;
   serviceType ? (reserve.serviceType = serviceType) : null;
