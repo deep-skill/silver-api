@@ -258,7 +258,7 @@ const getReservesList = async (page) => {
     where: {
       "$Trip.id$": null,
     },
-    order: [["startTime", "DESC"]],
+    order: [["startTime", "ASC"]],
   });
 };
 
