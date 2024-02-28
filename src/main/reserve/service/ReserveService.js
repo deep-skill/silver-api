@@ -518,7 +518,7 @@ const getDriverReservesList = async (page, id) => {
         attributes: ["id", "status"],
       },
     ],
-    order: [["startTime", "DESC"]],
+    order: [["startTime", "ASC"]],
   });
 };
 const getDriverReserveByQuery = async (query, id) => {
