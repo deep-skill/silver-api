@@ -26,6 +26,7 @@ const create = async (
   silverCarId,
   tripType,
   serviceType,
+  serviceCarType,
   startTime,
   startAddress,
   startAddressLat,
@@ -34,6 +35,7 @@ const create = async (
   endAddressLat,
   endAddressLon,
   price,
+  suggestedPrice,
   driverPercent,
   silverPercent,
   carId
@@ -45,6 +47,7 @@ const create = async (
     silverCarId,
     tripType,
     serviceType,
+    serviceCarType,
     startTime,
     startAddress,
     startAddressLat,
@@ -53,6 +56,7 @@ const create = async (
     endAddressLat,
     endAddressLon,
     price,
+    suggestedPrice,
     driverPercent,
     silverPercent,
     carId,
@@ -67,6 +71,7 @@ const update = async (
   silverCarId,
   tripType,
   serviceType,
+  serviceCarType,
   startTime,
   startAddress,
   startAddressLat,
@@ -75,6 +80,7 @@ const update = async (
   endAddressLat,
   endAddressLon,
   price,
+  suggestedPrice,
   driverPercent,
   silverPercent,
   carId
@@ -88,6 +94,7 @@ const update = async (
   silverCarId ? (reserve.silverCarId = silverCarId) : null;
   tripType ? (reserve.tripType = tripType) : null;
   serviceType ? (reserve.serviceType = serviceType) : null;
+  serviceCarType ? (reserve.serviceCarType = serviceCarType) : null;
   startTime ? (reserve.startTime = startTime) : null;
   startAddress ? (reserve.startAddress = startAddress) : null;
   startAddressLat ? (reserve.startAddressLat = startAddressLat) : null;
@@ -96,6 +103,7 @@ const update = async (
   endAddressLat ? (reserve.endAddressLat = endAddressLat) : null;
   endAddressLon ? (reserve.endAddressLon = endAddressLon) : null;
   price ? (reserve.price = price) : null;
+  suggestedPrice ? (reserve.suggestedPrice = suggestedPrice) : null;
   driverPercent ? (reserve.driverPercent = driverPercent) : null;
   silverPercent ? (reserve.silverPercent = silverPercent) : null;
   carId ? (reserve.carId = carId) : null;

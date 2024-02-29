@@ -41,6 +41,7 @@ const create = async (req, res) => {
     silverCarId,
     tripType,
     serviceType,
+    serviceCarType,
     startTime,
     startAddress,
     startAddressLat,
@@ -49,6 +50,7 @@ const create = async (req, res) => {
     endAddressLat,
     endAddressLon,
     price,
+    suggestedPrice,
     driverPercent,
     silverPercent,
     carId,
@@ -61,6 +63,7 @@ const create = async (req, res) => {
       silverCarId,
       tripType,
       serviceType,
+      serviceCarType,
       startTime,
       startAddress,
       startAddressLat,
@@ -69,12 +72,14 @@ const create = async (req, res) => {
       endAddressLat,
       endAddressLon,
       price,
+      suggestedPrice,
       driverPercent,
       silverPercent,
       carId
     );
     return res.status(201).json(reserve);
   } catch (error) {
+    console.log(error)
     return res.status(400).json({ error: error.message });
   }
 };
@@ -89,6 +94,7 @@ const update = async (req, res) => {
     silverCarId,
     tripType,
     serviceType,
+    serviceCarType,
     startTime,
     startAddress,
     startAddressLat,
@@ -97,6 +103,7 @@ const update = async (req, res) => {
     endAddressLat,
     endAddressLon,
     price,
+    suggestedPrice,
     driverPercent,
     silverPercent,
     carId,
@@ -111,6 +118,7 @@ const update = async (req, res) => {
       silverCarId,
       tripType,
       serviceType,
+      serviceCarType,
       startTime,
       startAddress,
       startAddressLat,
@@ -119,6 +127,7 @@ const update = async (req, res) => {
       endAddressLat,
       endAddressLon,
       price,
+      suggestedPrice,
       driverPercent,
       silverPercent,
       carId

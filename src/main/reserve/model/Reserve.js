@@ -88,7 +88,7 @@ module.exports = (sequelize) => {
     suggestedPrice: {
       type: DataTypes.DOUBLE,
       field: 'suggested_price',
-      allowNull: false,
+      allowNull: true,
       validate: {
         checkServiceCarTyope() {
           if (this.tripType == 'PUNTO A PUNTO' && this.suggestedPrice == null) {
