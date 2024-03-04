@@ -281,6 +281,7 @@ const getReserveDetail = async (id) => {
       "endAddress",
       "silverPercent",
       "price",
+      "serviceCarType"
     ],
     include: [
       {
