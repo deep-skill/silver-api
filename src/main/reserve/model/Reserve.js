@@ -19,6 +19,12 @@ module.exports = (sequelize) => {
       field: 'service_type',
       allowNull: false
     },
+    serviceCarType: {
+      type: DataTypes.ENUM,
+      values: ['TRUCK', 'CAR', 'VAN'],
+      field: 'service_car_type',
+      allowNull: false
+    },
     startTime: {
       type: DataTypes.DATE,
       field: 'start_time',
@@ -78,6 +84,21 @@ module.exports = (sequelize) => {
     price: {
       type: DataTypes.DOUBLE,
       allowNull: false
+    },
+    suggestedPrice: {
+      type: DataTypes.DOUBLE,
+      field: 'suggested_price',
+      allowNull: true,
+      validate: {
+        checkServiceCarTyope() {
+          if (this.tripType == 'PUNTO A PUNTO' && this.suggestedPrice == null) {
+            throw new Error('Suggested price must be defined');
+          }
+          if (this.tripType == 'POR HORA' && this.suggestedPrice != null) {
+            throw new Error('Suggested price must not be defined when trip type is POR HORA');
+          }
+        }
+      }
     },
     driverPercent: {
       type: DataTypes.INTEGER,
