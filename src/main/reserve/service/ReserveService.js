@@ -180,9 +180,6 @@ const getReservesHome = async (page) => {
     ],
     where: {
       driverId: null,
-      startTime: {
-        [Sequelize.Op.between]: [today, tomorrow],
-      },
     },
     order: [["startTime", "ASC"]],
   });
