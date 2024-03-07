@@ -205,7 +205,7 @@ const getTripsHistory = async (page) => {
           },
           {
             model: Driver,
-            attributes: ["id", "name", "lastName"],
+            attributes: ["id", "name", "lastName", "imageUrl"],
           },
           {
             model: Enterprise,
@@ -396,7 +396,7 @@ const getAdminTripById = async (id) => {
           },
           {
             model: Driver,
-            attributes: ["id", "name", "lastName"],
+            attributes: ["id", "name", "lastName", "imageUrl"],
           },
           {
             model: Enterprise,
