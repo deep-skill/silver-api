@@ -234,7 +234,7 @@ const getReserveHomeByQuery = async (query) => {
 };
 
 const getReservesList = async (page) => {
-  return await Reserve.findAndCountAll({
+  const reserves = await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
     attributes: ["id", "tripType", "startTime"],
@@ -249,7 +249,7 @@ const getReservesList = async (page) => {
       },
       {
         model: Driver,
-        attributes: ["name", "lastName"],
+        attributes: ["name", "lastName", "imageUrl"],
       },
       {
         model: Car,
@@ -265,6 +265,9 @@ const getReservesList = async (page) => {
     },
     order: [["startTime", "ASC"]],
   });
+
+  //console.log(reserves.driver)
+  return reserves
 };
 
 const getReserveDetail = async (id) => {
@@ -296,7 +299,7 @@ const getReserveDetail = async (id) => {
       },
       {
         model: Driver,
-        attributes: ["id", "name", "lastName"],
+        attributes: ["id", "name", "lastName", "imageUrl"],
       },
       {
         model: Car,

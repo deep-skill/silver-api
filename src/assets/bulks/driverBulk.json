@@ -9,7 +9,8 @@
     "license_number": "Q8473621",
     "phone_number": "+51-84-574-861",
     "email": "email1@email.com",
-    "address": "Jr. Andahuaylas 1, Lima, Peru"
+    "address": "Jr. Andahuaylas 1, Lima, Peru",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
   },
   {
     "name": "Maria",
@@ -20,7 +21,9 @@
     "license_number": "Q8473622",
     "phone_number": "+51-84-574-862",
     "email": "email2@email.com",
-    "address": "Jr. Andahuaylas 2, Lima, Peru"
+    "address": "Jr. Andahuaylas 2, Lima, Peru",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
+
   },
   {
     "car_id": "2",
@@ -32,7 +35,8 @@
     "license_number": "Q8473623",
     "phone_number": "+51-84-574-863",
     "email": "email3@email.com",
-    "address": "Jr. Andahuaylas 3, Lima, Peru"
+    "address": "Jr. Andahuaylas 3, Lima, Peru",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
   },
   {
     "name": "Susana",
@@ -43,7 +47,8 @@
     "license_number": "Q8473624",
     "phone_number": "+51-84-574-864",
     "email": "email4@email.com",
-    "address": "Jr. Andahuaylas 4, Lima, Peru"
+    "address": "Jr. Andahuaylas 4, Lima, Peru",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
   },
   {
     "car_id": "3",
@@ -55,7 +60,9 @@
     "license_number": "Q8473625",
     "phone_number": "+51-84-574-865",
     "email": "email5@email.com",
-    "address": "Jr. Andahuaylas 5, Lima, Peru"
+    "address": "Jr. Andahuaylas 5, Lima, Peru",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
+
   },
   {
     "name": "Luis",
@@ -66,7 +73,9 @@
     "license_number": "Q8473626",
     "phone_number": "+51-84-574-866",
     "email": "email6@email.com",
-    "address": "Jr. Andahuaylas 6, Lima, Peru"
+    "address": "Jr. Andahuaylas 6, Lima, Peru",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
+
   },
   {
     "car_id": "4",
@@ -78,7 +87,9 @@
     "license_number": "Q8473627",
     "phone_number": "+51-84-574-867",
     "email": "email7@email.com",
-    "address": "Jr. Andahuaylas 7, Lima, Peru"
+    "address": "Jr. Andahuaylas 7, Lima, Peru",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
+
   },
   {
     "car_id": 5,
@@ -90,7 +101,9 @@
     "license_number": "Q8473628",
     "phone_number": "+51-84-574-868",
     "email": "email8@email.com",
-    "address": "Jr. Andahuaylas 8, Lima, Peru"
+    "address": "Jr. Andahuaylas 8, Lima, Peru",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
+
   },
   {
     "car_id": 6,
@@ -102,7 +115,9 @@
     "license_number": "Q8473628",
     "phone_number": "+51-84-574-868",
     "email": "roquemolinaph@outlook.com",
-    "address": "Catamarca 1271, Cordoba, Argentina"
+    "address": "Catamarca 1271, Cordoba, Argentina",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/fDwF5blK4wFIHFmR42AFS/6bc7e7a4a189b361176b778e9de88cab/Roque_Molina.png"
+
   },
   {
     "car_id": 7,
@@ -114,7 +129,9 @@
     "license_number": "Q8473628",
     "phone_number": "+51-84-574-868",
     "email": "francogalbiati984@gmail.com",
-    "address": "Catamarca 1271, Cordoba, Argentina"
+    "address": "Catamarca 1271, Cordoba, Argentina",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
+
   },
   {
     "car_id": 8,
@@ -126,6 +143,8 @@
     "license_number": "Q8473628",
     "phone_number": "+51-84-574-868",
     "email": "bansheesmite@gmail.com",
-    "address": "Catamarca 1271, Cordoba, Argentina"
+    "address": "Catamarca 1271, Cordoba, Argentina",
+    "image_url": "https://images.ctfassets.net/5d4nhw7jpebm/7yIbWmWUAjZ5tEKVQ2biVP/c4108e5d318dbe0907dcde06eca18783/Franco_Galbiati.webp"
+
   }
 ]

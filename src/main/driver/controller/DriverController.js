@@ -36,6 +36,7 @@ const create = async (req, res) => {
     phoneNumber,
     email,
     address,
+    imageUrl
   } = req.body;
   try {
     const driver = await DriverService.create(
@@ -49,6 +50,7 @@ const create = async (req, res) => {
       phoneNumber,
       email,
       address,
+      imageUrl
       );
       return res.status(201).json(driver);
   } catch (error) {
@@ -69,6 +71,7 @@ const update = async (req, res) => {
     phoneNumber,
     email,
     address,
+    imageUrl
   } = req.body;
   try {
     if (!id) throw new Error("Missing data");
@@ -84,6 +87,7 @@ const update = async (req, res) => {
       phoneNumber,
       email,
       address,
+      imageUrl
     );
     return res.status(200).json(updatedDriver);
   } catch (error) {
