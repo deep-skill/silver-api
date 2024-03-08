@@ -249,7 +249,7 @@ const getReservesList = async (page) => {
       },
       {
         model: Driver,
-        attributes: ["name", "lastName"],
+        attributes: ["name", "lastName", "imageUrl"],
       },
       {
         model: Car,
@@ -296,7 +296,7 @@ const getReserveDetail = async (id) => {
       },
       {
         model: Driver,
-        attributes: ["id", "name", "lastName"],
+        attributes: ["id", "name", "lastName", "imageUrl"],
       },
       {
         model: Car,
@@ -355,7 +355,7 @@ const getReserveByQuery = async (query) => {
 
       {
         model: Driver,
-        attributes: ["name", "lastName"],
+        attributes: ["name", "lastName", "imageUrl"],
       },
       {
         model: Car,

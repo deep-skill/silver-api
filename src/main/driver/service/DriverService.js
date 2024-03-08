@@ -19,7 +19,8 @@ const create = async (
   licenseNumber,
   phoneNumber,
   email,
-  address
+  address,
+  imageUrl
 ) => {
   return await Driver.create({
     carId,
@@ -32,6 +33,7 @@ const create = async (
     phoneNumber,
     email,
     address,
+    imageUrl
   });
 };
 
@@ -46,7 +48,8 @@ const update = async (
   licenseNumber,
   phoneNumber,
   email,
-  address
+  address,
+  imageUrl
 ) => {
   const driver = await Driver.findOne({ where: { id } });
   if (!driver) throw new Error("Driver not exist");
@@ -61,6 +64,7 @@ const update = async (
   phoneNumber ? (driver.phoneNumber = phoneNumber) : null;
   email ? (driver.email = email) : null;
   address ? (driver.address = address) : null;
+  imageUrl ? (driver.imageUrl = imageUrl) : null;
 
   await driver.save();
 

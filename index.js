@@ -109,6 +109,7 @@ database
             bankName: e.bank_name,
             bankAccountType: e.bank_account_type,
             bankAccount: e.bank_account,
+            imageUrl: e.image_url,
           };
         });
         await Driver.bulkCreate(bulk);
