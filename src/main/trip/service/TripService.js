@@ -234,7 +234,7 @@ const getTripByQuery = async (query) => {
           },
           {
             model: Driver,
-            attributes: ["id", "name", "lastName"],
+            attributes: ["id", "name", "lastName", "imageUrl"],
           },
           {
             model: Enterprise,
