@@ -1,4 +1,4 @@
-const { DataTypes} = require('sequelize')
+const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => {
   sequelize.define('Trip', {
@@ -47,6 +47,11 @@ module.exports = (sequelize) => {
       field: 'passenger_rating',
       allowNull: true
     },
+    waitingTimeExtra: {
+      type: DataTypes.INTEGER,
+      field: 'waiting_time_extra',
+      allowNull: true
+    }
   },
   );
 };
