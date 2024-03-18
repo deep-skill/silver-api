@@ -48,7 +48,7 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     waitingTimeExtra: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DOUBLE,
       field: 'waiting_time_extra',
       allowNull: true
     }
