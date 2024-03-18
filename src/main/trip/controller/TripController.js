@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {requiredScopes} = require('express-oauth2-jwt-bearer');
+const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const TripService = require("../service/TripService");
 
@@ -60,6 +60,7 @@ const update = async (req, res) => {
     status,
     driverRating,
     passengerRating,
+    waitingTimeExtra
   } = req.body;
   try {
     if (!id) throw new Error("Missing data");
@@ -72,7 +73,8 @@ const update = async (req, res) => {
       endTime,
       status,
       driverRating,
-      passengerRating
+      passengerRating,
+      waitingTimeExtra
     );
     return res.status(200).json(updatedTrip);
   } catch (error) {
@@ -82,7 +84,7 @@ const update = async (req, res) => {
 
 const updateTotalPrice = async (req, res) => {
   const { id } = req.params;
-  
+
   const {
     totalPrice,
   } = req.body;
@@ -172,7 +174,7 @@ const getDriverTripByQuery = async (req, res) => {
   console.log("query", query);
 
   try {
-    const reserves = await TripService.getDriverTripByQuery( id, query );
+    const reserves = await TripService.getDriverTripByQuery(id, query);
     return res.status(200).json(reserves);
   } catch (error) {
     return res.status(400).json({ error: error.message });

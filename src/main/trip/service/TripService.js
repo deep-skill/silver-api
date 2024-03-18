@@ -87,7 +87,8 @@ const update = async (
   endTime,
   status,
   driverRating,
-  passengerRating
+  passengerRating,
+  waitingTimeExtra
 ) => {
   const trip = await Trip.findOne({ where: { id } });
   if (!trip) throw new Error("Trip not exist");
@@ -98,6 +99,7 @@ const update = async (
   startTime ? (trip.startTime = startTime) : null;
   endTime ? (trip.endTime = endTime) : null;
   status ? (trip.status = status) : null;
+  waitingTimeExtra ? (trip.waitingTimeExtra = waitingTimeExtra) : null;
 
   if (driverRating) {
     const reserve = await trip.getReserve();
