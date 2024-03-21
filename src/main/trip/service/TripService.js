@@ -33,6 +33,7 @@ const get = async (id) => {
           "silverPercent",
           "serviceType",
           "startTime",
+          "serviceCarType"
         ],
         include: [
           {
