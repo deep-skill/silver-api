@@ -25,7 +25,7 @@ const create = async (tripId, location, lat, lon) => {
   });
 };
 
-const update = async (id, tripId, location, lat, lon) => {
+const update = async (id, tripId, location, lat, lon, arrived) => {
   const stop = await Stop.findOne({ where: { id } });
   if (!stop) throw new Error("Stop not exist");
 
@@ -33,6 +33,7 @@ const update = async (id, tripId, location, lat, lon) => {
   location ? (stop.location = location) : null;
   lat ? (stop.lat = lat) : null;
   lon ? (stop.lon = lon) : null;
+  arrived ? (stop.arrived = arrived) : null;
 
   await stop.save();
   return stop;
