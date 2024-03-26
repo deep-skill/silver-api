@@ -1,39 +1,29 @@
-version: '3.9'
-
 services:
 
-  node_app:
-    container_name: node_app
-    build: .
-    image: silver-api-compose
-    working_dir: /app
+  node-app-local:
+    image: "node:18-alpine"
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app/
     ports:
       - "3001:3001"
-    environment:
-      - DB_USER=${DOCKER_DB_USER}
-      - DB_PASSWORD=${DOCKER_DB_PASSWORD}
-      - DB_HOST=${DOCKER_DB_HOST}
-      - DB_PORT=${DOCKER_DB_PORT}
-      - DB_NAME=${DOCKER_DB_NAME}
-      - PORT=${DOCKER_PORT}
-      - AUDIENCE=${AUDIENCE}
-      - ISSUERBASEURL=${ISSUERBASEURL}
-      - TOKENSIGNINGALG=${TOKENSIGNINGALG}
+    command: ["npm", "run", "start:local"]
+    env_file:
+      - .env.dockercompose
+
     depends_on:
-      - db_api
+      - db-api-local
     restart: always
 
-  db_api:
-    container_name: db-compose
-    image: postgres:14
+  db-api-local:
+    image: postgres:14.11-alpine3.19
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_USER=${DOCKER_DB_USER}
-      - POSTGRES_PASSWORD=${DOCKER_DB_PASSWORD}
-      - POSTGRES_DB=${DOCKER_DB_NAME}
+    env_file:
+      - .env.dockercompose
+
     volumes:
-      - db-compose_data:/var/lib/postgresql/data
+      - db-api-data-local:/var/lib/postgresql/data/
 
 volumes:
-  db-compose_data: {}
+  db-api-data-local:
