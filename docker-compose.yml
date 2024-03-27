@@ -1,6 +1,7 @@
 services:
 
-  node-app-local:
+  local-silver-api:
+    container_name: local-silver-api
     image: "node:18-alpine"
     working_dir: /home/node/app
     volumes:
@@ -12,10 +13,11 @@ services:
       - .env.dockercompose
 
     depends_on:
-      - db-api-local
+      - local-db
     restart: always
 
-  db-api-local:
+  local-db:
+    container_name: local-db
     image: postgres:14.11-alpine3.19
     ports:
       - "5432:5432"
@@ -23,7 +25,8 @@ services:
       - .env.dockercompose
 
     volumes:
-      - db-api-data-local:/var/lib/postgresql/data/
+      - local-db-data:/var/lib/postgresql/data/
 
 volumes:
-  db-api-data-local:
+  local-db-data:
+    name: local-db-data
