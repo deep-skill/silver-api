@@ -31,7 +31,7 @@ const create = async (req, res) => {
     arrivedDriver,
     startTime,
     endTime,
-    status,
+    status
   } = req.body;
   try {
     const trip = await TripService.create(
@@ -60,7 +60,9 @@ const update = async (req, res) => {
     status,
     driverRating,
     passengerRating,
-    waitingTimeExtra
+    waitingTimeExtra,
+    suggestedTotalPrice,
+    polyline
   } = req.body;
   try {
     if (!id) throw new Error("Missing data");
@@ -74,7 +76,9 @@ const update = async (req, res) => {
       status,
       driverRating,
       passengerRating,
-      waitingTimeExtra
+      waitingTimeExtra,
+      suggestedTotalPrice,
+      polyline
     );
     return res.status(200).json(updatedTrip);
   } catch (error) {

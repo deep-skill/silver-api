@@ -1,4 +1,4 @@
-const { DataTypes} = require('sequelize')
+const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => {
   sequelize.define('Reserve', {
@@ -110,6 +110,11 @@ module.exports = (sequelize) => {
       field: 'silver_percent',
       defaultValue: 20,
     },
+    polyline: {
+      type: DataTypes.STRING,
+      field: 'polyline',
+      allowNull: true
+    }
   },
   );
 };

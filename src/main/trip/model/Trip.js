@@ -51,7 +51,17 @@ module.exports = (sequelize) => {
       type: DataTypes.DOUBLE,
       field: 'waiting_time_extra',
       allowNull: true
-    }
+    },
+    polyline: {
+      type: DataTypes.STRING,
+      field: 'polyline',
+      allowNull: true
+    },
+    suggestedTotalPrice: {
+      type: DataTypes.DOUBLE,
+      field: 'suggested_total_price',
+      allowNull: true,
+    },
   },
   );
 };
