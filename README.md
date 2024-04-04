@@ -7,7 +7,7 @@ Silver Express is a taxicab company.
 
 ### 🐳 Docker Setup
 
-If you want to use Docker to set up only the API, you can use the provided docker-compose.yml file. Run the following command:
+If you want to use Docker to set up only the API, you can use the provided docker-compose.yml file on the "docker" folder. Run the following command:
 
 ```sh
 docker compose up
