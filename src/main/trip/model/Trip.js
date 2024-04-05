@@ -52,9 +52,9 @@ module.exports = (sequelize) => {
       field: 'waiting_time_extra',
       allowNull: true
     },
-    polyline: {
-      type: DataTypes.STRING,
-      field: 'polyline',
+    tripPolyline: {
+      type: DataTypes.TEXT,
+      field: 'trip_polyline',
       allowNull: true
     },
     suggestedTotalPrice: {
@@ -63,5 +63,6 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
   },
+
   );
 };

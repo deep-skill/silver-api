@@ -110,9 +110,9 @@ module.exports = (sequelize) => {
       field: 'silver_percent',
       defaultValue: 20,
     },
-    polyline: {
-      type: DataTypes.STRING,
-      field: 'polyline',
+    reservePolyline: {
+      type: DataTypes.TEXT,
+      field: 'reserve_polyline',
       allowNull: true
     }
   },

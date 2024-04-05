@@ -91,7 +91,7 @@ const update = async (
   passengerRating,
   waitingTimeExtra,
   suggestedTotalPrice,
-  polyline
+  tripPolyline
 ) => {
   const trip = await Trip.findOne({ where: { id } });
   if (!trip) throw new Error("Trip not exist");
@@ -103,7 +103,7 @@ const update = async (
   endTime ? (trip.endTime = endTime) : null;
   status ? (trip.status = status) : null;
   waitingTimeExtra ? (trip.waitingTimeExtra = waitingTimeExtra) : null;
-  polyline ? (trip.polyline = polyline) : null;
+  tripPolyline ? (trip.tripPolyline = tripPolyline) : null;
   suggestedTotalPrice ? (trip.suggestedTotalPrice = suggestedTotalPrice) : null;
 
   if (driverRating) {

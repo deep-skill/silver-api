@@ -62,7 +62,7 @@ const update = async (req, res) => {
     passengerRating,
     waitingTimeExtra,
     suggestedTotalPrice,
-    polyline
+    tripPolyline
   } = req.body;
   try {
     if (!id) throw new Error("Missing data");
@@ -78,7 +78,7 @@ const update = async (req, res) => {
       passengerRating,
       waitingTimeExtra,
       suggestedTotalPrice,
-      polyline
+      tripPolyline
     );
     return res.status(200).json(updatedTrip);
   } catch (error) {
