@@ -38,7 +38,8 @@ const create = async (
   suggestedPrice,
   driverPercent,
   silverPercent,
-  carId
+  carId,
+  reservePolyline
 ) => {
   return await Reserve.create({
     userId,
@@ -60,6 +61,7 @@ const create = async (
     driverPercent,
     silverPercent,
     carId,
+    reservePolyline
   });
 };
 
@@ -83,7 +85,8 @@ const update = async (
   suggestedPrice,
   driverPercent,
   silverPercent,
-  carId
+  carId,
+  reservePolyline
 ) => {
   const reserve = await Reserve.findOne({ where: { id } });
   if (!reserve) throw new Error("Driver not exist");
@@ -107,6 +110,7 @@ const update = async (
   driverPercent ? (reserve.driverPercent = driverPercent) : null;
   silverPercent ? (reserve.silverPercent = silverPercent) : null;
   carId ? (reserve.carId = carId) : null;
+  reservePolyline ? (reserve.reservePolyline = reservePolyline) : null;
 
   await reserve.save();
 
@@ -283,7 +287,8 @@ const getReserveDetail = async (id) => {
       "startAddressLat",
       "startAddressLon",
       "endAddressLat",
-      "endAddressLon"
+      "endAddressLon",
+      "reservePolyline",
     ],
     include: [
       {
