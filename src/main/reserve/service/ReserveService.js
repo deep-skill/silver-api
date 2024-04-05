@@ -288,7 +288,7 @@ const getReserveDetail = async (id) => {
       "startAddressLon",
       "endAddressLat",
       "endAddressLon",
-      "polyline",
+      "reservePolyline",
     ],
     include: [
       {
