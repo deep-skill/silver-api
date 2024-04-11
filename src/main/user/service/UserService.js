@@ -74,7 +74,11 @@ const erase = async (id) => {
 const getUserByName = async (query) => {
 
   if(query === "") return await User.findAll({
-    attributes: ["id", "name", "lastName"]
+    attributes: ["id", "name", "lastName"],
+     include : {
+      model: Enterprise,
+      attributes: ["id"],
+    }
   });
 
   return await User.findAll({
