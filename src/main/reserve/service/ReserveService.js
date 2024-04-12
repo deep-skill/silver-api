@@ -171,7 +171,7 @@ const getReservesHome = async (page) => {
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
-    attributes: ["id", "tripType", "startTime"],
+    attributes: ["id", "tripType", "startTime", "serviceType"],
     include: [
       {
         model: User,
@@ -241,7 +241,7 @@ const getReservesList = async (page) => {
   return await Reserve.findAndCountAll({
     limit: 10,
     offset: page * 10,
-    attributes: ["id", "tripType", "startTime"],
+    attributes: ["id", "tripType", "startTime", "serviceType"],
     include: [
       {
         model: User,
