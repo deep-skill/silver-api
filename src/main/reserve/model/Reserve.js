@@ -90,7 +90,7 @@ module.exports = (sequelize) => {
       field: 'suggested_price',
       allowNull: true,
       validate: {
-        checkServiceCarTyope() {
+        checkServiceTripType() {
           if (this.tripType == 'PUNTO A PUNTO' && this.suggestedPrice == null) {
             throw new Error('Suggested price must be defined');
           }
@@ -113,7 +113,17 @@ module.exports = (sequelize) => {
     reservePolyline: {
       type: DataTypes.TEXT,
       field: 'reserve_polyline',
-      allowNull: true
+      allowNull: true,
+      validate: {
+        checkServiceTripType() {
+          if (this.tripType == 'PUNTO A PUNTO' && this.reservePolyline == null) {
+            throw new Error('Reserve Polylin must be defined');
+          }
+          if (this.tripType == 'POR HORA' && this.reservePolyline != null) {
+            throw new Error('Reserve polyline must not be defined when trip type is POR HORA');
+          }
+        }
+      }
     }
   },
   );
