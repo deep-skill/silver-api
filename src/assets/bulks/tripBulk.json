@@ -1,56 +1,214 @@
 [
   {
-    "reserve_id": "3",
-    "total_price": 60,
-    "on_way_driver": "2024-02-26T15:30-05:00",
-    "status": "COMPLETED"
+    "reserve_id": 1,
+    "total_price": 10.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
   },
   {
-    "reserve_id": "3",
-    "total_price": 60,
-    "on_way_driver": "2024-02-26T16:30-05:00",
-    "status": "COMPLETED"
+    "reserve_id": 2,
+    "total_price": 20.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM",
+    "waiting_time_extra": 3.0,
+    "suggested_total_price": 30
   },
   {
-    "reserve_id": "7",
-    "total_price": 40,
-    "on_way_driver": "2024-02-27T15:30-05:00",
-    "status": "COMPLETED"
+    "reserve_id": 3,
+    "total_price": 30.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
   },
   {
-    "reserve_id": "7",
-    "total_price": 45,
-    "on_way_driver": "2024-02-27T16:30-05:00",
-    "status": "COMPLETED"
+    "reserve_id": 4,
+    "total_price": 40.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
   },
   {
-    "reserve_id": "8",
-    "total_price": 28,
-    "on_way_driver": "2024-02-28T15:30-05:00",
-    "status": "INPROGRESS"
+    "reserve_id": 5,
+    "total_price": 50.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
   },
   {
-    "reserve_id": "3",
-    "total_price": 16,
-    "on_way_driver": "2024-02-28T16:30-05:00",
-    "status": "INPROGRESS"
+    "reserve_id": 6,
+    "total_price": 60.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM",
+    "waiting_time_extra": 2.0,
+    "suggested_total_price": 40
   },
   {
-    "reserve_id": "8",
-    "total_price": 20,
-    "on_way_driver": "2024-02-25T15:10:00",
-    "status": "COMPLETED"
+    "reserve_id": 7,
+    "total_price": 70.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
   },
   {
-    "reserve_id": "7",
-    "total_price": 80,
-    "on_way_driver": "2024-02-25T16:10:00",
-    "status": "COMPLETED"
+    "reserve_id": 8,
+    "total_price": 80.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
   },
   {
-    "reserve_id": 44,
-    "total_price": 16,
-    "on_way_driver": "2024-02-25T17:10:00",
-    "status": "COMPLETED"
+    "reserve_id": 9,
+    "total_price": 90.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
+  },
+  {
+    "reserve_id": 10,
+    "total_price": 100.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM",
+    "waiting_time_extra": 1.0,
+    "suggested_total_price": 30
+  },
+  {
+    "reserve_id": 12,
+    "total_price": 10.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
+  },
+  {
+    "reserve_id": 12,
+    "total_price": 20.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM",
+    "waiting_time_extra": 3.0,
+    "suggested_total_price": 30
+  },
+  {
+    "reserve_id": 13,
+    "total_price": 30.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
+  },
+  {
+    "reserve_id": 14,
+    "total_price": 40.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
+  },
+  {
+    "reserve_id": 15,
+    "total_price": 50.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
+  },
+  {
+    "reserve_id": 16,
+    "total_price": 60.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM",
+    "waiting_time_extra": 2.0,
+    "suggested_total_price": 40
+  },
+  {
+    "reserve_id": 17,
+    "total_price": 70.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
+  },
+  {
+    "reserve_id": 18,
+    "total_price": 80.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
+  },
+  {
+    "reserve_id": 19,
+    "total_price": 90.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "COMPLETED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM"
+  },
+  {
+    "reserve_id": 20,
+    "total_price": 100.0,
+    "on_way_driver": "2024-04-15T17:30-05:00",
+    "status": "CANCELED",
+    "arrived_driver": "2024-04-15 20:58:00+00",
+    "start_time": "2024-04-15 20:58:00+00",
+    "end_time": "2024-04-15 20:58:00+00",
+    "trip_polyline": "r|fhAlg~tM",
+    "waiting_time_extra": 1.0,
+    "suggested_total_price": 30
   }
 ]

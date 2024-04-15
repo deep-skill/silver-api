@@ -139,6 +139,7 @@ database
               price: e.price,
               driverPercent: e.driver_percent,
               silverPercent: e.silver_percent,
+              reservePolyline: e.reserve_polyline ? e.reserve_polyline : null
             };
           });
           await Reserve.bulkCreate(bulk);
@@ -152,6 +153,12 @@ database
               totalPrice: e.total_price,
               onWayDriver: e.on_way_driver,
               status: e.status,
+              arrivedDriver: e.arrived_driver,
+              startTime: e.start_time,
+              endTime: e.end_time,
+              waitingTimeExtra: e.waiting_time_extra,
+              tripPolyline: e.trip_polyline,
+              suggestedTotalPrice: e.suggested_total_price
             };
           });
           await Trip.bulkCreate(bulk);
