@@ -204,7 +204,7 @@ const getTripsHistory = async (page) => {
     include: [
       {
         model: Reserve,
-        attributes: ["id", "startAddress", "startTime"],
+        attributes: ["id", "startAddress", "startTime", "tripType", "serviceType"],
         include: [
           {
             model: User,
@@ -233,7 +233,7 @@ const getTripByQuery = async (query) => {
     include: [
       {
         model: Reserve,
-        attributes: ["id", "startAddress"],
+        attributes: ["id", "startAddress", "serviceType"],
         include: [
           {
             model: User,
