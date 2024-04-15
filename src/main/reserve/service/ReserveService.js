@@ -347,7 +347,7 @@ const getDriverReserveDetail = async (id) => {
 
 const getReserveByQuery = async (query) => {
   return await Reserve.findAll({
-    attributes: ["id", "tripType", "startTime"],
+    attributes: ["id", "tripType", "startTime", "serviceType"],
     include: [
       {
         model: User,

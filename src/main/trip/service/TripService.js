@@ -233,7 +233,7 @@ const getTripByQuery = async (query) => {
     include: [
       {
         model: Reserve,
-        attributes: ["id", "startAddress"],
+        attributes: ["id", "startAddress", "serviceType"],
         include: [
           {
             model: User,
