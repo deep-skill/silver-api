@@ -174,8 +174,6 @@ const getDriverTripByQuery = async (req, res) => {
 
   const { id } = req.params;
   const { query } = req.query;
-  console.log("id", id);
-  console.log("query", query);
 
   try {
     const reserves = await TripService.getDriverTripByQuery(id, query);
