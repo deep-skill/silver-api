@@ -456,6 +456,7 @@ const getDriverTripByQuery = async (id, query) => {
           "enterpriseId",
           "silverPercent",
           "price",
+          "startTime"
         ],
         include: [
           {
