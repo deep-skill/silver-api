@@ -102,9 +102,9 @@ const update = async (
   startAddress ? (reserve.startAddress = startAddress) : null;
   startAddressLat ? (reserve.startAddressLat = startAddressLat) : null;
   startAddressLon ? (reserve.startAddressLon = startAddressLon) : null;
-  endAddress ? (reserve.endAddress = endAddress) : null;
-  endAddressLat ? (reserve.endAddressLat = endAddressLat) : null;
-  endAddressLon ? (reserve.endAddressLon = endAddressLon) : null;
+  reserve.endAddress = endAddress;
+  reserve.endAddressLat = endAddressLat;
+  reserve.endAddressLon = endAddressLon;
   price ? (reserve.price = price) : null;
   suggestedPrice ? (reserve.suggestedPrice = suggestedPrice) : null;
   driverPercent ? (reserve.driverPercent = driverPercent) : null;
@@ -309,7 +309,7 @@ const getReserveDetail = async (id) => {
       },
       {
         model: Trip,
-        attributes: ["id", "status"],
+        attributes: ["id", "status", "totalPrice"],
       },
     ],
     where: { id },
