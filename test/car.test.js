@@ -2,11 +2,11 @@ require("dotenv").config();
 const request = require('supertest');
 const { ISSUERBASEURL, CLIENT_ID, CLIENT_SECRET, AUDIENCE, TEST_URL } = process.env;
 
-describe('Stop Module', () => {
+describe('Car Module', () => {
 
-    const route = 'stops/';
-    const entity = 'Stop';
-    
+    const route = 'cars/';
+    const entity = 'Car';
+
     beforeAll(async () => {
         const auth = await request(ISSUERBASEURL)
         .post('oauth/token')
@@ -26,10 +26,13 @@ describe('Stop Module', () => {
             .post(route)
             .set(jwt)
             .send({
-                "trip_id": "1",
-                "location": "Street name 123",
-                "lat": -12.123,
-                "lon": -21.321,
+                "license_plate": "ABC-100",
+                "owner": "SELF",
+                "brand": "Ford",
+                "model": "Focus",
+                "type": "SEDAN",
+                "color": "Blanco",
+                "year": 2021
             });
         expect(response.statusCode).toBe(201);
     });
@@ -54,12 +57,16 @@ describe('Stop Module', () => {
         .get(route)
         .set(jwt);
         expect(response.body[0]).toEqual({
-            lat: expect.any(Number),
-            lon: expect.any(Number),
-            location: expect.any(String),
-            tripId: expect.any(Number),
-            arrived: expect.any(Boolean),
+            licensePlate: expect.any(String),
+            owner: expect.any(String),
+            brand: expect.any(String),
+            model: expect.any(String),
+            type: expect.any(String),
+            color: expect.any(String),
+            year: expect.any(Number),
             id: expect.any(Number),
+            createdAt: expect.any(String),
+            updatedAt: expect.any(String),
       });
     });
 });

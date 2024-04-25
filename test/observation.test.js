@@ -2,11 +2,11 @@ require("dotenv").config();
 const request = require('supertest');
 const { ISSUERBASEURL, CLIENT_ID, CLIENT_SECRET, AUDIENCE, TEST_URL } = process.env;
 
-describe('Stop Module', () => {
+describe('Observation Module', () => {
 
-    const route = 'stops/';
-    const entity = 'Stop';
-    
+    const route = 'observations/';
+    const entity = 'Observation';
+
     beforeAll(async () => {
         const auth = await request(ISSUERBASEURL)
         .post('oauth/token')
@@ -26,10 +26,8 @@ describe('Stop Module', () => {
             .post(route)
             .set(jwt)
             .send({
-                "trip_id": "1",
-                "location": "Street name 123",
-                "lat": -12.123,
-                "lon": -21.321,
+                "observation": "Test observation",
+                "trip_id": 1,
             });
         expect(response.statusCode).toBe(201);
     });
@@ -54,12 +52,9 @@ describe('Stop Module', () => {
         .get(route)
         .set(jwt);
         expect(response.body[0]).toEqual({
-            lat: expect.any(Number),
-            lon: expect.any(Number),
-            location: expect.any(String),
-            tripId: expect.any(Number),
-            arrived: expect.any(Boolean),
             id: expect.any(Number),
+            observation: expect.any(String),
+            tripId: expect.any(Number),
       });
     });
 });

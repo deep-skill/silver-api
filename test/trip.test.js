@@ -2,11 +2,11 @@ require("dotenv").config();
 const request = require('supertest');
 const { ISSUERBASEURL, CLIENT_ID, CLIENT_SECRET, AUDIENCE, TEST_URL } = process.env;
 
-describe('Stop Module', () => {
+describe('Trip Module', () => {
 
-    const route = 'stops/';
-    const entity = 'Stop';
-    
+    const route = 'trips/';
+    const entity = 'Trip';
+
     beforeAll(async () => {
         const auth = await request(ISSUERBASEURL)
         .post('oauth/token')
@@ -26,10 +26,14 @@ describe('Stop Module', () => {
             .post(route)
             .set(jwt)
             .send({
-                "trip_id": "1",
-                "location": "Street name 123",
-                "lat": -12.123,
-                "lon": -21.321,
+                "reserve_id": 21,
+                "total_price": 30,
+                "on_way_driver": "2024-04-15T17:30-05:00",
+                "status": "COMPLETED",
+                "arrived_driver": "2024-04-15 20:58:00+00",
+                "start_time": "2024-04-15 20:58:00+00",
+                "end_time": "2024-04-15 20:58:00+00",
+                "trip_polyline": "r|fhAlg~tM"
             });
         expect(response.statusCode).toBe(201);
     });
@@ -53,13 +57,20 @@ describe('Stop Module', () => {
         const response = await request(TEST_URL)
         .get(route)
         .set(jwt);
-        expect(response.body[0]).toEqual({
-            lat: expect.any(Number),
-            lon: expect.any(Number),
-            location: expect.any(String),
-            tripId: expect.any(Number),
-            arrived: expect.any(Boolean),
+        expect(response.body[20]).contains({
             id: expect.any(Number),
+            onWayDriver: expect.any(String),
+            arrivedDriver: expect.any(String),
+            endTime: expect.any(String),
+            observation: expect.any(Array),
+            status: expect.any(String),
+            reserveId: expect.any(Number),
+            tripPolyline: expect.anything(String) || expect.any(null),
+            waitingTimeExtra: expect.any(Number) || expect.any(null),
+            driverRating: expect.any(Number)|| expect.any(null),
+            passengerRating: expect.any(Number) || expect.any(null),
+            createdAt: expect.any(String),
+            updatedAt: expect.any(String),
       });
     });
 });
