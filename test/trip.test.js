@@ -29,9 +29,10 @@ describe('Trip Module', () => {
                 "reserve_id": 21,
                 "total_price": 30,
                 "status": "COMPLETED",
-                "arrived_driver": "2024-04-15 20:58:00+00",
+                "on_way_driver": "2024-04-15 20:45:00+00",
+                "arrived_driver": "2024-04-15 20:55:00+00",
                 "start_time": "2024-04-15 20:58:00+00",
-                "end_time": "2024-04-15 20:58:00+00",
+                "end_time": "2024-04-15 20:59:00+00",
                 "trip_polyline": "r|fhAlg~tM"
             });
         expect(response.statusCode).toBe(201);
@@ -56,7 +57,7 @@ describe('Trip Module', () => {
         const response = await request(TEST_URL)
         .get(route)
         .set(jwt);
-        expect(response.body[20]).toEqual({
+        expect(response.body[0]).toEqual({
             id: expect.any(Number),
             startTime: expect.toBeOneOf([expect.any(String), null]),
             onWayDriver: expect.any(String),
