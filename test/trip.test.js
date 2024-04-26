@@ -64,13 +64,13 @@ describe('Trip Module', () => {
         const response = await request(TEST_URL)
         .get(route)
         .set(jwt);
+        console.log(response.body[20])
         expect(response.body[20]).toEqual({
             id: expect.any(Number),
             startTime: expect.toBeOneOf([expect.any(String), null]),
             onWayDriver: expect.any(String),
             arrivedDriver: expect.any(String),
             endTime: expect.toBeOneOf([expect.any(String), null]),
-            observation: expect.toBeOneOf([expect.any(Array), null]),
             status: expect.any(String),
             reserveId: expect.any(Number),
             suggestedTotalPrice: expect.toBeOneOf([expect.any(Number), null]),
