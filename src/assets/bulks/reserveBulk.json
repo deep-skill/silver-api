@@ -16,7 +16,7 @@
     "user_id": 4,
     "enterprise_id": 1,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "PUNTO A PUNTO",
@@ -37,7 +37,7 @@
     "user_id": 5,
     "enterprise_id": 2,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -56,7 +56,7 @@
     "user_id": 6,
     "enterprise_id": 3,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -75,7 +75,7 @@
     "user_id": 7,
     "enterprise_id": 4,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -95,7 +95,7 @@
     "user_id": 8,
     "enterprise_id": 5,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "PUNTO A PUNTO",
@@ -116,7 +116,7 @@
     "user_id": 9,
     "enterprise_id": 6,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -135,7 +135,7 @@
     "user_id": 10,
     "enterprise_id": 1,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -154,7 +154,7 @@
     "user_id": 11,
     "enterprise_id": 2,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -173,7 +173,7 @@
     "user_id": 12,
     "enterprise_id": 3,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "PUNTO A PUNTO",
@@ -194,7 +194,7 @@
     "user_id": 13,
     "enterprise_id": 4,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -213,7 +213,7 @@
     "user_id": 4,
     "enterprise_id": 1,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "PUNTO A PUNTO",
@@ -234,7 +234,7 @@
     "user_id": 5,
     "enterprise_id": 2,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -253,7 +253,7 @@
     "user_id": 6,
     "enterprise_id": 3,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -272,7 +272,7 @@
     "user_id": 7,
     "enterprise_id": 4,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -292,7 +292,7 @@
     "user_id": 8,
     "enterprise_id": 5,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "PUNTO A PUNTO",
@@ -313,7 +313,7 @@
     "user_id": 9,
     "enterprise_id": 6,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -332,7 +332,7 @@
     "user_id": 10,
     "enterprise_id": 1,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -351,7 +351,7 @@
     "user_id": 11,
     "enterprise_id": 2,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   },
   {
     "trip_type": "POR HORA",
@@ -370,13 +370,393 @@
     "user_id": 12,
     "enterprise_id": 3,
     "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-15T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
+    "driver_id": 9
+  },
+  {
+    "trip_type": "POR HORA",
+    "service_type": "ENTERPRISE",
+    "service_car_type": "TRUCK",
+    "start_time": "2024-04-24T15:30:00-05:00",
+    "start_address": "Av. Argentina 151, Lima 15079, Peru",
+    "start_address_lat": -12.001,
+    "start_address_lon": -77.001,
+    "end_address": null,
+    "end_address_lat": null,
+    "end_address_lon": null,
+    "price": 150.0,
+    "driver_percent": 10,
+    "silver_percent": 20,
+    "user_id": 12,
+    "enterprise_id": 3,
+    "car_id": 1,
     "driver_id": 10
   },
   {
     "trip_type": "PUNTO A PUNTO",
     "service_type": "PERSONAL",
     "service_car_type": "CAR",
-    "start_time": "2024-04-15T15:00:00-05:00",
+    "start_time": "2024-04-24T15:30:00-05:00",
     "start_address": "Av. Argentina 151, Lima 15079, Peru",
     "start_address_lat": -12.001,
     "start_address_lon": -77.001,
@@ -391,7 +771,7 @@
     "user_id": 13,
     "enterprise_id": 4,
     "car_id": 1,
-    "driver_id": 10
+    "driver_id": 9
   }
 ]
 
