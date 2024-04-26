@@ -1,12 +1,5 @@
 require("dotenv").config();
 const request = require('supertest');
-/* const matchers = require('jest-extended');
-expect.extend(matchers);
-
-afterEach(() => {
-  jest.useRealTimers();
-}); */
-
 const { ISSUERBASEURL, CLIENT_ID, CLIENT_SECRET, AUDIENCE, TEST_URL } = process.env;
 
 describe('Trip Module', () => {
@@ -35,7 +28,6 @@ describe('Trip Module', () => {
             .send({
                 "reserve_id": 21,
                 "total_price": 30,
-                "on_way_driver": "2024-04-15T17:30-05:00",
                 "status": "COMPLETED",
                 "arrived_driver": "2024-04-15 20:58:00+00",
                 "start_time": "2024-04-15 20:58:00+00",
@@ -64,7 +56,6 @@ describe('Trip Module', () => {
         const response = await request(TEST_URL)
         .get(route)
         .set(jwt);
-        console.log(response.body[20])
         expect(response.body[20]).toEqual({
             id: expect.any(Number),
             startTime: expect.toBeOneOf([expect.any(String), null]),
@@ -84,4 +75,3 @@ describe('Trip Module', () => {
       });
     });
 });
-
