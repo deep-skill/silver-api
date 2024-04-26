@@ -61,7 +61,7 @@ describe('Driver Module', () => {
         .get(route)
         .set(jwt);
         expect(response.body[0]).toEqual({
-            carId: expect.any(Number || null),
+            carId: expect.toBeOneOf([expect.any(Number), null]),
             name: expect.any(String),
             lastName: expect.any(String),
             dni: expect.any(String),
@@ -69,8 +69,8 @@ describe('Driver Module', () => {
             licenseNumber: expect.any(String),
             phoneNumber: expect.any(String),
             email: expect.any(String),
-            address: expect.any(String || null),
-            imageUrl: expect.any(String || null),
+            address: expect.toBeOneOf([expect.any(String), null]),
+            imageUrl: expect.toBeOneOf([expect.any(String), null]),
             id: expect.any(Number),
             createdAt: expect.any(String),
             updatedAt: expect.any(String),

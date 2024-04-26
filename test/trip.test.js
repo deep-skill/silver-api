@@ -1,5 +1,12 @@
 require("dotenv").config();
 const request = require('supertest');
+/* const matchers = require('jest-extended');
+expect.extend(matchers);
+
+afterEach(() => {
+  jest.useRealTimers();
+}); */
+
 const { ISSUERBASEURL, CLIENT_ID, CLIENT_SECRET, AUDIENCE, TEST_URL } = process.env;
 
 describe('Trip Module', () => {
@@ -57,18 +64,21 @@ describe('Trip Module', () => {
         const response = await request(TEST_URL)
         .get(route)
         .set(jwt);
-        expect(response.body[20]).contains({
+        expect(response.body[20]).toEqual({
             id: expect.any(Number),
+            startTime: expect.toBeOneOf([expect.any(String), null]),
             onWayDriver: expect.any(String),
             arrivedDriver: expect.any(String),
-            endTime: expect.any(String),
-            observation: expect.any(Array),
+            endTime: expect.toBeOneOf([expect.any(String), null]),
+            observation: expect.toBeOneOf([expect.any(Array), null]),
             status: expect.any(String),
             reserveId: expect.any(Number),
-            tripPolyline: expect.anything(String) || expect.any(null),
-            waitingTimeExtra: expect.any(Number) || expect.any(null),
-            driverRating: expect.any(Number)|| expect.any(null),
-            passengerRating: expect.any(Number) || expect.any(null),
+            suggestedTotalPrice: expect.toBeOneOf([expect.any(Number), null]),
+            totalPrice: expect.toBeOneOf([expect.any(Number), null]),
+            tripPolyline: expect.toBeOneOf([expect.any(String), null]),
+            waitingTimeExtra: expect.toBeOneOf([expect.any(Number), null]),
+            driverRating: expect.toBeOneOf([expect.any(Number), null]),
+            passengerRating: expect.toBeOneOf([expect.any(Number), null]),
             createdAt: expect.any(String),
             updatedAt: expect.any(String),
       });
