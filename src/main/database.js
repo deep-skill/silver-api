@@ -4,7 +4,7 @@ const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES
 
 // Database sequelize connection
 const sequelize = new Sequelize(`postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}`, {
-  logging: (...msg) => console.log(msg),
+  logging: false,
   native: false
 });
 
