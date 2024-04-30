@@ -6,15 +6,8 @@ const morgan = require("morgan");
 const routes = require("./router.js");
 require("./database.js");
 const fs = require('fs');
+const logError = require('./utils/logError.js')
 
-function logError(errorMessage) {
-  const logMessage = `${new Date().toISOString()} - ${errorMessage}\n`;
-  fs.appendFile('./logs/error.log', logMessage, (err) => {
-    if (err) {
-      console.error('Error writing to error.log:', err);
-    }
-  });
-}
 
 // Create server & server name
 const server = express();

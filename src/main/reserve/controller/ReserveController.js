@@ -2,6 +2,8 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const ReserveService = require("../service/ReserveService");
+const logError = require('../../utils/logError.js')
+const { v4: uuidv4 } = require('uuid');
 
 const getAll = async (req, res) => {
   const { page, size } = req.query;
@@ -81,8 +83,9 @@ const create = async (req, res) => {
     );
     return res.status(201).json(reserve);
   } catch (error) {
-    console.log(error)
-    return res.status(400).json({ error: error.message });
+    const uuid = uuidv4();
+    logError(` ${uuid}, ${error.stack}`)
+    return res.status(400).json({ error: uuid });
   }
 };
 
