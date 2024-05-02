@@ -2,13 +2,14 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const UserService = require('../service/UserService');
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   try {
     const users = await UserService.getAll();
     return res.status(200).json(users);
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      errorHandler(error, req, res);
   }
 };
 
@@ -19,7 +20,7 @@ const get = async (req, res) => {
     const user = await UserService.get(id);
     return res.status(200).json(user);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -49,7 +50,7 @@ const create = async (req, res) => {
       );
       return res.status(201).json(user);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -82,7 +83,7 @@ const update = async (req, res) => {
     );
     return res.status(200).json(updatedUser);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -93,7 +94,7 @@ const erase = async (req, res) => {
     await UserService.erase(id);
     return res.status(204).json();
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      errorHandler(error, req, res);
   }
 };
 const getUserByName = async (req, res) => {
@@ -102,8 +103,8 @@ const getUserByName = async (req, res) => {
     const users = await UserService.getUserByName(query);
     return res.status(200).json(users);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
-  } 
+    errorHandler(error, req, res);
+  }
 };
 
 const UserRouter = Router();

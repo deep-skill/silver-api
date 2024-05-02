@@ -2,13 +2,14 @@ const { Router } = require("express");
 const {requiredScopes} = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const TollService = require("../service/TollService");
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   try {
     const tolls = await TollService.getAll();
     return res.status(200).json(tolls);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -19,7 +20,7 @@ const get = async (req, res) => {
     const toll = await TollService.get(id);
     return res.status(200).json(toll);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -29,7 +30,7 @@ const create = async (req, res) => {
     const toll = await TollService.create(tripId, name, amount, lat, lon);
     return res.status(201).json(toll);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -48,7 +49,7 @@ const update = async (req, res) => {
     );
     return res.status(200).json(updatedtoll);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -59,7 +60,7 @@ const erase = async (req, res) => {
     const deletedtoll = await TollService.erase(id);
     return res.status(204).json(deletedtoll);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 

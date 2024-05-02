@@ -2,13 +2,14 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const SilverCarService = require('../service/SilverCarService');
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   try {
     const silverCars = await SilverCarService.getAll();
     return res.status(200).json(silverCars);
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      errorHandler(error, req, res);
   }
 };
 
@@ -19,7 +20,7 @@ const get = async (req, res) => {
     const silverCar = await SilverCarService.get(id);
     return res.status(200).json(silverCar);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -43,7 +44,7 @@ const create = async (req, res) => {
       );
       return res.status(201).json();
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -70,7 +71,7 @@ const update = async (req, res) => {
     );
     return res.status(201).json(updatedSilverCar);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -81,7 +82,7 @@ const erase = async (req, res) => {
     await SilverCarService.erase(id);
     return res.status(204).json();
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      errorHandler(error, req, res);
   }
 };
 

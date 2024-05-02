@@ -2,13 +2,14 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const TripService = require("../service/TripService");
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   try {
     const trips = await TripService.getAll();
     return res.status(200).json(trips);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -19,7 +20,7 @@ const get = async (req, res) => {
     const trip = await TripService.get(id);
     return res.status(200).json(trip);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -45,7 +46,7 @@ const create = async (req, res) => {
     );
     return res.status(201).json(trip);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -82,7 +83,7 @@ const update = async (req, res) => {
     );
     return res.status(200).json(updatedTrip);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -100,7 +101,7 @@ const updateTotalPrice = async (req, res) => {
     );
     return res.status(200).json(updatedTrip);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -111,7 +112,7 @@ const erase = async (req, res) => {
     await TripService.erase(id);
     return res.status(204).json();
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -121,7 +122,7 @@ const getTripsHistory = async (req, res) => {
     const trips = await TripService.getTripsHistory(page);
     return res.status(200).json(trips);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -133,8 +134,7 @@ const getTripsByQuery = async (req, res) => {
     const trips = await TripService.getTripByQuery(query);
     return res.status(200).json(trips);
   } catch (error) {
-    console.log(error);
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -143,7 +143,7 @@ const getTripsSummary = async (req, res) => {
     const trips = await TripService.getTripsSummary();
     return res.status(200).json(trips);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 const getDriverMonthSummary = async (req, res) => {
@@ -153,7 +153,7 @@ const getDriverMonthSummary = async (req, res) => {
     const trips = await TripService.getDriverMonthSummary(id);
     return res.status(200).json(trips);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -166,7 +166,7 @@ const getAllDriverTrips = async (req, res) => {
     const trips = await TripService.getAllDriverTrips(id, page);
     return res.status(200).json(trips);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -179,7 +179,7 @@ const getDriverTripByQuery = async (req, res) => {
     const reserves = await TripService.getDriverTripByQuery(id, query);
     return res.status(200).json(reserves);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -190,7 +190,7 @@ const getAdminTripById = async (req, res) => {
     const trip = await TripService.getAdminTripById(id);
     return res.status(200).json(trip);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
