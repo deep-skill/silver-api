@@ -2,8 +2,7 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const ReserveService = require("../service/ReserveService");
-const logError = require('../../utils/logError.js')
-const { v4: uuidv4 } = require('uuid');
+const errorHandler = require("../../utils/errorHandler")
 
 const getAll = async (req, res) => {
   const { page, size } = req.query;
@@ -27,11 +26,12 @@ const getAll = async (req, res) => {
 const get = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     const reserve = await ReserveService.get(id);
+    if (!reserve) throw new Error(`Reserve with id ${id} does not exist`);
     return res.status(200).json(reserve);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -83,9 +83,7 @@ const create = async (req, res) => {
     );
     return res.status(201).json(reserve);
   } catch (error) {
-    const uuid = uuidv4();
-    logError(` ${uuid}, ${error.stack}`)
-    return res.status(400).json({ error: uuid });
+    errorHandler(error, req, res)
   }
 };
 
