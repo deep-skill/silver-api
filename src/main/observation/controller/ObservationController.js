@@ -2,13 +2,14 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const ObservationService = require("../service/ObservationService");
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   try {
     const observations = await ObservationService.getAll();
     return res.status(200).json(observations);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -19,7 +20,7 @@ const get = async (req, res) => {
     const observation = await ObservationService.get(id);
     return res.status(200).json(observation);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -29,7 +30,7 @@ const create = async (req, res) => {
     const newObservation = await ObservationService.create( tripId, observation );
     return res.status(201).json(observation);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -45,7 +46,7 @@ const update = async (req, res) => {
     );
     return res.status(200).json(updatedObservation);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -56,7 +57,7 @@ const erase = async (req, res) => {
     await ObservationService.erase(id);
     return res.status(204).json("Observation deleted");
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 

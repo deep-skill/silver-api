@@ -3,13 +3,14 @@ const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const DriverService = require('../service/DriverService');
 const DriverAccountController = require('./DriverAccountController');
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   try {
     const drivers = await DriverService.getAll();
     return res.status(200).json(drivers);
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      errorHandler(error, req, res);
   }
 };
 
@@ -20,7 +21,7 @@ const get = async (req, res) => {
     const driver = await DriverService.get(id);
     return res.status(200).json(driver);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -54,7 +55,7 @@ const create = async (req, res) => {
       );
       return res.status(201).json(driver);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -91,7 +92,7 @@ const update = async (req, res) => {
     );
     return res.status(200).json(updatedDriver);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -102,7 +103,7 @@ const erase = async (req, res) => {
     await DriverService.erase(id);
     return res.status(204).json();
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      errorHandler(error, req, res);
   }
 };
 
@@ -112,7 +113,7 @@ const getDriverByName = async (req, res) => {
     const drivers = await DriverService.getDriverByName(query);
     return res.status(200).json(drivers);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   } 
 };
 const getDriverByEmail = async (req, res) => {
@@ -122,7 +123,7 @@ const getDriverByEmail = async (req, res) => {
     const driver = await DriverService.getDriverByEmail(query);
     return res.status(200).json(driver);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   } 
 };
 

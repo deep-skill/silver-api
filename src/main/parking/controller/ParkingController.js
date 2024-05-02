@@ -2,13 +2,14 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const ParkingService = require("../service/ParkingService");
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   try {
     const parkings = await ParkingService.getAll();
     return res.status(200).json(parkings);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -19,7 +20,7 @@ const get = async (req, res) => {
     const parking = await ParkingService.get(id);
     return res.status(200).json(parking);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -29,7 +30,7 @@ const create = async (req, res) => {
     const parking = await ParkingService.create(tripId, amount, name);
     return res.status(201).json(parking);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -46,7 +47,7 @@ const update = async (req, res) => {
     );
     return res.status(200).json(updatedParking);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -57,7 +58,7 @@ const erase = async (req, res) => {
     await ParkingService.erase(id);
     return res.status(204).json();
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 

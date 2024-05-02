@@ -2,13 +2,14 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const CarService = require("../service/CarService");
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   try {
     const cars = await CarService.getAll();
     return res.status(200).json(cars);
     } catch (error) {
-      return res.status(400).json({error: error.message});
+      errorHandler(error, req, res);
   }
 };
 
@@ -18,8 +19,8 @@ const get = async (req, res) => {
     if (!id) throw new Error("Missing data");
     const car = await CarService.get(id);
     return res.status(200).json(car);
-  } catch (error) {
-    return res.status(400).json({error: error.message});
+    } catch (error) {
+      errorHandler(error, req, res);
   }
 };
 
@@ -45,7 +46,7 @@ const create = async (req, res) => {
       );
       return res.status(201).json(car);
     } catch (error) {
-        return res.status(400).json({error: error.message});
+      errorHandler(error, req, res);
     }
 };
 
@@ -74,7 +75,7 @@ const update = async (req, res) => {
     );
     return res.status(200).json(updatedCar);
   } catch (error) {
-      return res.status(400).json({error: error.message});
+    errorHandler(error, req, res);
   }
 };
 
@@ -85,7 +86,7 @@ const erase = async (req, res) => {
     await CarService.erase(id);
     return res.status(204).json();
   } catch (error) {
-      return res.status(400).json({error: error.message});
+    errorHandler(error, req, res);
   }
 };
 
@@ -96,7 +97,7 @@ const getCarByLicensePlate = async (req, res) => {
     const cars = await CarService.getCarByLicensePlate(query);
     return res.status(200).json(cars);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   } 
 };
 
