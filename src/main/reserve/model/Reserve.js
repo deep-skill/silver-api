@@ -91,9 +91,6 @@ module.exports = (sequelize) => {
       allowNull: true,
       validate: {
         checkServiceTripType() {
-          if (this.tripType == 'PUNTO A PUNTO' && this.suggestedPrice == null) {
-            throw new Error('Suggested price must be defined');
-          }
           if (this.tripType == 'POR HORA' && this.suggestedPrice != null) {
             throw new Error('Suggested price must not be defined when trip type is POR HORA');
           }
