@@ -16,8 +16,9 @@ const getAll = async (req, res) => {
 const get = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     const stop = await StopService.get(id);
+    if (!stop) throw new Error(`Stop with id ${id} does not exist`);
     return res.status(200).json(stop);
   } catch (error) {
     errorHandler(error, req, res);

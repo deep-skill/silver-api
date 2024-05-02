@@ -16,8 +16,9 @@ const getAll = async (req, res) => {
 const get = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     const parking = await ParkingService.get(id);
+    if (!parking) throw new Error(`Parking with id ${id} does not exist`);
     return res.status(200).json(parking);
   } catch (error) {
     errorHandler(error, req, res);
@@ -36,7 +37,7 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const {  amount, name ,tripId} = req.body;
+  const { amount, name, tripId } = req.body;
   try {
     if (!id) throw new Error("Missing data");
     const updatedParking = await ParkingService.update(

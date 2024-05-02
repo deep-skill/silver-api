@@ -16,8 +16,9 @@ const getAll = async (req, res) => {
 const get = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Missing data");
     const trip = await TripService.get(id);
+    if (trip === null) throw new Error(`Trip with id ${id} does not exist`);
     return res.status(200).json(trip);
   } catch (error) {
     errorHandler(error, req, res);
@@ -186,8 +187,9 @@ const getDriverTripByQuery = async (req, res) => {
 const getAdminTripById = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Missing data");
     const trip = await TripService.getAdminTripById(id);
+    if (trip === null) throw new Error(`Trip with id ${id} does not exist`);
     return res.status(200).json(trip);
   } catch (error) {
     errorHandler(error, req, res);

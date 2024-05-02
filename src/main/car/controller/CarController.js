@@ -8,19 +8,20 @@ const getAll = async (req, res) => {
   try {
     const cars = await CarService.getAll();
     return res.status(200).json(cars);
-    } catch (error) {
-      errorHandler(error, req, res);
+  } catch (error) {
+    errorHandler(error, req, res);
   }
 };
 
 const get = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     const car = await CarService.get(id);
+    if (!car) throw new Error(`Car with id ${id} does not exist`);
     return res.status(200).json(car);
-    } catch (error) {
-      errorHandler(error, req, res);
+  } catch (error) {
+    errorHandler(error, req, res);
   }
 };
 
@@ -33,25 +34,25 @@ const create = async (req, res) => {
     type,
     color,
     year
-    } = req.body;
-    try {
-      const car = await CarService.create(
-          licensePlate,
-          owner,
-          brand,
-          model,
-          type,
-          color,
-          year
-      );
-      return res.status(201).json(car);
-    } catch (error) {
-      errorHandler(error, req, res);
-    }
+  } = req.body;
+  try {
+    const car = await CarService.create(
+      licensePlate,
+      owner,
+      brand,
+      model,
+      type,
+      color,
+      year
+    );
+    return res.status(201).json(car);
+  } catch (error) {
+    errorHandler(error, req, res);
+  }
 };
 
 const update = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const {
     licensePlate,
     owner,
@@ -64,14 +65,14 @@ const update = async (req, res) => {
   try {
     if (!id) throw new Error("Missing data");
     const updatedCar = await CarService.update(
-        id,
-        licensePlate,
-        owner,
-        brand,
-        model,
-        type,
-        color,
-        year
+      id,
+      licensePlate,
+      owner,
+      brand,
+      model,
+      type,
+      color,
+      year
     );
     return res.status(200).json(updatedCar);
   } catch (error) {
@@ -80,7 +81,7 @@ const update = async (req, res) => {
 };
 
 const erase = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
     if (!id) throw new Error("Missing data");
     await CarService.erase(id);
@@ -92,13 +93,13 @@ const erase = async (req, res) => {
 
 const getCarByLicensePlate = async (req, res) => {
   const { query } = req.query;
-    try {
+  try {
     if (!query) throw new Error("Missing data");
     const cars = await CarService.getCarByLicensePlate(query);
     return res.status(200).json(cars);
   } catch (error) {
     errorHandler(error, req, res);
-  } 
+  }
 };
 
 const CarRouter = Router();

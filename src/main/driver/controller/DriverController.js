@@ -9,16 +9,17 @@ const getAll = async (req, res) => {
   try {
     const drivers = await DriverService.getAll();
     return res.status(200).json(drivers);
-    } catch (error) {
-      errorHandler(error, req, res);
+  } catch (error) {
+    errorHandler(error, req, res);
   }
 };
 
 const get = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     const driver = await DriverService.get(id);
+    if (!driver) throw new Error(`Driver with id ${id} does not exist`);
     return res.status(200).json(driver);
   } catch (error) {
     errorHandler(error, req, res);
@@ -52,15 +53,15 @@ const create = async (req, res) => {
       email,
       address,
       imageUrl
-      );
-      return res.status(201).json(driver);
+    );
+    return res.status(201).json(driver);
   } catch (error) {
     errorHandler(error, req, res);
   }
 };
 
 const update = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const {
     carId,
     driverAccountId,
@@ -102,29 +103,29 @@ const erase = async (req, res) => {
     if (!id) throw new Error("Missing data");
     await DriverService.erase(id);
     return res.status(204).json();
-    } catch (error) {
-      errorHandler(error, req, res);
+  } catch (error) {
+    errorHandler(error, req, res);
   }
 };
 
 const getDriverByName = async (req, res) => {
   const { query } = req.query;
-    try {
+  try {
     const drivers = await DriverService.getDriverByName(query);
     return res.status(200).json(drivers);
   } catch (error) {
     errorHandler(error, req, res);
-  } 
+  }
 };
 const getDriverByEmail = async (req, res) => {
   const { query } = req.query;
-    try {
+  try {
     if (!query) throw new Error("Missing data");
     const driver = await DriverService.getDriverByEmail(query);
     return res.status(200).json(driver);
   } catch (error) {
     errorHandler(error, req, res);
-  } 
+  }
 };
 
 const DriverRouter = Router();

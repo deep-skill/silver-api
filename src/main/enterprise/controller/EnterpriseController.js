@@ -8,16 +8,17 @@ const getAll = async (req, res) => {
   try {
     const enterprises = await EnterpriseService.getAll();
     return res.status(200).json(enterprises);
-    } catch (error) {
-      errorHandler(error, req, res);
+  } catch (error) {
+    errorHandler(error, req, res);
   }
 };
 
 const get = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     const enterprise = await EnterpriseService.get(id);
+    if (!enterprise) throw new Error(`Enterprice with id ${id} does not exist`);
     return res.status(200).json(enterprise);
   } catch (error) {
     errorHandler(error, req, res);
@@ -35,15 +36,15 @@ const create = async (req, res) => {
       ruc,
       name,
       address,
-      );
-      return res.status(201).json(enterprise);
+    );
+    return res.status(201).json(enterprise);
   } catch (error) {
     errorHandler(error, req, res);
   }
 };
 
 const update = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const {
     ruc,
     name,
@@ -58,8 +59,8 @@ const update = async (req, res) => {
       address,
     );
     return res.status(200).json(updatedEnterprise);
-    } catch (error) {
-      errorHandler(error, req, res);
+  } catch (error) {
+    errorHandler(error, req, res);
   }
 };
 
@@ -69,9 +70,9 @@ const erase = async (req, res) => {
     if (!id) throw new Error("Missing data");
     await EnterpriseService.erase(id);
     return res.status(204).json();
-    } catch (error) {
-      errorHandler(error, req, res);
-    }
+  } catch (error) {
+    errorHandler(error, req, res);
+  }
 };
 
 const EnterpriseRouter = Router();

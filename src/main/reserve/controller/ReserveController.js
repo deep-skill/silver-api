@@ -146,7 +146,7 @@ const update = async (req, res) => {
 const erase = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     await ReserveService.erase(id);
     return res.status(204).json();
   } catch (error) {
