@@ -2,24 +2,26 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const ParkingService = require("../service/ParkingService");
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   try {
     const parkings = await ParkingService.getAll();
     return res.status(200).json(parkings);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
 const get = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     const parking = await ParkingService.get(id);
+    if (!parking) throw new Error(`Parking with id ${id} does not exist`);
     return res.status(200).json(parking);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -29,13 +31,13 @@ const create = async (req, res) => {
     const parking = await ParkingService.create(tripId, amount, name);
     return res.status(201).json(parking);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const {  amount, name ,tripId} = req.body;
+  const { amount, name, tripId } = req.body;
   try {
     if (!id) throw new Error("Missing data");
     const updatedParking = await ParkingService.update(
@@ -46,7 +48,7 @@ const update = async (req, res) => {
     );
     return res.status(200).json(updatedParking);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -57,7 +59,7 @@ const erase = async (req, res) => {
     await ParkingService.erase(id);
     return res.status(204).json();
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 

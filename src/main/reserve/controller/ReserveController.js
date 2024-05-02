@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 const jwtCheck = require('../../jwtCheck');
 const ReserveService = require("../service/ReserveService");
+const errorHandler = require("../../utils/errorHandler");
 
 const getAll = async (req, res) => {
   const { page, size } = req.query;
@@ -10,14 +11,14 @@ const getAll = async (req, res) => {
       const reserves = await ReserveService.getPaginated(page, size);
       return res.status(200).json(reserves);
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      errorHandler(error, req, res);
     }
   } else {
     try {
       const reserves = await ReserveService.getAll();
       return res.status(200).json(reserves);
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      errorHandler(error, req, res);
     }
   }
 };
@@ -25,11 +26,12 @@ const getAll = async (req, res) => {
 const get = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     const reserve = await ReserveService.get(id);
+    if (!reserve) throw new Error(`Reserve with id ${id} does not exist`);
     return res.status(200).json(reserve);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -81,8 +83,7 @@ const create = async (req, res) => {
     );
     return res.status(201).json(reserve);
   } catch (error) {
-    console.log(error)
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -138,18 +139,18 @@ const update = async (req, res) => {
     );
     return res.status(200).json(updatedReserve);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
 const erase = async (req, res) => {
   const { id } = req.params;
   try {
-    if (!id) throw new Error("Missing data");
+    if (!+id) throw new Error("Id must be an integer");
     await ReserveService.erase(id);
     return res.status(204).json();
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -159,7 +160,7 @@ const getReservesHome = async (req, res) => {
     const reserves = await ReserveService.getReservesHome(page);
     return res.status(200).json(reserves);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 const getReserveHomeByQuery = async (req, res) => {
@@ -169,7 +170,7 @@ const getReserveHomeByQuery = async (req, res) => {
     const reserves = await ReserveService.getReserveHomeByQuery(query);
     return res.status(200).json(reserves);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 const getReservesList = async (req, res) => {
@@ -178,7 +179,7 @@ const getReservesList = async (req, res) => {
     const reserves = await ReserveService.getReservesList(page);
     return res.status(200).json(reserves);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -189,7 +190,7 @@ const getDriverReservesList = async (req, res) => {
     const reserves = await ReserveService.getDriverReservesList(page, id);
     return res.status(200).json(reserves);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -199,7 +200,7 @@ const getReserveDetail = async (req, res) => {
     const reserve = await ReserveService.getReserveDetail(id);
     return res.status(200).json(reserve);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -209,7 +210,7 @@ const getDriverReserveDetail = async (req, res) => {
     const reserve = await ReserveService.getDriverReserveDetail(id);
     return res.status(200).json(reserve);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -220,7 +221,7 @@ const getReserveByQuery = async (req, res) => {
     const reserves = await ReserveService.getReserveByQuery(query);
     return res.status(200).json(reserves);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 const getDriverNearestReserve = async (req, res) => {
@@ -230,7 +231,7 @@ const getDriverNearestReserve = async (req, res) => {
     const reserve = await ReserveService.getDriverNearestReserve(id);
     return res.status(200).json(reserve);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -240,7 +241,7 @@ const getDriverReservesHome = async (req, res) => {
     const reserves = await ReserveService.getDriverReservesHome(page, id);
     return res.status(200).json(reserves);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 const getDriverReserveByQuery = async (req, res) => {
@@ -252,7 +253,7 @@ const getDriverReserveByQuery = async (req, res) => {
     const reserves = await ReserveService.getDriverReserveByQuery(query, id);
     return res.status(200).json(reserves);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
@@ -271,7 +272,7 @@ const createDriverPerHourStop = async (req, res) => {
 
     return res.status(200).json(updatedReserve);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    errorHandler(error, req, res);
   }
 };
 
