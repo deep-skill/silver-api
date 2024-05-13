@@ -293,6 +293,7 @@ const getReserveDetail = async (id) => {
       "endAddressLat",
       "endAddressLon",
       "reservePolyline",
+      "reserveDistanceMeters",
     ],
     include: [
       {
@@ -330,6 +331,7 @@ const getDriverReserveDetail = async (id) => {
       "endAddress",
       "price",
       "silverPercent",
+      "reserveDistanceMeters",
     ],
     include: [
       {
