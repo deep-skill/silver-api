@@ -62,6 +62,11 @@ module.exports = (sequelize) => {
       field: 'suggested_total_price',
       allowNull: true,
     },
+    tripDistanceMeters: {
+      type: DataTypes.STRING,
+      field: 'trip_distance_meters',
+      allowNull: true
+    }
   },
 
   );
