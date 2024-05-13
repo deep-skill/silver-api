@@ -122,9 +122,9 @@ module.exports = (sequelize) => {
         }
       }
     },
-    distanceMeters: {
+    reserveDistanceMeters: {
       type: DataTypes.STRING,
-      field: 'distance_meters',
+      field: 'reserve_distance_meters',
       allowNull: true
     }
   },
