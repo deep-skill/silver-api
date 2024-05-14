@@ -34,6 +34,7 @@ const get = async (id) => {
           "serviceType",
           "startTime",
           "serviceCarType",
+          "reserveDistanceMeters",
         ],
         include: [
           {
