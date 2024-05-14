@@ -33,7 +33,8 @@ const get = async (id) => {
           "silverPercent",
           "serviceType",
           "startTime",
-          "serviceCarType"
+          "serviceCarType",
+          "reserveDistanceMeters",
         ],
         include: [
           {
@@ -91,7 +92,8 @@ const update = async (
   passengerRating,
   waitingTimeExtra,
   suggestedTotalPrice,
-  tripPolyline
+  tripPolyline,
+  tripDistanceMeters
 ) => {
   const trip = await Trip.findOne({ where: { id } });
   if (!trip) throw new Error("Trip not exist");
@@ -105,6 +107,7 @@ const update = async (
   waitingTimeExtra ? (trip.waitingTimeExtra = waitingTimeExtra) : null;
   tripPolyline ? (trip.tripPolyline = tripPolyline) : null;
   suggestedTotalPrice ? (trip.suggestedTotalPrice = suggestedTotalPrice) : null;
+  tripDistanceMeters ? (trip.tripDistanceMeters = tripDistanceMeters) : null;
 
   if (driverRating) {
     const reserve = await trip.getReserve();
@@ -395,6 +398,7 @@ const getAdminTripById = async (id) => {
           "tripType",
           "serviceType",
           "startTime",
+          "reserveDistanceMeters",
         ],
         include: [
           {

@@ -121,6 +121,11 @@ module.exports = (sequelize) => {
           }
         }
       }
+    },
+    reserveDistanceMeters: {
+      type: DataTypes.STRING,
+      field: 'reserve_distance_meters',
+      allowNull: true
     }
   },
   );

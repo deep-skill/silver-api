@@ -33,7 +33,7 @@ const create = async (req, res) => {
     arrivedDriver,
     startTime,
     endTime,
-    status
+    status,
   } = req.body;
   try {
     const trip = await TripService.create(
@@ -43,7 +43,7 @@ const create = async (req, res) => {
       arrivedDriver,
       startTime,
       endTime,
-      status
+      status,
     );
     return res.status(201).json(trip);
   } catch (error) {
@@ -64,7 +64,8 @@ const update = async (req, res) => {
     passengerRating,
     waitingTimeExtra,
     suggestedTotalPrice,
-    tripPolyline
+    tripPolyline,
+    tripDistanceMeters
   } = req.body;
   try {
     if (!id) throw new Error("Missing data");
@@ -80,7 +81,8 @@ const update = async (req, res) => {
       passengerRating,
       waitingTimeExtra,
       suggestedTotalPrice,
-      tripPolyline
+      tripPolyline,
+      tripDistanceMeters
     );
     return res.status(200).json(updatedTrip);
   } catch (error) {
