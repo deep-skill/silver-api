@@ -398,6 +398,7 @@ const getAdminTripById = async (id) => {
           "tripType",
           "serviceType",
           "startTime",
+          "reserveDistanceMeters",
         ],
         include: [
           {
